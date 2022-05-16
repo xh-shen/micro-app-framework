@@ -1,0 +1,7 @@
+{
+  "name": "@micro/hooks",
+  "version": "1.0.0",
+  "description": "micro hooks",
+  "main": "index.ts",
+  "module": "index.ts"
+}

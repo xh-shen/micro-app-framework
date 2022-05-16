@@ -2,15 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-15 22:38:53
+ * @LastEditTime: 2022-05-16 11:34:14
  * @Description:
  */
 import { App, InjectionKey } from 'vue'
 import { createStore, Store } from 'vuex'
-import { AppState } from './types'
 
 export type State = {
-  app: AppState
+  userInfo: Record<string, unknown>
 }
 export const key: InjectionKey<Store<State>> = Symbol()
 

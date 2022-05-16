@@ -1,0 +1,7 @@
+{
+  "name": "@micro/bootstrap",
+  "version": "1.0.0",
+  "description": "micro bootstrap",
+  "main": "index.ts",
+  "module": "index.ts"
+}

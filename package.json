@@ -12,10 +12,12 @@
     "dev:framework": "pnpm run -C framework serve",
     "dev:demo": "pnpm run -C micros/demo serve",
     "dev:system": "pnpm run -C micros/system serve",
-    "link": "pnpm install @micro/utils @micro/hooks @micro/components --filter @micro/framework @micro/demo @micro/system"
+    "link:framework": "pnpm install @micro/utils @micro/hooks @micro/components --filter @micro/framework",
+    "link:demo": "pnpm install @micro/utils @micro/hooks @micro/components --filter @micro/demo"
   },
   "license": "ISC",
   "dependencies": {
+    "@shene/pro-table": "^0.0.14",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "element-plus": "^2.2.0",

@@ -1,0 +1,7 @@
+{
+  "name": "@micro/components",
+  "version": "1.0.0",
+  "description": "micro components",
+  "main": "index.ts",
+  "module": "index.ts"
+}
