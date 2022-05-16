@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 13:27:31
+ * @LastEditTime: 2022-05-16 22:23:17
  * @Description:
  */
 import type { Component } from 'vue'
@@ -26,35 +26,42 @@ type Options = {
   appId: string
 }
 
-function setRootData(data: Record<string, unknown>, store: Store<State>) {
-  store.commit('setUserInfo', data.userInfo)
-}
-
-function handleMicroData(router: Router, store: Store<State>) {
+function handleMicroData(router: Router) {
   if (window.__MICRO_APP_ENVIRONMENT__) {
-    const rootData: Record<string, unknown> = window.microApp.getData()
-    setRootData(rootData, store)
+    // const rootData: Record<string, unknown> = window.microApp.getData()
+    // setRootData(rootData, store)
+    // if (rootData.userInfo) {
+    //   setRootData(rootData, store)
+    // }
     window.microApp.addDataListener((data: Record<string, unknown>) => {
       if (data.path && data.path !== router.currentRoute.value.path) {
         router.push(data.path as string)
       }
-      setRootData(data, store)
+      // if (data.userInfo) {
+      //   setRootData(data, store)
+      // }
     })
   }
 }
 
 function fixBugForVueRouter4(router: Router, basePath: string) {
   if (window.location.href.includes(basePath)) {
-    const realbasePath = window.__MICRO_APP_BASE_ROUTE__.replace(/^\/main-[^/]+/g, '')
+    const realbasePath = window.__MICRO_APP_BASE_ROUTE__
     router.beforeEach(() => {
+      // console.log('origin state', window.history.state)
+      // console.log('origin beforeEach', window.history.state?.current)
       if (typeof window.history.state?.current === 'string') {
         window.history.state.current = window.history.state.current.replace(new RegExp(realbasePath, 'g'), '')
       }
+      // console.log('target beforeEach', window.history.state?.current)
     })
     router.afterEach(() => {
+      // console.log('origin state', window.history.state)
+      // console.log('origin afterEach', window.history.state?.current)
       if (typeof window.history.state === 'object') {
         window.history.state.current = realbasePath + (window.history.state.current || '')
       }
+      // console.log('target afterEach', window.history.state?.current)
     })
   }
 }
@@ -82,12 +89,20 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
   app.use(store)
   app.mount(appId || '#app')
 
-  handleMicroData(router, store)
+  handleMicroData(router)
   fixBugForVueRouter4(router, base)
+
+  function handleGlobalData(data: any) {
+    store.commit('setUserInfo', data)
+  }
+
+  window.microApp.addGlobalDataListener(handleGlobalData, true)
 
   console.log(`微应用${name}渲染了`)
   window.addEventListener('unmount', function () {
     app.unmount()
+    window.microApp.removeGlobalDataListener(handleGlobalData)
+    window.microApp.clearGlobalDataListener()
     console.log(`微应用${name}卸载了`)
   })
 

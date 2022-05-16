@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-13 14:47:51
  * @LastEditors: shen
- * @LastEditTime: 2022-05-15 22:17:54
+ * @LastEditTime: 2022-05-16 21:37:38
  * @Description:
  */
 
@@ -10,6 +10,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    'vue/setup-compiler-macros': true,
   },
   extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/typescript/recommended', 'plugin:prettier/recommended'],
   parserOptions: {
