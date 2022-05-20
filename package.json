@@ -8,12 +8,8 @@
     "pnpm": ">=7"
   },
   "scripts": {
-    "dev": "pnpm run dev:framework & pnpm run dev:demo & pnpm run dev:system",
-    "dev:framework": "pnpm run -C framework serve",
-    "dev:demo": "pnpm run -C micros/demo serve",
-    "dev:system": "pnpm run -C micros/system serve",
-    "link:framework": "pnpm install @micro/utils @micro/hooks @micro/components --filter @micro/framework",
-    "link:demo": "pnpm install @micro/utils @micro/hooks @micro/components --filter @micro/demo"
+    "preinstall": "node ./scripts/preinstall.js",
+    "dev": "shene-micro dev"
   },
   "license": "ISC",
   "dependencies": {
@@ -27,6 +23,7 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@shene/micro-cli": "^0.1.1",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

@@ -1,10 +1,12 @@
 # Editor directories and files
 .idea
+.vscode
 
 # Package Manager
 node_modules
 **/node_modules
 .pnpm-debug.log*
+pnpm-lock.yaml
 
 # System
 .DS_Store
