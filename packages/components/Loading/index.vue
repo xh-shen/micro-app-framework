@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-02 19:30:26
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 20:49:07
+ * @LastEditTime: 2022-05-21 11:03:31
  * @Description: 
 -->
 <script setup lang="ts">
@@ -66,7 +66,6 @@ const containerClass = computed(() => ({
 </template>
 
 <style lang="scss" scoped>
-$color-primary: red;
 .loading {
   position: relative;
 
@@ -88,7 +87,7 @@ $color-primary: red;
     line-height: 1.5715;
     list-style: none;
     font-feature-settings: 'tnum';
-    color: $color-primary;
+    color: var(--el-color-primary);
     text-align: center;
     opacity: 0;
     transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -116,7 +115,7 @@ $color-primary: red;
       display: block;
       width: 9px;
       height: 9px;
-      background-color: $color-primary;
+      background-color: var(--el-color-primary);
       border-radius: 100%;
       transform: scale(0.75);
       transform-origin: 50% 50%;

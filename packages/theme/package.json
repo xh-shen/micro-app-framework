@@ -1,0 +1,7 @@
+{
+  "name": "@micro/theme",
+  "version": "1.0.0",
+  "description": "micro theme",
+  "main": "index.ts",
+  "module": "index.ts"
+}

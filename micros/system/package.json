@@ -12,6 +12,7 @@
     "@micro/components": "workspace:^1.0.0",
     "@micro/hooks": "workspace:^1.0.0",
     "@micro/utils": "workspace:^1.0.0",
+    "@micro/theme": "workspace:^1.0.0",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",

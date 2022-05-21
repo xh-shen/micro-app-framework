@@ -1,0 +1,80 @@
+<!--
+ * @Author: shen
+ * @Date: 2022-05-21 14:45:35
+ * @LastEditors: shen
+ * @LastEditTime: 2022-05-21 20:12:19
+ * @Description: 
+-->
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useGlobalData, useMicroRouter } from '@micro/hooks'
+
+const result = ref('')
+const router = useMicroRouter()
+const { userInfo, themeColor, token } = useGlobalData()
+
+const getData = (key: string) => {
+  if (key === 'userInfo') {
+    result.value = 'userInfo: ' + JSON.stringify(userInfo.value)
+  }
+  if (key === 'theme') {
+    result.value = 'themeColor: ' + themeColor.value
+  }
+  if (key === 'token') {
+    result.value = 'token: ' + token.value
+  }
+}
+
+const goToHome = () => {
+  router.push('/')
+}
+const goToSystem = () => {
+  router.push('/system/user')
+}
+
+const goToTable = () => {
+  router.push('/demo/table')
+}
+</script>
+
+<template>
+  <div class="message">
+    <div class="message-store">
+      <div class="message-store-actions">
+        <ElButton @click="getData('userInfo')">获取用户</ElButton>
+        <ElButton @click="getData('theme')">获取主题</ElButton>
+        <ElButton @click="getData('token')">获取token</ElButton>
+      </div>
+      <div class="message-store-result">
+        {{ result }}
+      </div>
+    </div>
+    <div class="message-router">
+      <ElButton @click="goToHome">跳转到主应用</ElButton>
+      <ElButton @click="goToSystem">跳转到其他子应用</ElButton>
+      <ElButton @click="goToTable">跳转到应用内部</ElButton>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.message {
+  padding: 0 10px;
+  &-store {
+    padding: 10px;
+    background-color: #fff;
+    &-actions {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    &-result {
+      padding-top: 10px;
+    }
+  }
+  &-router {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+  }
+}
+</style>

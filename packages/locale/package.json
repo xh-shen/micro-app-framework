@@ -1,0 +1,7 @@
+{
+  "name": "@micro/locale",
+  "version": "1.0.0",
+  "description": "micro locale",
+  "main": "index.ts",
+  "module": "index.ts"
+}

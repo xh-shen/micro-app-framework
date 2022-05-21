@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 22:23:17
+ * @LastEditTime: 2022-05-21 20:27:48
  * @Description:
  */
 import type { Component } from 'vue'
@@ -15,6 +15,9 @@ import { createStore } from 'vuex'
 
 export type State = {
   userInfo: Record<string, unknown>
+  lang: string
+  token: string
+  themeColor: string
 }
 export const key: InjectionKey<Store<State>> = Symbol()
 
@@ -28,18 +31,10 @@ type Options = {
 
 function handleMicroData(router: Router) {
   if (window.__MICRO_APP_ENVIRONMENT__) {
-    // const rootData: Record<string, unknown> = window.microApp.getData()
-    // setRootData(rootData, store)
-    // if (rootData.userInfo) {
-    //   setRootData(rootData, store)
-    // }
     window.microApp.addDataListener((data: Record<string, unknown>) => {
       if (data.path && data.path !== router.currentRoute.value.path) {
         router.push(data.path as string)
       }
-      // if (data.userInfo) {
-      //   setRootData(data, store)
-      // }
     })
   }
 }
@@ -48,20 +43,14 @@ function fixBugForVueRouter4(router: Router, basePath: string) {
   if (window.location.href.includes(basePath)) {
     const realbasePath = window.__MICRO_APP_BASE_ROUTE__
     router.beforeEach(() => {
-      // console.log('origin state', window.history.state)
-      // console.log('origin beforeEach', window.history.state?.current)
       if (typeof window.history.state?.current === 'string') {
         window.history.state.current = window.history.state.current.replace(new RegExp(realbasePath, 'g'), '')
       }
-      // console.log('target beforeEach', window.history.state?.current)
     })
     router.afterEach(() => {
-      // console.log('origin state', window.history.state)
-      // console.log('origin afterEach', window.history.state?.current)
       if (typeof window.history.state === 'object') {
         window.history.state.current = realbasePath + (window.history.state.current || '')
       }
-      // console.log('target afterEach', window.history.state?.current)
     })
   }
 }
@@ -75,11 +64,23 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
 
   const store = createStore<State>({
     state: {
+      token: '',
       userInfo: {},
+      lang: '',
+      themeColor: '',
     },
     mutations: {
       setUserInfo(state: State, data: Record<string, unknown>) {
         state.userInfo = data
+      },
+      setLang(state: State, data: string) {
+        state.lang = data
+      },
+      setToken(state: State, data: string) {
+        state.token = data
+      },
+      setThemeColor(state: State, data: string) {
+        state.themeColor = data
       },
     },
   })
@@ -89,11 +90,38 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
   app.use(store)
   app.mount(appId || '#app')
 
+  app.config.globalProperties.$microRouter = {
+    push(path: string) {
+      if (typeof path === 'string') {
+        window.microApp.dispatch({ path })
+      }
+    },
+    replace(path: string) {
+      if (typeof path === 'string') {
+        window.microApp.dispatch({ path, replace: true })
+      }
+    },
+  }
+
   handleMicroData(router)
   fixBugForVueRouter4(router, base)
 
-  function handleGlobalData(data: any) {
-    store.commit('setUserInfo', data)
+  function handleGlobalData(data: Record<string, unknown>) {
+    if (!data || Object.keys(data).length === 0) {
+      return
+    }
+    if (typeof data.userInfo !== 'undefined') {
+      store.commit('setUserInfo', data.userInfo || {})
+    }
+    if (typeof data.themeColor !== 'undefined') {
+      store.commit('setThemeColor', data.themeColor)
+    }
+    if (typeof data.lang !== 'undefined') {
+      store.commit('setLang', data.lang)
+    }
+    if (typeof data.token !== 'undefined') {
+      store.commit('setToken', data.token)
+    }
   }
 
   window.microApp.addGlobalDataListener(handleGlobalData, true)

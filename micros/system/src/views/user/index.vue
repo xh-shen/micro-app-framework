@@ -2,16 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 22:09:05
+ * @LastEditTime: 2022-05-21 14:41:21
  * @Description: 
 -->
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { ElButton } from 'element-plus'
-import { useStore } from 'vuex'
+import { ref } from 'vue'
+import { useGlobalData } from '@micro/hooks'
 const count = ref(0)
-const { state } = useStore()
-const userInfo = computed(() => state.userInfo)
+const { userInfo } = useGlobalData()
 
 const onAdd = () => {
   count.value = count.value + 1

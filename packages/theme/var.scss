@@ -1,0 +1,12 @@
+@use 'sass:map';
+
+// CSS3 var
+@use 'common/var' as *;
+@use 'mixins/var' as *;
+
+html {
+  @include set-css-var-value('color-primary', $color-primary);
+  @for $i from 1 through 9 {
+    @include set-css-color-type-light('primary', $i);
+  }
+} 

@@ -1,0 +1,7 @@
+{
+  "name": "@micro/request",
+  "version": "1.0.0",
+  "description": "micro request",
+  "main": "index.ts",
+  "module": "index.ts"
+}
