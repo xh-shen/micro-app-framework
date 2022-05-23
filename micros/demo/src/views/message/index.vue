@@ -2,14 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-21 20:12:19
+ * @LastEditTime: 2022-05-22 08:38:27
  * @Description: 
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useGlobalData, useMicroRouter } from '@micro/hooks'
 
-const result = ref('')
+const result = ref()
 const router = useMicroRouter()
 const { userInfo, themeColor, token } = useGlobalData()
 

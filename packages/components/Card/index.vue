@@ -2,9 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-16 10:25:00
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 10:26:23
+ * @LastEditTime: 2022-05-22 09:13:04
  * @Description: 
 -->
+<script lang="ts">
+export default {
+  name: 'McCard',
+}
+</script>
 <script setup lang="ts"></script>
 
 <template>

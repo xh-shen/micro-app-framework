@@ -2,9 +2,15 @@
  * @Author: shen
  * @Date: 2022-05-02 19:30:26
  * @LastEditors: shen
- * @LastEditTime: 2022-05-21 11:03:31
+ * @LastEditTime: 2022-05-22 09:13:24
  * @Description: 
 -->
+<script lang="ts">
+export default {
+  name: 'McLoading',
+}
+</script>
+
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { computed } from 'vue'

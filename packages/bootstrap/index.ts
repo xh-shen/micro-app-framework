@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-21 20:27:48
+ * @LastEditTime: 2022-05-23 20:17:59
  * @Description:
  */
 import type { Component } from 'vue'
@@ -14,6 +14,7 @@ import { InjectionKey } from 'vue'
 import { createStore } from 'vuex'
 
 export type State = {
+  appName: string
   userInfo: Record<string, unknown>
   lang: string
   token: string
@@ -29,30 +30,28 @@ type Options = {
   appId: string
 }
 
-function handleMicroData(router: Router) {
+function handleMicroRouterPush(router: Router) {
   if (window.__MICRO_APP_ENVIRONMENT__) {
     window.microApp.addDataListener((data: Record<string, unknown>) => {
       if (data.path && data.path !== router.currentRoute.value.path) {
-        router.push(data.path as string)
+        router.replace(data.path as string)
       }
     })
   }
 }
 
-function fixBugForVueRouter4(router: Router, basePath: string) {
-  if (window.location.href.includes(basePath)) {
-    const realbasePath = window.__MICRO_APP_BASE_ROUTE__
-    router.beforeEach(() => {
-      if (typeof window.history.state?.current === 'string') {
-        window.history.state.current = window.history.state.current.replace(new RegExp(realbasePath, 'g'), '')
-      }
-    })
-    router.afterEach(() => {
-      if (typeof window.history.state === 'object') {
-        window.history.state.current = realbasePath + (window.history.state.current || '')
-      }
-    })
-  }
+function fixBugForRouterBack(router: Router) {
+  const realbasePath = window.__MICRO_APP_BASE_ROUTE__
+  router.beforeEach(() => {
+    if (typeof window.history.state?.current === 'string') {
+      window.history.state.current = window.history.state.current.replace(new RegExp(realbasePath, 'g'), '')
+    }
+  })
+  router.afterEach(() => {
+    if (typeof window.history.state === 'object') {
+      window.history.state.current = realbasePath + (window.history.state.current || '')
+    }
+  })
 }
 
 export default ({ name, basePath, routes, appComponent, appId }: Options) => {
@@ -64,6 +63,7 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
 
   const store = createStore<State>({
     state: {
+      appName: name,
       token: '',
       userInfo: {},
       lang: '',
@@ -93,18 +93,18 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
   app.config.globalProperties.$microRouter = {
     push(path: string) {
       if (typeof path === 'string') {
-        window.microApp.dispatch({ path })
-      }
-    },
-    replace(path: string) {
-      if (typeof path === 'string') {
-        window.microApp.dispatch({ path, replace: true })
+        if (path.startsWith(base)) {
+          const ownPath = path.replace(base, '') || '/'
+          router.push(ownPath)
+        } else {
+          window.microApp.dispatch({ path })
+        }
       }
     },
   }
 
-  handleMicroData(router)
-  fixBugForVueRouter4(router, base)
+  handleMicroRouterPush(router)
+  fixBugForRouterBack(router)
 
   function handleGlobalData(data: Record<string, unknown>) {
     if (!data || Object.keys(data).length === 0) {
@@ -123,6 +123,10 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
       store.commit('setToken', data.token)
     }
   }
+
+  window.addEventListener('popstate', () => {
+    console.log('popstate', 123123123)
+  })
 
   window.microApp.addGlobalDataListener(handleGlobalData, true)
 

@@ -5,6 +5,7 @@
 # Package Manager
 node_modules
 **/node_modules
+*/node_modules
 .pnpm-debug.log*
 pnpm-lock.yaml
 
