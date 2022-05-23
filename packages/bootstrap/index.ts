@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-23 20:17:59
+ * @LastEditTime: 2022-05-23 21:14:20
  * @Description:
  */
 import type { Component } from 'vue'
@@ -93,12 +93,7 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
   app.config.globalProperties.$microRouter = {
     push(path: string) {
       if (typeof path === 'string') {
-        if (path.startsWith(base)) {
-          const ownPath = path.replace(base, '') || '/'
-          router.push(ownPath)
-        } else {
-          window.microApp.dispatch({ path })
-        }
+        window.microApp.dispatch({ path })
       }
     },
   }
@@ -125,7 +120,9 @@ export default ({ name, basePath, routes, appComponent, appId }: Options) => {
   }
 
   window.addEventListener('popstate', () => {
-    console.log('popstate', 123123123)
+    if (window.history.state.current !== window.location.pathname) {
+      window.history.state.current = window.location.pathname
+    }
   })
 
   window.microApp.addGlobalDataListener(handleGlobalData, true)
