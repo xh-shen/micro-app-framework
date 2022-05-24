@@ -2,16 +2,13 @@
  * @Author: shen
  * @Date: 2022-05-15 22:37:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-21 14:45:51
+ * @LastEditTime: 2022-05-24 08:29:01
  * @Description:
  */
 import { RouteRecordRaw } from 'vue-router'
+import NotFound from '@/views/error/404.vue'
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    redirect: '/table',
-  },
   {
     path: '/form',
     name: 'Form',
@@ -26,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/message',
     name: 'Message',
     component: () => import(/* webpackChunkName: "message" */ '@/views/message/index.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound,
   },
 ]
 

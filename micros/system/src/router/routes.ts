@@ -2,16 +2,13 @@
  * @Author: shen
  * @Date: 2022-05-15 22:37:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-15 23:35:39
+ * @LastEditTime: 2022-05-24 08:29:33
  * @Description:
  */
 import { RouteRecordRaw } from 'vue-router'
+import NotFound from '@/views/error/404.vue'
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    redirect: '/user',
-  },
   {
     path: '/user',
     name: 'User',
@@ -21,6 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/role',
     name: 'Role',
     component: () => import(/* webpackChunkName: "role" */ '@/views/role/index.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound,
   },
 ]
 
