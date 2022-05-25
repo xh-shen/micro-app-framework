@@ -1,14 +1,13 @@
 /*
  * @Author: shen
- * @Date: 2021-01-23 15:46:54
+ * @Date: 2022-05-21 20:41:45
  * @LastEditors: shen
- * @LastEditTime: 2022-05-21 21:08:22
+ * @LastEditTime: 2022-05-25 09:28:57
  * @Description:
  */
 import { AxiosRequestConfig } from 'axios'
-// import config from '@/config'
 
-const config = {
+export const config = {
   baseApi: '/api',
   timeout: 90000,
 }

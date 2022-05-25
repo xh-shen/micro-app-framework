@@ -2,8 +2,8 @@
  * @Author: shen
  * @Date: 2022-05-15 22:21:14
  * @LastEditors: shen
- * @LastEditTime: 2022-05-15 22:21:27
- * @Description: 
+ * @LastEditTime: 2022-05-25 09:25:09
+ * @Description:
  */
 type Key = 'localStorage' | 'sessionStorage'
 

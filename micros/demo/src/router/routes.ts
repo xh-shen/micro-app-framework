@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:37:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-24 08:29:01
+ * @LastEditTime: 2022-05-25 10:06:16
  * @Description:
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -23,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/message',
     name: 'Message',
     component: () => import(/* webpackChunkName: "message" */ '@/views/message/index.vue'),
+  },
+  {
+    path: '/request',
+    name: 'Request',
+    component: () => import(/* webpackChunkName: "request" */ '@/views/request/index.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

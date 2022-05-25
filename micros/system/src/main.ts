@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 14:14:33
+ * @LastEditTime: 2022-05-24 13:51:38
  * @Description:
  */
 
@@ -14,12 +14,15 @@ import { setupProTable, setupGlobCom } from '@micro/components'
 
 import App from './App.vue'
 
-const app = bootstrap({
-  name: 'system',
-  routes,
-  appId: '#app-system',
-  appComponent: App,
-})
-
-setupProTable(app)
-setupGlobCom(app)
+bootstrap(
+  {
+    name: 'system',
+    routes,
+    appId: '#app-system',
+    appComponent: App,
+  },
+  (app) => {
+    setupProTable(app)
+    setupGlobCom(app)
+  },
+)

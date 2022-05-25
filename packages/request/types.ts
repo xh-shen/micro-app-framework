@@ -1,8 +1,8 @@
 /*
  * @Author: shen
- * @Date: 2021-01-23 18:12:02
+ * @Date: 2022-05-21 20:41:45
  * @LastEditors: shen
- * @LastEditTime: 2021-01-23 19:02:32
+ * @LastEditTime: 2022-05-25 10:08:21
  * @Description:
  */
 
@@ -12,14 +12,15 @@ export interface Response<T> {
   code: number
   data: T
   msg: string
+  [key: string]: any
 }
 
 export interface RequestInstance {
   get: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<Response<T>>
   post: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<Response<T>>
-  delete?: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<Response<T>>
-  head?: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<Response<T>>
-  options?: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<Response<T>>
-  put?: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<Response<T>>
-  patch?: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<Response<T>>
+  delete: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<Response<T>>
+  head: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<Response<T>>
+  options: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<Response<T>>
+  put: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<Response<T>>
+  patch: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<Response<T>>
 }

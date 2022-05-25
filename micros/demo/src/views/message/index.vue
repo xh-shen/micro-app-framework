@@ -2,12 +2,13 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-22 08:38:27
+ * @LastEditTime: 2022-05-25 08:34:54
  * @Description: 
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useGlobalData, useMicroRouter } from '@micro/hooks'
+import { ElNotification, ElMessage, ElMessageBox } from 'element-plus'
 
 const result = ref()
 const router = useMicroRouter()
@@ -35,6 +36,26 @@ const goToSystem = () => {
 const goToTable = () => {
   router.push('/demo/table')
 }
+
+const onNotice = () => {
+  ElNotification({
+    title: 'Success',
+    message: 'This is a success message',
+    type: 'success',
+  })
+}
+
+const onMessage = () => {
+  ElMessageBox.alert('This is a message', 'Title', {
+    confirmButtonText: 'OK',
+    callback: (action: any) => {
+      ElMessage({
+        type: 'info',
+        message: `action: ${action}`,
+      })
+    },
+  })
+}
 </script>
 
 <template>
@@ -53,6 +74,10 @@ const goToTable = () => {
       <ElButton @click="goToHome">跳转到主应用</ElButton>
       <ElButton @click="goToSystem">跳转到其他子应用</ElButton>
       <ElButton @click="goToTable">跳转到应用内部</ElButton>
+    </div>
+    <div class="message-router">
+      <ElButton @click="onNotice">Notice通知</ElButton>
+      <ElButton @click="onMessage">MessageBox提示</ElButton>
     </div>
   </div>
 </template>
