@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 10:15:47
+ * @LastEditTime: 2022-05-25 13:33:31
  * @Description:
  */
 const path = require('path')
@@ -19,6 +19,7 @@ function resolve(dir) {
 module.exports = defineConfig({
   transpileDependencies: true,
   productionSourceMap: false,
+  publicPath: '/demo/',
   devServer: {
     port: 10001,
     headers: {
