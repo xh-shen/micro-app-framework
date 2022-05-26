@@ -2,15 +2,11 @@
  * @Author: shen
  * @Date: 2022-05-21 20:41:45
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 09:28:57
+ * @LastEditTime: 2022-05-26 10:33:23
  * @Description:
  */
 import { AxiosRequestConfig } from 'axios'
-
-export const config = {
-  baseApi: '/api',
-  timeout: 90000,
-}
+import config from '../config'
 
 export const CODE_MESSAGE: { [prop: number]: string } = {
   200: '服务器成功返回请求的数据。',

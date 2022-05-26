@@ -1,0 +1,7 @@
+{
+  "name": "@micro/config",
+  "version": "1.0.0",
+  "description": "micro config",
+  "main": "index.ts",
+  "module": "index.ts"
+}

@@ -10,7 +10,7 @@ import { local } from './storage'
 export const USER_INFO_KEY = 'userInfo'
 
 export const getUserInfo = () => {
-  return local.get(USER_INFO_KEY)
+  return local.get<Record<string, unknown>>(USER_INFO_KEY)
 }
 
 export const setUserInfo = (data: Record<string, unknown>) => {

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-21 09:56:17
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 08:22:12
+ * @LastEditTime: 2022-05-26 10:17:22
  * @Description:
  */
 import { local } from './storage'
@@ -11,7 +11,7 @@ const COLOR_REG = /^#[0-9A-F]{6}$/i
 export const THEME_COLOR_KEY = 'themeColor'
 
 export const getThemeColor = () => {
-  return local.get(THEME_COLOR_KEY)
+  return local.get<string>(THEME_COLOR_KEY)
 }
 
 export const setThemeColor = (val: string) => {
