@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:34:01
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 00:08:46
+ * @LastEditTime: 2022-05-27 10:31:24
  * @Description: 
 -->
 <template>
@@ -45,6 +45,11 @@
   </pro-table>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Table',
+}
+</script>
 <script setup lang="ts">
 import { h } from 'vue'
 interface DataItem {

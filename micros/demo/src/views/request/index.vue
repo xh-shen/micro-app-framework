@@ -2,9 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 10:09:20
+ * @LastEditTime: 2022-05-27 10:31:44
  * @Description: 
 -->
+<script lang="ts">
+export default {
+  name: 'Request',
+}
+</script>
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getDoubancolumns } from '@/api/test'

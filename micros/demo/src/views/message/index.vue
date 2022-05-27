@@ -2,9 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 08:34:54
+ * @LastEditTime: 2022-05-27 10:31:51
  * @Description: 
 -->
+<script lang="ts">
+export default {
+  name: 'Message',
+}
+</script>
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useGlobalData, useMicroRouter } from '@micro/hooks'

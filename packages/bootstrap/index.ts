@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-24 20:25:24
+ * @LastEditTime: 2022-05-27 13:36:54
  * @Description:
  */
 import type { Component, App as AppInstance } from 'vue'
@@ -19,6 +19,10 @@ export type State = {
   lang: string
   token: string
   themeColor: string
+  cachePaths: string[]
+  cacheViewName: {
+    [key: string]: string
+  }
 }
 export const key: InjectionKey<Store<State>> = Symbol()
 
@@ -40,14 +44,15 @@ function handleMicroRouterPush(router: Router) {
   }
 }
 
-function fixBugForRouterBack(router: Router) {
+function fixBugForRouterBack(router: Router, store: Store<State>) {
   const realbasePath = window.__MICRO_APP_BASE_ROUTE__
   router.beforeEach(() => {
     if (typeof window.history.state?.current === 'string') {
       window.history.state.current = window.history.state.current.replace(new RegExp(realbasePath, 'g'), '')
     }
   })
-  router.afterEach(() => {
+  router.afterEach((to) => {
+    store.commit('setCacheViewName', { path: realbasePath + to.path, name: to.matched[to.matched.length - 1].components.default.name })
     if (typeof window.history.state === 'object') {
       window.history.state.current = realbasePath + (window.history.state.current || '')
     }
@@ -60,7 +65,7 @@ function handlePopState() {
   }
 }
 
-export default ({ name, basePath, routes, appComponent, appId }: Options, onmMounted: (app: AppInstance) => void) => {
+export default ({ name, basePath, routes, appComponent, appId }: Options, onMounted: (app: AppInstance) => void) => {
   let app: AppInstance | null = null
   let router: Router | null = null
   let history: RouterHistory | null = null
@@ -82,6 +87,9 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onmMou
     if (typeof data.token !== 'undefined') {
       store?.commit('setToken', data.token)
     }
+    if (typeof data.visitedViews !== 'undefined') {
+      store?.commit('setCacheViews', data.visitedViews)
+    }
   }
 
   function mount() {
@@ -100,6 +108,8 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onmMou
         userInfo: {},
         lang: '',
         themeColor: '',
+        cachePaths: [],
+        cacheViewName: {},
       },
       mutations: {
         setUserInfo(state: State, data: Record<string, unknown>) {
@@ -113,6 +123,17 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onmMou
         },
         setThemeColor(state: State, data: string) {
           state.themeColor = data
+        },
+        setCacheViewName(state: State, data: { path: string; name: string }) {
+          const viewNames = { ...state.cacheViewName }
+          if (!viewNames[data.path]) {
+            viewNames[data.path] = data.name
+            state.cacheViewName = viewNames
+          }
+        },
+        setCacheViews(state: State, data: any[]) {
+          const paths = data.filter((item: any) => item.path.startsWith(base)).map((item: any) => item.path)
+          state.cachePaths = paths
         },
       },
     })
@@ -128,9 +149,9 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onmMou
         }
       },
     }
-    onmMounted(app)
+    onMounted(app)
     handleMicroRouterPush(router)
-    fixBugForRouterBack(router)
+    fixBugForRouterBack(router, store)
 
     window.addEventListener('popstate', handlePopState)
 

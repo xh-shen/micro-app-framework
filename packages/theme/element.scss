@@ -1,4 +1,5 @@
 @use 'common/var' as *;
+
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
@@ -7,5 +8,6 @@
   ),
 );
 
-
-@use "element-plus/theme-chalk/src/index.scss" as *;
+@use "element-plus/theme-chalk/src/message.scss";
+@use "element-plus/theme-chalk/src/message-box.scss";
+@use "element-plus/theme-chalk/src/notification.scss";
