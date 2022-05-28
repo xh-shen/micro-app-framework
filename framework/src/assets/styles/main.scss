@@ -1,0 +1,36 @@
+@use '~@micro/theme/common/var' as *;
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+// html {
+//   filter: invert(1) hue-rotate(180deg);
+// }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 14px;
+  color: #333 !important;
+  font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+}
+
+a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.container {
+  height: calc(100vh - 60px);
+}
+
+micro-app, micro-app-body {
+  height: 100%;
+}
