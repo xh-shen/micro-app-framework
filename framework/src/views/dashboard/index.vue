@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:34:01
  * @LastEditors: shen
- * @LastEditTime: 2022-05-26 14:26:58
+ * @LastEditTime: 2022-05-28 14:20:56
  * @Description: 
 -->
 <script lang="ts">
@@ -11,15 +11,12 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { ref } from 'vue'
-const count = ref(0)
-
-const onAdd = () => {
-  count.value = count.value + 1
-}
+import LineChart from './components/LineChart.vue'
 </script>
 
 <template>
-  <div>测试缓存 {{ count }}</div>
-  <ElButton @click="onAdd">+1</ElButton>
+  <ElCard class="box-card">
+    <template #header> 测试图表 </template>
+    <LineChart />
+  </ElCard>
 </template>

@@ -1,0 +1,7 @@
+{
+  "name": "@micro/types",
+  "version": "1.0.0",
+  "description": "micro types",
+  "main": "index.ts",
+  "module": "index.ts"
+}

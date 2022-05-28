@@ -1,0 +1,7 @@
+{
+  "name": "@micro/charts",
+  "version": "1.0.0",
+  "description": "micro charts",
+  "main": "index.ts",
+  "module": "index.ts"
+}
