@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-21 09:52:27
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 08:33:27
+ * @LastEditTime: 2022-05-29 16:50:56
  * @Description:
  */
 import { AppState, State } from '../types'
@@ -10,11 +10,11 @@ import { Module } from 'vuex'
 import config from '@micro/config'
 import { setGlobalData, unmountAllApps, unmountApp } from '@/micro'
 
-import { getThemeColor, setThemeColor } from '@micro/utils'
-import { SET_APP_THEME, SET_CACHE_MICRO_NAMES, IS_DISPATH_DATA } from '../constants'
+import { getThemeColor, setThemeColor, getLang, setLang } from '@micro/utils'
+import { SET_APP_THEME, SET_CACHE_MICRO_NAMES, IS_DISPATH_DATA, SET_APP_LANG } from '../constants'
 
 const state: AppState = {
-  lang: config.lang,
+  lang: getLang() || config.lang,
   themeColor: getThemeColor() || config.themeColor,
   cacheMicroNames: [],
   isDispathData: false,
@@ -24,9 +24,15 @@ const app: Module<AppState, State> = {
   namespaced: true,
   state,
   actions: {
-    setThemeColor({ commit }, theme: string) {
+    setThemeColor({ commit, dispatch }, theme: string) {
       setThemeColor(theme)
       commit(SET_APP_THEME, theme)
+      dispatch('setGlobalData')
+    },
+    setAppLang({ commit, dispatch }, lang: string) {
+      setLang(lang)
+      commit(SET_APP_LANG, lang)
+      dispatch('setGlobalData')
     },
     setGlobalData({ state, rootState, commit }, isInit: boolean) {
       if (isInit) {
@@ -74,6 +80,9 @@ const app: Module<AppState, State> = {
   mutations: {
     [SET_APP_THEME](state: AppState, theme: string) {
       state.themeColor = theme
+    },
+    [SET_APP_LANG](state: AppState, lang: string) {
+      state.lang = lang
     },
     [SET_CACHE_MICRO_NAMES](state: AppState, names: string[]) {
       state.cacheMicroNames = names

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-27 10:31:51
+ * @LastEditTime: 2022-05-28 15:37:02
  * @Description: 
 -->
 <script lang="ts">
@@ -16,6 +16,7 @@ import { useGlobalData, useMicroRouter } from '@micro/hooks'
 import { ElNotification, ElMessage, ElMessageBox } from 'element-plus'
 
 const result = ref()
+const drawer = ref(false)
 const router = useMicroRouter()
 const { userInfo, themeColor, token } = useGlobalData()
 
@@ -61,6 +62,20 @@ const onMessage = () => {
     },
   })
 }
+
+const onDrawer = () => {
+  drawer.value = true
+}
+
+const handleClose = (done: () => void) => {
+  ElMessageBox.confirm('Are you sure you want to close this?')
+    .then(() => {
+      done()
+    })
+    .catch(() => {
+      // catch error
+    })
+}
 </script>
 
 <template>
@@ -83,8 +98,13 @@ const onMessage = () => {
     <div class="message-router">
       <ElButton @click="onNotice">Notice通知</ElButton>
       <ElButton @click="onMessage">MessageBox提示</ElButton>
+      <ElButton @click="onDrawer">Drawer抽屉</ElButton>
     </div>
   </div>
+  <ElPagination :page-size="100" layout="total, prev, pager, next" :total="1000" />
+  <ElDrawer v-model="drawer" title="I am the title" :before-close="handleClose">
+    <span>Hi, there!</span>
+  </ElDrawer>
 </template>
 
 <style lang="scss" scoped>

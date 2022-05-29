@@ -2,12 +2,11 @@
  * @Author: shen
  * @Date: 2022-05-15 22:51:42
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 08:22:39
+ * @LastEditTime: 2022-05-29 08:09:16
  * @Description:
  */
 import { local } from './storage'
-
-export const USER_INFO_KEY = 'userInfo'
+import { USER_INFO_KEY } from './constant'
 
 export const getUserInfo = () => {
   return local.get<Record<string, unknown>>(USER_INFO_KEY)

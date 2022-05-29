@@ -2,22 +2,21 @@
  * @Author: shen
  * @Date: 2022-05-26 13:05:04
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 09:50:38
+ * @LastEditTime: 2022-05-29 08:16:12
  * @Description:
  */
 import { Module } from 'vuex'
 import { TagsViewState, State, VisitedView } from '../types'
 import { ADD_VISITED_VIEW, DEL_VISITED_VIEW, CLEAR_VISITED_VIEWS, DEL_OTHERS_VISITED_VIEWS } from '../constants'
 import { local } from '@micro/utils'
-
-const HOME_VIEW_PATH = '/dashboard'
+import { TAGS_LIST_KEY, HOME_VIEW_PATH } from '@/utils/constant'
 
 const setLocalViews = (views: any) => {
-  local.set('tagsList', views)
+  local.set(TAGS_LIST_KEY, views)
 }
 
 const getLocalViews = () => {
-  return local.get<VisitedView[]>('tagsList')
+  return local.get<VisitedView[]>(TAGS_LIST_KEY)
 }
 
 const state: TagsViewState = {

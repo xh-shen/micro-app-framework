@@ -2,17 +2,18 @@
  * @Author: shen
  * @Date: 2022-05-26 13:05:04
  * @LastEditors: shen
- * @LastEditTime: 2022-05-26 14:20:24
+ * @LastEditTime: 2022-05-29 17:42:39
  * @Description:
  */
 import { Module } from 'vuex'
 import { PermissionState, Menu, State } from '../types'
 import { SET_MENU_LIST, SET_MENU_TREE, DEL_ALL_MENU } from '../constants'
+import { HOME_VIEW_PATH } from '@/utils/constant'
 
 const dashboard: Menu = {
   id: '10086',
   pid: '0',
-  path: '/dashboard',
+  path: HOME_VIEW_PATH,
   title: '首页',
 }
 
@@ -46,6 +47,18 @@ const menusData = [
     pid: '2',
     path: '/demo/form',
     title: '表单',
+  },
+  {
+    id: '2-5',
+    pid: '2',
+    path: '/demo/chart',
+    title: '图表',
+  },
+  {
+    id: '2-6',
+    pid: '2',
+    path: '/demo/lang',
+    title: '多语言',
   },
   {
     id: '3',

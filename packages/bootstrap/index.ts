@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-27 13:36:54
+ * @LastEditTime: 2022-05-29 18:38:04
  * @Description:
  */
 import type { Component, App as AppInstance } from 'vue'
@@ -12,6 +12,7 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { InjectionKey } from 'vue'
 import { createStore } from 'vuex'
+import App from './App.vue'
 
 export type State = {
   appName: string
@@ -30,7 +31,7 @@ type Options = {
   name: string
   basePath?: string
   routes: Array<RouteRecordRaw>
-  appComponent: Component
+  appComponent?: Component
   appId: string
 }
 
@@ -138,9 +139,10 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
       },
     })
 
-    app = createApp(appComponent)
+    app = createApp(appComponent || App)
     app.use(router)
     app.use(store)
+    onMounted(app)
     app.mount(appId || '#app')
     app.config.globalProperties.$microRouter = {
       push(path: string) {
@@ -149,7 +151,6 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
         }
       },
     }
-    onMounted(app)
     handleMicroRouterPush(router)
     fixBugForRouterBack(router, store)
 

@@ -2,12 +2,11 @@
  * @Author: shen
  * @Date: 2022-05-15 22:51:42
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 09:24:33
+ * @LastEditTime: 2022-05-29 08:09:00
  * @Description:
  */
 import { local } from './storage'
-
-export const TOKEN_KEY = 'token'
+import { TOKEN_KEY } from './constant'
 
 export const getToken = () => {
   return local.get<string>(TOKEN_KEY)

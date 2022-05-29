@@ -1,24 +1,22 @@
 <!--
  * @Author: shen
- * @Date: 2022-05-15 22:34:01
+ * @Date: 2022-05-28 14:27:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 15:35:43
+ * @LastEditTime: 2022-05-28 14:29:21
  * @Description: 
 -->
 <script lang="ts">
 export default {
-  name: 'Dashboard',
+  name: 'DemoChart',
 }
 </script>
 <script setup lang="ts">
-import LineChart from './components/LineChart.vue'
+import BarChart from './components/BarChart.vue'
 </script>
 
 <template>
   <ElCard class="box-card">
     <template #header> 测试图表 </template>
-    <LineChart />
+    <BarChart />
   </ElCard>
-
-  <ElPagination :page-size="100" layout="total, prev, pager, next" :total="1000" />
 </template>

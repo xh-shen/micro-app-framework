@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:48:16
  * @LastEditors: shen
- * @LastEditTime: 2022-05-27 13:17:04
+ * @LastEditTime: 2022-05-29 16:50:41
  * @Description: 
 -->
 <script setup lang="ts">
@@ -14,6 +14,7 @@ import { useFullscreen } from '@vueuse/core'
 import { useProvideLayout } from './context/LayoutContext'
 import Sider from './components/Sider/index.vue'
 import TagsView from './components/TagsView/index.vue'
+import SelectLang from './components/Header/SelectLang.vue'
 import logo from '@/assets/images/logo.png'
 
 const collapse = ref(false)
@@ -40,7 +41,6 @@ const onCommand = async (command: string) => {
 
 const onThemeColor = (color: string) => {
   dispatch('app/setThemeColor', color)
-  dispatch('app/setGlobalData')
 }
 
 const onScreenChange = () => {
@@ -95,6 +95,7 @@ useProvideLayout({
               </ElDropdownMenu>
             </template>
           </ElDropdown>
+          <SelectLang />
         </div>
       </ElHeader>
       <ElMain :class="`${prefixCls}__main`">

@@ -2,11 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-16 15:42:38
  * @LastEditors: shen
- * @LastEditTime: 2022-05-27 13:42:31
+ * @LastEditTime: 2022-05-29 16:45:33
  * @Description:
  */
 // app module
 export const SET_APP_THEME = 'SET_APP_THEME'
+export const SET_APP_LANG = 'SET_APP_LANG'
 export const SET_ACTIVE_PATH = 'SET_ACTIVE_PATH'
 export const SET_CACHE_MICRO_NAMES = 'SET_CACHE_MICRO_NAMES'
 export const IS_DISPATH_DATA = 'IS_DISPATH_DATA'

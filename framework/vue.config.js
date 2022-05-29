@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-26 21:15:49
+ * @LastEditTime: 2022-05-28 15:32:13
  * @Description:
  */
 const path = require('path')
@@ -75,6 +75,7 @@ module.exports = defineConfig({
         extensions: ['.vue', '.ts'],
         alias: {
           '@': resolve('src'),
+          'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
         },
       },
     }

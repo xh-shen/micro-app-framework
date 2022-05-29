@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 21:24:43
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 09:51:44
+ * @LastEditTime: 2022-05-29 08:16:41
  * @Description: 
 -->
 <script setup lang="ts">
@@ -11,6 +11,7 @@ import { useStore } from '@/hooks'
 import { computed, watch, ref, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { onClickOutside } from '@vueuse/core'
+import { HOME_VIEW_PATH } from '@/utils/constant'
 
 const isSelectedHome = ref(false)
 const contextmenu = ref<HTMLElement>()
@@ -21,7 +22,7 @@ const { state, dispatch } = useStore()
 const router = useRouter()
 const route = useRoute()
 
-const homeTag: VisitedView = { title: '首页', path: '/dashboard' }
+const homeTag: VisitedView = { title: '首页', path: HOME_VIEW_PATH }
 
 const visitedViews = computed(() => state.tagsView.visitedViews)
 
@@ -48,7 +49,7 @@ const onCloseTag = (e: MouseEvent, tag: VisitedView) => {
   const index = visitedViews.value.findIndex((v) => v.path === tag.path)
   if (index > -1) {
     if (route.path === tag?.path) {
-      router.replace(index > 0 ? visitedViews.value[index - 1].path : '/dashboard')
+      router.replace(index > 0 ? visitedViews.value[index - 1].path : HOME_VIEW_PATH)
     }
     dispatch('tagsView/delVisitedView', index)
     unmountMicroApp()
