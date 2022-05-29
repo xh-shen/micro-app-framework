@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 16:06:17
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 20:26:22
+ * @LastEditTime: 2022-05-29 21:13:47
  * @Description: 
 -->
 <script setup lang="ts">
@@ -10,19 +10,24 @@ import { useAttrs, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { Loading } from '@micro/components'
 import { useStore } from '@/hooks'
+import microConfig from '@/micro-config'
 
 const props = defineProps({
-  name: String,
-  url: {
-    type: String,
-    required: true,
-  },
   keepAlive: {
     type: Boolean,
     default: true,
   },
-  baseroute: String,
+  microIndex: {
+    type: Number,
+    default: 0,
+  },
 })
+
+const micro = microConfig[props.microIndex]
+
+if (!micro) {
+  throw new Error('子应用配置不存在')
+}
 
 const spinning = ref(false)
 const attrs = useAttrs()
@@ -30,9 +35,9 @@ const router = useRouter()
 
 const { state, dispatch } = useStore()
 
-const isCache = computed(() => state.app.cacheMicroNames.includes(props.name!))
-console.log(window.location)
-const formatUrl = process.env.NODE_ENV === 'production' ? window.location.origin + props.baseroute : props.url + props.baseroute
+const isCache = computed(() => state.app.cacheMicroNames.includes(micro.name!))
+
+const formatUrl = process.env.NODE_ENV === 'production' ? window.location.origin + '/' + micro.name : 'http://' + window.location.hostname + ':' + micro.devPort + '/' + micro.name
 
 const onMicroCreated = () => {
   if (!isCache.value) {
@@ -41,7 +46,7 @@ const onMicroCreated = () => {
 }
 
 const onMicroBeforemount = () => {
-  dispatch('app/setCacheMicroName', props.name)
+  dispatch('app/setCacheMicroName', micro.name)
 }
 
 const onMicroMounted = () => {
@@ -70,8 +75,8 @@ const onDataChange = (e: CustomEvent) => {
     <micro-app
       v-bind="attrs"
       :url="formatUrl"
-      :name="name"
-      :baseroute="baseroute"
+      :name="micro.name"
+      :baseroute="`/${micro.name}`"
       :keep-alive="keepAlive"
       @created="onMicroCreated"
       @beforemount="onMicroBeforemount"

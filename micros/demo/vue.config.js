@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 19:46:16
+ * @LastEditTime: 2022-05-29 21:37:21
  * @Description:
  */
 const path = require('path')
@@ -19,9 +19,9 @@ function resolve(dir) {
 module.exports = defineConfig({
   transpileDependencies: true,
   productionSourceMap: false,
-  publicPath: '/demo/',
+  publicPath: `/${process.env.VUE_APP_NAME}/`,
   devServer: {
-    port: 10001,
+    port: parseInt(process.env.VUE_APP_PORT),
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 18:38:04
+ * @LastEditTime: 2022-05-29 21:31:57
  * @Description:
  */
 import type { Component, App as AppInstance } from 'vue'
@@ -92,6 +92,8 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
       store?.commit('setCacheViews', data.visitedViews)
     }
   }
+
+  console.log(process.env)
 
   function mount() {
     const base = window.__MICRO_APP_BASE_ROUTE__ || basePath || `/${name}`
