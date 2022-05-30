@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:37:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-24 08:27:37
+ * @LastEditTime: 2022-05-30 14:47:10
  * @Description:
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -30,8 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     component: Login,
   },
   {
+    path: '/404',
+    component: NotFound,
+  },
+  {
     path: '/:pathMatch(.*)*',
-    name: 'NotFound',
     component: NotFound,
   },
 ]
