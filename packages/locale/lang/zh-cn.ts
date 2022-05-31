@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-22 21:03:55
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 07:33:18
+ * @LastEditTime: 2022-05-31 08:10:03
  * @Description:
  */
 export default {
@@ -11,7 +11,6 @@ export default {
     cancel: '取消',
     close: '关闭',
     refresh: '刷新',
-    closeOthers: '关闭其他',
-    closeAll: '关闭所有',
+    reset: '重置',
   },
 }

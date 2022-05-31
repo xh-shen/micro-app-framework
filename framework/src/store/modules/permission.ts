@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 13:05:04
  * @LastEditors: shen
- * @LastEditTime: 2022-05-30 13:35:48
+ * @LastEditTime: 2022-05-31 08:18:14
  * @Description:
  */
 import { Module } from 'vuex'
@@ -57,7 +57,7 @@ const menusData = [
   {
     id: '2-6',
     pid: '2',
-    path: '/demo/lang',
+    path: '/demo/language',
     title: '多语言',
   },
   {

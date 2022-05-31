@@ -2,14 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-24 08:15:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-30 15:07:12
+ * @LastEditTime: 2022-05-31 08:41:46
  * @Description: 
 -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useI18n } from '@micro/hooks'
+import { useMicroI18n } from '@micro/hooks'
 
-const { t } = useI18n({
+const { t } = useMicroI18n({
   en: {
     error: {
       homeButton: 'Back Home',

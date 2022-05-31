@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 15:28:58
+ * @LastEditTime: 2022-05-31 08:05:49
  * @Description:
  */
 import { createApp } from 'vue'
 import { setupGlobCom } from '@micro/components'
-import { setupI18n } from '@micro/locale'
+import { setupI18n } from './locale'
 import { setupRouter } from './router'
 import { setupStore } from './store'
 import { setupMicro } from './micro'

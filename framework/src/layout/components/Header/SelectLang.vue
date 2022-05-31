@@ -2,17 +2,17 @@
  * @Author: shen
  * @Date: 2022-05-29 16:37:40
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 17:10:59
+ * @LastEditTime: 2022-05-31 08:40:53
  * @Description: 
 -->
 <script setup lang="ts">
 import { useStore } from '@/hooks'
-import { useI18n } from '@micro/hooks'
+import { useMicroI18n } from '@micro/hooks'
 import { Message } from '@micro/utils'
 import { computed } from 'vue'
 
 const { state, dispatch } = useStore()
-const { locale, t } = useI18n()
+const { locale, t } = useMicroI18n()
 
 const lang = computed(() => state.app.lang)
 
@@ -46,7 +46,6 @@ const onCommand = async (command: string) => {
           class="css-c4d79v"
         ></path>
       </svg>
-      {{ t('button.confirm') }}
     </span>
     <template #dropdown>
       <ElDropdownMenu>

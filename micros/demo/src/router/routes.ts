@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:37:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-30 13:35:35
+ * @LastEditTime: 2022-05-31 08:17:52
  * @Description:
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -35,9 +35,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "chart" */ '@/views/chart/index.vue'),
   },
   {
-    path: '/lang',
-    name: 'Lang',
-    component: () => import(/* webpackChunkName: "lang" */ '@/views/lang/index.vue'),
+    path: '/language',
+    name: 'Language',
+    component: () => import(/* webpackChunkName: "language" */ '@/views/language/index.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
