@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 16:08:53
+ * @LastEditTime: 2022-06-03 21:31:06
  * @Description:
  */
 const path = require('path')
@@ -16,11 +16,15 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-function handleArgvs() {
-  console.log(process.env.VUE_APP_ARGVS)
+function addStyleResource(rule) {
+  rule
+    .use('style-resource')
+    .loader('style-resources-loader')
+    .options({
+      patterns: [path.resolve(__dirname, './src/styles/imports.styl')],
+    })
 }
 
-handleArgvs()
 module.exports = defineConfig({
   transpileDependencies: true,
   productionSourceMap: false,
@@ -36,7 +40,16 @@ module.exports = defineConfig({
       },
     },
   },
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `$theme-color: red;`,
+      },
+    },
+  },
   chainWebpack: (config) => {
+    // const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
+    // types.forEach((type) => addStyleResource(config.module.rule('sass').oneOf(type)))
     config.module
       .rule('vue')
       .use('vue-loader')

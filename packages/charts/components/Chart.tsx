@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2021-01-29 21:37:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 14:15:57
+ * @LastEditTime: 2022-06-03 23:11:40
  * @Description:
  */
 import { defineComponent, nextTick, onMounted, onUnmounted, ref, watch, PropType, onActivated } from 'vue'
@@ -23,6 +23,16 @@ export default defineComponent({
   setup(props) {
     let instance: ECharts
     const dom = ref<HTMLElement | null>(null)
+
+    const setDataset = () => {
+      instance &&
+        instance.setOption({
+          dataset: {
+            source: props.data,
+          },
+        })
+    }
+
     watch(
       () => props.options,
       () => {
@@ -31,6 +41,9 @@ export default defineComponent({
         }
       },
     )
+
+    watch(() => props.data, setDataset)
+
     useElementResize(dom, () => {
       setTimeout(() => {
         instance && instance.resize()
@@ -40,6 +53,7 @@ export default defineComponent({
       nextTick(() => {
         instance = ChartFactory.create(dom.value as HTMLElement)
         instance.setOption((props.options || {}) as ECBasicOption, true)
+        setDataset()
         props.getInstance && props.getInstance(instance)
       })
     })

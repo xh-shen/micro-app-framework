@@ -2,13 +2,14 @@
  * @Author: shen
  * @Date: 2022-05-15 22:19:24
  * @LastEditors: shen
- * @LastEditTime: 2022-05-22 09:12:26
+ * @LastEditTime: 2022-06-03 21:56:16
  * @Description:
  */
 import type { App, Component } from 'vue'
 import ProTable from '@shene/pro-table'
-import Card from './Card/index.vue'
-import Loading from './Loading/index.vue'
+import Card from './Card'
+import Loading from './Loading'
+import CountUp from './CountUp'
 
 import '@shene/pro-table/dist/index.css'
 
@@ -26,4 +27,4 @@ export function setupGlobCom(app: App<Element>): void {
   })
 }
 
-export { Card, Loading }
+export { Card, Loading, CountUp }
