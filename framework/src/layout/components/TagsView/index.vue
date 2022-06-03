@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 21:24:43
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 08:16:41
+ * @LastEditTime: 2022-06-03 17:06:23
  * @Description: 
 -->
 <script setup lang="ts">
@@ -62,7 +62,9 @@ const onCloseView = (e: MouseEvent) => {
 }
 
 const onCloseOthersView = () => {
+  console.log(selectedTag.value?.path, route.path)
   if (selectedTag.value?.path !== route.path) {
+    console.log(3423423)
     router.push(selectedTag.value?.path as string)
   }
   dispatch('tagsView/delOthersViews', selectedTag.value!)

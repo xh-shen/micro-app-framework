@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 13:05:04
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 08:16:12
+ * @LastEditTime: 2022-06-03 17:16:56
  * @Description:
  */
 import { Module } from 'vuex'
@@ -60,7 +60,11 @@ const tagsView: Module<TagsViewState, State> = {
       setLocalViews(state.visitedViews)
     },
     [DEL_OTHERS_VISITED_VIEWS]: (state, view) => {
-      state.visitedViews = [view]
+      if (view.path === HOME_VIEW_PATH) {
+        state.visitedViews = []
+      } else {
+        state.visitedViews = [view]
+      }
       setLocalViews(state.visitedViews)
     },
     [CLEAR_VISITED_VIEWS]: (state) => {
