@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-31 08:05:49
+ * @LastEditTime: 2022-06-03 16:23:12
  * @Description:
  */
 import { createApp } from 'vue'
@@ -20,6 +20,8 @@ import './permission'
 import '@micro/theme/index.scss'
 import 'nprogress/nprogress.css'
 import './assets/styles/index.scss'
+
+console.log(process.env)
 
 const app = createApp(App)
 setupMicro()

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-29 16:37:40
  * @LastEditors: shen
- * @LastEditTime: 2022-05-31 08:40:53
+ * @LastEditTime: 2022-05-31 08:48:51
  * @Description: 
 -->
 <script setup lang="ts">
@@ -12,7 +12,7 @@ import { Message } from '@micro/utils'
 import { computed } from 'vue'
 
 const { state, dispatch } = useStore()
-const { locale, t } = useMicroI18n()
+const { locale } = useMicroI18n()
 
 const lang = computed(() => state.app.lang)
 

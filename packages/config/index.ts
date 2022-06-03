@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 10:29:40
  * @LastEditors: shen
- * @LastEditTime: 2022-05-26 10:39:02
+ * @LastEditTime: 2022-06-03 16:44:07
  * @Description:
  */
 interface Config {
@@ -13,11 +13,12 @@ interface Config {
   themeColor: string
 }
 
+const { themeColor, title, lang, baseApi } = JSON.parse(process.env.VUE_APP_ARGVS || '{}')
 const config: Config = {
-  title: 'Shene Micro',
-  lang: 'zh-cn',
-  baseApi: '/api',
-  themeColor: '#409eff',
+  title: title || 'shene micro',
+  lang: lang || 'zh-cn',
+  baseApi: baseApi || '/api',
+  themeColor: themeColor || '#409eff',
   timeout: 5000,
 }
 

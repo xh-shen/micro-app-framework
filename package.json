@@ -9,7 +9,10 @@
   },
   "scripts": {
     "preinstall": "node ./scripts/preinstall.js",
-    "dev": "shene-micro dev"
+    "dev": "shene-micro dev --argv argv1",
+    "dev:argv1": "shene-micro dev --argv argv1",
+    "dev:argv2": "shene-micro dev --argv argv2",
+    "build": "shene-micro build"
   },
   "license": "ISC",
   "dependencies": {
@@ -27,7 +30,7 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@shene/micro-cli": "^0.1.1",
+    "@shene/micro-cli": "1.0.1",
     "@types/element-resize-detector": "^1.1.3",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",

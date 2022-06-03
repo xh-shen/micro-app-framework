@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 21:31:57
+ * @LastEditTime: 2022-06-03 15:58:11
  * @Description:
  */
 import type { Component, App as AppInstance } from 'vue'
@@ -28,11 +28,11 @@ export type State = {
 export const key: InjectionKey<Store<State>> = Symbol()
 
 type Options = {
-  name: string
-  basePath?: string
   routes: Array<RouteRecordRaw>
+  name?: string
+  basePath?: string
   appComponent?: Component
-  appId: string
+  appId?: string
 }
 
 function handleMicroRouterPush(router: Router) {
@@ -66,7 +66,7 @@ function handlePopState() {
   }
 }
 
-export default ({ name, basePath, routes, appComponent, appId }: Options, onMounted: (app: AppInstance) => void) => {
+export default ({ routes, appComponent }: Options, onMounted: (app: AppInstance) => void) => {
   let app: AppInstance | null = null
   let router: Router | null = null
   let history: RouterHistory | null = null
@@ -96,7 +96,7 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
   console.log(process.env)
 
   function mount() {
-    const base = window.__MICRO_APP_BASE_ROUTE__ || basePath || `/${name}`
+    const base = window.__MICRO_APP_BASE_ROUTE__ || `/${process.env.VUE_APP_NAME}`
     history = createWebHistory(base)
 
     router = createRouter({
@@ -106,7 +106,7 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
 
     store = createStore<State>({
       state: {
-        appName: name,
+        appName: process.env.VUE_APP_NAME as string,
         token: '',
         userInfo: {},
         lang: '',
@@ -145,7 +145,7 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
     app.use(router)
     app.use(store)
     onMounted(app)
-    app.mount(appId || '#app')
+    app.mount(`#app-${process.env.VUE_APP_NAME}` || '#app')
     app.config.globalProperties.$microRouter = {
       push(path: string) {
         if (typeof path === 'string') {
@@ -159,7 +159,7 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
     window.addEventListener('popstate', handlePopState)
 
     window.microApp.addGlobalDataListener(handleGlobalData, true)
-    console.log(`微应用${name}渲染了`)
+    console.log(`微应用${process.env.VUE_APP_NAME}渲染了`)
   }
 
   function unmount() {
@@ -172,7 +172,7 @@ export default ({ name, basePath, routes, appComponent, appId }: Options, onMoun
     window.removeEventListener('popstate', handlePopState)
     window.microApp.removeGlobalDataListener(handleGlobalData)
     window.microApp.clearGlobalDataListener()
-    console.log(`微应用${name}卸载了`)
+    console.log(`微应用${process.env.VUE_APP_NAME}卸载了`)
   }
 
   if (window.__MICRO_APP_ENVIRONMENT__) {

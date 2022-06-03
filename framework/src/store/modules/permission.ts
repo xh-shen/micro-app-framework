@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 13:05:04
  * @LastEditors: shen
- * @LastEditTime: 2022-05-31 08:18:14
+ * @LastEditTime: 2022-06-01 08:14:26
  * @Description:
  */
 import { Module } from 'vuex'
@@ -88,13 +88,13 @@ const menusData = [
     id: '4-1',
     pid: '4',
     path: '/vue2/',
-    title: '首页',
+    title: 'vue2首页',
   },
   {
     id: '4-2',
     pid: '4',
     path: '/vue2/about',
-    title: '关于',
+    title: 'vue2关于',
   },
 ]
 
@@ -120,6 +120,7 @@ const state: PermissionState = {
   home: dashboard,
   menuList: [],
   menuTree: [],
+  allowPaths: [],
 }
 
 const permission: Module<PermissionState, State> = {

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-31 08:14:40
+ * @LastEditTime: 2022-06-03 15:55:29
  * @Description:
  */
 
@@ -13,18 +13,9 @@ import routes from './router/routes'
 import { setupI18n } from './locale'
 import { setupProTable, setupGlobCom } from '@micro/components'
 import '@micro/theme/index.scss'
-// import App from './App.vue'
 
-bootstrap(
-  {
-    name: 'system',
-    routes,
-    appId: '#app-system',
-    // appComponent: App,
-  },
-  (app) => {
-    setupI18n(app)
-    setupProTable(app)
-    setupGlobCom(app)
-  },
-)
+bootstrap({ routes }, (app) => {
+  setupI18n(app)
+  setupProTable(app)
+  setupGlobCom(app)
+})

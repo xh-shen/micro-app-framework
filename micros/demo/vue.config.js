@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 21:37:21
+ * @LastEditTime: 2022-06-03 11:07:02
  * @Description:
  */
 const path = require('path')
@@ -21,12 +21,12 @@ module.exports = defineConfig({
   productionSourceMap: false,
   publicPath: `/${process.env.VUE_APP_NAME}/`,
   devServer: {
-    port: parseInt(process.env.VUE_APP_PORT),
+    port: process.env.VUE_APP_PORT,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
   },
-  configureWebpack: () => {
+  configureWebpack: (config) => {
     const plugins = [
       AutoImport({
         resolvers: [ElementPlusResolver()],
@@ -38,11 +38,16 @@ module.exports = defineConfig({
     if (process.env.NODE_ENV === 'production') {
       plugins.push(
         new CompressionPlugin({
-          test: /\.js$|\.html$|\.css$/, // 匹配文件名
-          threshold: 10240, // 对超过10k的数据压缩
-          deleteOriginalAssets: false, // 不删除源文件
+          test: /\.js$|\.html$|\.css$/,
+          threshold: 10240,
+          deleteOriginalAssets: false,
         }),
       )
+    }
+    if (process.env.NODE_ENV === 'production') {
+      config.optimization.minimizer[0].options.minimizer.options.compress.drop_console = true
+      config.optimization.minimizer[0].options.minimizer.options.compress.drop_debugger = true
+      config.optimization.minimizer[0].options.minimizer.options.compress.pure_funcs = ['console.log']
     }
 
     return {

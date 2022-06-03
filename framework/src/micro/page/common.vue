@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 16:06:17
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 21:13:47
+ * @LastEditTime: 2022-06-03 16:48:39
  * @Description: 
 -->
 <script setup lang="ts">
@@ -10,7 +10,7 @@ import { useAttrs, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { Loading } from '@micro/components'
 import { useStore } from '@/hooks'
-import microConfig from '@/micro-config'
+import microApps from '@/micro-apps'
 
 const props = defineProps({
   keepAlive: {
@@ -23,7 +23,7 @@ const props = defineProps({
   },
 })
 
-const micro = microConfig[props.microIndex]
+const micro = microApps[props.microIndex]
 
 if (!micro) {
   throw new Error('子应用配置不存在')

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:34:01
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 15:35:43
+ * @LastEditTime: 2022-05-31 15:43:06
  * @Description: 
 -->
 <script lang="ts">
@@ -19,6 +19,4 @@ import LineChart from './components/LineChart.vue'
     <template #header> 测试图表 </template>
     <LineChart />
   </ElCard>
-
-  <ElPagination :page-size="100" layout="total, prev, pager, next" :total="1000" />
 </template>

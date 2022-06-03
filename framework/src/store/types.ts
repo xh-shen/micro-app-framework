@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:38:43
  * @LastEditors: shen
- * @LastEditTime: 2022-05-27 09:16:37
+ * @LastEditTime: 2022-05-31 16:11:56
  * @Description:
  */
 
@@ -42,6 +42,7 @@ export interface PermissionState {
   home: Menu
   menuList: Menu[]
   menuTree: Menu[]
+  allowPaths: string[]
 }
 
 // tagsView module

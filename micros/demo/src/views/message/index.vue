@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 15:37:02
+ * @LastEditTime: 2022-05-31 15:43:42
  * @Description: 
 -->
 <script lang="ts">
 export default {
-  name: 'Message',
+  name: 'DemoMessage',
 }
 </script>
 <script setup lang="ts">
@@ -101,7 +101,6 @@ const handleClose = (done: () => void) => {
       <ElButton @click="onDrawer">Drawer抽屉</ElButton>
     </div>
   </div>
-  <ElPagination :page-size="100" layout="total, prev, pager, next" :total="1000" />
   <ElDrawer v-model="drawer" title="I am the title" :before-close="handleClose">
     <span>Hi, there!</span>
   </ElDrawer>
