@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-02 19:30:26
  * @LastEditors: shen
- * @LastEditTime: 2022-05-22 09:13:24
+ * @LastEditTime: 2022-06-04 19:51:11
  * @Description: 
 -->
 <script lang="ts">
@@ -28,7 +28,7 @@ const props = defineProps({
   tip: String,
 })
 
-const prefixCls = 'loading'
+const prefixCls = 'mc-loading'
 
 const loadingClass = computed(() => ({
   [`${prefixCls}`]: true,
@@ -72,9 +72,9 @@ const containerClass = computed(() => ({
 </template>
 
 <style lang="scss" scoped>
-.loading {
+.mc-loading {
   position: relative;
-
+  height: 100%;
   &__spin {
     position: absolute;
     top: 0;
@@ -168,6 +168,7 @@ const containerClass = computed(() => ({
 
   &__container {
     position: relative;
+    height: 100%;
     transition: opacity 0.3s;
     &::after {
       position: absolute;

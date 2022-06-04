@@ -11,6 +11,7 @@
     "@micro-zoe/micro-app": "^0.8.5",
     "@micro/components": "workspace:^1.0.0",
     "@micro/hooks": "workspace:^1.0.0",
+    "@micro/context": "workspace:^1.0.0",
     "@micro/utils": "workspace:^1.0.0",
     "@micro/theme": "workspace:^1.0.0",
     "@micro/request": "workspace:^1.0.0",

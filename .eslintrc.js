@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-13 14:47:51
  * @LastEditors: shen
- * @LastEditTime: 2022-05-16 21:37:38
+ * @LastEditTime: 2022-06-04 21:32:39
  * @Description:
  */
 
@@ -21,7 +21,9 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-empty-function': ['off'],
     'vue/multi-word-component-names': 'off',
+    'no-empty-function': 'off',
   },
   overrides: [
     {

@@ -1,0 +1,7 @@
+{
+  "name": "@micro/context",
+  "version": "1.0.0",
+  "description": "micro context",
+  "main": "index.ts",
+  "module": "index.ts"
+}
