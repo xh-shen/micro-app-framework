@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 21:31:06
+ * @LastEditTime: 2022-06-04 11:43:12
  * @Description:
  */
 const path = require('path')
@@ -11,19 +11,20 @@ const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 const { defineConfig } = require('@vue/cli-service')
+const { iconsRoot } = require('@micro/internal')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-function addStyleResource(rule) {
-  rule
-    .use('style-resource')
-    .loader('style-resources-loader')
-    .options({
-      patterns: [path.resolve(__dirname, './src/styles/imports.styl')],
-    })
-}
+// function addStyleResource(rule) {
+//   rule
+//     .use('style-resource')
+//     .loader('style-resources-loader')
+//     .options({
+//       patterns: [path.resolve(__dirname, './src/styles/imports.styl')],
+//     })
+// }
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -60,6 +61,22 @@ module.exports = defineConfig({
         }
         return options
       })
+      .end()
+
+    config.module.rule('svg').exclude.add(iconsRoot).end().exclude.add(resolve('src/icons')).end()
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(iconsRoot)
+      .end()
+      .include.add(resolve('src/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]',
+      })
+      .end()
   },
   configureWebpack: (config) => {
     const plugins = [

@@ -18,6 +18,8 @@
     "@micro/config": "workspace:^1.0.0",
     "@micro/types": "workspace:^1.0.0",
     "@micro/charts": "workspace:^1.0.0",
+    "@micro/icons": "workspace:^1.0.0",
+    "@micro/internal": "workspace:^1.0.0",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",

@@ -1,6 +1,6 @@
 packages:
   - packages/*
   - micros/*
-  - internal/*
+  - internal
   - framework
   - docs

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:34:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 08:36:43
+ * @LastEditTime: 2022-06-04 11:43:02
  * @Description: 
 -->
 <script lang="ts">
@@ -21,7 +21,10 @@ import SalesPieChart from './components/SalesPieChart.vue'
 </script>
 
 <template>
-  <div class="page-container" style="height: 100%; overflow-y: auto; margin: 0 -10px; padding: 0 10px">
+  <div class="page-container" style="height: 100%; overflow-y: auto; margin: 0 -10px; padding: 0 10px; color: red">
+    <mc-svg-icon name="board" />
+    <mc-svg-icon name="breadcrumb-fill" />
+
     <ElRow :gutter="15">
       <ElCol v-bind="{ lg: 6, md: 12, xs: 24 }">
         <CountSales />

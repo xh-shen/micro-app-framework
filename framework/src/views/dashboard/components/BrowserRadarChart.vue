@@ -55,13 +55,7 @@ const options = {
     calculable: true,
   },
   radar: {
-    indicator: [
-      { text: 'IE8-', max: 400 },
-      { text: 'IE9+', max: 400 },
-      { text: 'Safari', max: 400 },
-      { text: 'Firefox', max: 400 },
-      { text: 'Chrome', max: 400 },
-    ],
+    indicator: [{ name: 'IE8-' }, { name: 'IE9+' }, { name: 'Safari' }, { name: 'Firefox' }, { name: 'Chrome' }],
   },
   series: genSeries(),
 } as RadarChartOption

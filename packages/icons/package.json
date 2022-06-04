@@ -1,0 +1,7 @@
+{
+  "name": "@micro/icons",
+  "version": "1.0.0",
+  "description": "micro icons",
+  "main": "index.ts",
+  "module": "index.ts"
+}
