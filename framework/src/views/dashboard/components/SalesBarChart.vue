@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-04 08:03:10
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 08:41:02
+ * @LastEditTime: 2022-06-05 14:14:55
  * @Description: 
 -->
 <script setup lang="ts">
@@ -68,7 +68,7 @@ const options: BarLineChartOption = {
 </script>
 
 <template>
-  <Card title="销售额" headerBorder style="margin-bottom: 15px" class="chart-sales">
+  <Card title="销售额" headerBorder collapsible style="margin-bottom: 15px" class="chart-sales">
     <template #extra>
       <div style="width: 350px; position: relative">
         <ElDatePicker :modelValue="['2021-01-20', '2021-02-10']" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" />

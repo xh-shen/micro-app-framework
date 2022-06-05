@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 10:25:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 22:13:14
+ * @LastEditTime: 2022-06-05 14:16:56
  * @Description: 
 -->
 <script lang="ts">
@@ -14,9 +14,11 @@ export default {
 import { ref, watch, computed } from 'vue'
 import { classNames } from '../../utils'
 import cardProps from './props'
+import SvgIcon from '../SvgIcon'
+import Loading from '../Loading'
 
 const props = defineProps(cardProps)
-// const emit = defineEmits(['collapse'])
+const emit = defineEmits(['collapse'])
 const controlCollapsed = ref(props.collapsed)
 const collapsed = ref<boolean>(controlCollapsed.value === undefined ? props.defaultCollapsed : controlCollapsed.value)
 
@@ -26,10 +28,10 @@ if (controlCollapsed.value !== undefined) {
   })
 }
 
-// const onCollapse = () => {
-//   collapsed.value = !collapsed.value
-//   emit('collapse', collapsed.value)
-// }
+const onCollapse = () => {
+  collapsed.value = !collapsed.value
+  emit('collapse', collapsed.value)
+}
 
 const cardClass = computed(() =>
   classNames({
@@ -58,29 +60,31 @@ const cardFooterClass = computed(() =>
 
 <template>
   <div :class="cardClass">
-    <div v-if="$slots.header || title">
-      <div :class="cardHeaderClass" :style="headerStyle">
-        <div v-if="collapsible && controlCollapsed === undefined">
-          <div class="mc__header-collapse">
-            <!-- <svg-icon icon-class="right-line" /> -->
+    <Loading :spinning="loading">
+      <div v-if="$slots.header || title">
+        <div :class="cardHeaderClass" :style="headerStyle">
+          <div v-if="collapsible && controlCollapsed === undefined">
+            <div class="mc-card__header-collapse" @click="onCollapse">
+              <SvgIcon name="right" :rotate="collapsed ? 90 : undefined" />
+            </div>
           </div>
+          <slot name="header">
+            <div class="mc-card__header-title">{{ title }}</div>
+            <slot name="extra"></slot>
+          </slot>
         </div>
-        <slot name="header">
-          <div class="mc-card__header-title">{{ title }}</div>
-          <slot name="extra"></slot>
-        </slot>
       </div>
-    </div>
-    <div class="mc-card__content">
-      <div class="mc-card__body" :style="bodyStyle">
-        <slot></slot>
-      </div>
-      <template v-if="$slots.footer">
-        <div :class="cardFooterClass" :style="footerStyle">
-          <slot name="footer"></slot>
+      <div class="mc-card__content" v-show="collapsed">
+        <div class="mc-card__body" :style="bodyStyle">
+          <slot></slot>
         </div>
-      </template>
-    </div>
+        <template v-if="$slots.footer">
+          <div :class="cardFooterClass" :style="footerStyle">
+            <slot name="footer"></slot>
+          </div>
+        </template>
+      </div>
+    </Loading>
   </div>
 </template>
 

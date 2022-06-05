@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-03 22:01:20
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 22:37:30
+ * @LastEditTime: 2022-06-05 10:20:54
  * @Description: 
 -->
 <script setup lang="ts">
@@ -10,6 +10,10 @@ import type { CSSProperties, PropType } from 'vue'
 import { Card, CountUp } from '@micro/components'
 
 defineProps({
+  loading: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
   meta: {
     type: String as PropType<string>,
   },
@@ -49,7 +53,7 @@ defineProps({
 </script>
 
 <template>
-  <Card class="count-card" :bodyStyle="{ paddingTop: 0 }">
+  <Card class="count-card" :bodyStyle="{ paddingTop: 0 }" :loading="loading">
     <div class="count-card__body">
       <div class="count-card__content" :style="contentStyle">
         <slot />
@@ -59,11 +63,11 @@ defineProps({
       <div class="count-card__header">
         <div class="count-card__header-meta">
           <span>{{ meta }}</span>
-          <!-- <span class="count-card__header-tip">
-            <el-tooltip effect="dark" content="{props.meta" || props.tip} placement="top">
-              <svg-icon icon-class="{`warning-${iconType.value}`}" />
-            </el-tooltip>
-          </span> -->
+          <span class="count-card__header-tip">
+            <ElTooltip effect="dark" :content="meta || tip" placement="top">
+              <mc-svg-icon name="warning" />
+            </ElTooltip>
+          </span>
         </div>
         <div class="count-card__header-total"><CountUp :delay="100" :end-val="total!" :options="{ prefix, suffix }" /></div>
       </div>

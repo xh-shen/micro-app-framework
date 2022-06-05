@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-04 08:30:08
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 08:42:37
+ * @LastEditTime: 2022-06-05 10:06:09
  * @Description: 
 -->
 <script setup lang="ts">
@@ -97,6 +97,17 @@ const options: PieChartOption = {
 
 <template>
   <Card title="访问来源占比" headerBorder style="margin-bottom: 15px">
+    <template #extra>
+      <ElDropdown placement="bottom-end">
+        <mc-svg-icon name="more-fill"></mc-svg-icon>
+        <template #dropdown>
+          <ElDropdownMenu>
+            <ElDropdownItem>操作1</ElDropdownItem>
+            <ElDropdownItem>操作2</ElDropdownItem>
+          </ElDropdownMenu>
+        </template>
+      </ElDropdown>
+    </template>
     <Chart.Pie :data="data" :options="options" style="height: 400px" />
   </Card>
 </template>

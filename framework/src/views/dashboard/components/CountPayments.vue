@@ -2,12 +2,21 @@
  * @Author: shen
  * @Date: 2022-06-03 22:38:10
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 23:14:15
+ * @LastEditTime: 2022-06-05 10:24:39
  * @Description: 
 -->
 <script setup lang="ts">
 import Chart, { BarChartOption } from '@micro/charts'
+import { ref, onMounted } from 'vue'
+import { sleep } from '@micro/utils'
 import CountCard from './CountCard.vue'
+const loading = ref(false)
+
+onMounted(async () => {
+  loading.value = true
+  await sleep(2000)
+  loading.value = false
+})
 
 const data = [
   { x: '2021-01-25', y: 7 },
@@ -65,7 +74,7 @@ const options: BarChartOption = {
 </script>
 
 <template>
-  <CountCard meta="支付笔数" footerMeta="转化率" :total="8765" :footerTotal="56" :contentStyle="{ height: '100%' }" footerSuffix="%" tip="支付笔数">
+  <CountCard meta="支付笔数" footerMeta="转化率" :total="8765" :footerTotal="56" :contentStyle="{ height: '100%' }" footerSuffix="%" tip="支付笔数" :loading="loading">
     <Chart.Bar :data="data.map((item) => Object.values(item))" :options="options" />
   </CountCard>
 </template>

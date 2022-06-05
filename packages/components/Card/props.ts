@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-03 20:03:37
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 20:05:42
+ * @LastEditTime: 2022-06-05 10:17:14
  * @Description:
  */
 import type { CSSProperties, PropType } from 'vue'
@@ -14,6 +14,10 @@ export default {
   title: {
     type: String as PropType<string>,
     default: '',
+  },
+  loading: {
+    type: Boolean as PropType<boolean>,
+    default: false,
   },
   /** 右上角自定义区域 */
   extra: {

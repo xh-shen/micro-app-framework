@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 11:43:12
+ * @LastEditTime: 2022-06-05 10:28:39
  * @Description:
  */
 const path = require('path')
@@ -16,15 +16,6 @@ const { iconsRoot } = require('@micro/internal')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-
-// function addStyleResource(rule) {
-//   rule
-//     .use('style-resource')
-//     .loader('style-resources-loader')
-//     .options({
-//       patterns: [path.resolve(__dirname, './src/styles/imports.styl')],
-//     })
-// }
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -41,16 +32,7 @@ module.exports = defineConfig({
       },
     },
   },
-  css: {
-    loaderOptions: {
-      scss: {
-        additionalData: `$theme-color: red;`,
-      },
-    },
-  },
   chainWebpack: (config) => {
-    // const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
-    // types.forEach((type) => addStyleResource(config.module.rule('sass').oneOf(type)))
     config.module
       .rule('vue')
       .use('vue-loader')

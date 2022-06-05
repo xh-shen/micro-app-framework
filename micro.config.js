@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-01 20:55:14
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 16:36:47
+ * @LastEditTime: 2022-06-05 10:40:46
  * @Description:
  */
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
       title: '基座项目',
       devScript: 'serve',
       buildScript: 'build',
-      devPort: 9000,
+      devPort: 8000,
       type: 'main',
       appName: 'framework',
     },
@@ -52,7 +52,7 @@ module.exports = {
         title: 'Shene Micro',
         lang: 'zh-cn',
         baseApi: '/api',
-        themeColor: '#409eff',
+        themeColor: '#FF4040',
       },
       dev: {
         test: 'ceshi params',

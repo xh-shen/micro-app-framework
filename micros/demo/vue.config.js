@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 09:07:58
+ * @LastEditTime: 2022-06-05 10:50:26
  * @Description:
  */
 const path = require('path')
@@ -11,9 +11,6 @@ const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 const { defineConfig } = require('@vue/cli-service')
-const { projRoot } = require('@micro/internal')
-
-console.log(projRoot)
 
 function resolve(dir) {
   return path.join(__dirname, dir)

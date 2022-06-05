@@ -2,12 +2,21 @@
  * @Author: shen
  * @Date: 2022-06-03 22:38:10
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 23:11:21
+ * @LastEditTime: 2022-06-05 10:24:48
  * @Description: 
 -->
 <script setup lang="ts">
 import Chart, { LineChartOption } from '@micro/charts'
+import { ref, onMounted } from 'vue'
+import { sleep } from '@micro/utils'
 import CountCard from './CountCard.vue'
+const loading = ref(false)
+
+onMounted(async () => {
+  loading.value = true
+  await sleep(2000)
+  loading.value = false
+})
 
 const data = [
   { x: '2021-01-25', y: 7 },
@@ -73,7 +82,7 @@ const options: LineChartOption = {
 </script>
 
 <template>
-  <CountCard meta="访问量" footerMeta="日访问量" :total="3452" :footerTotal="1123" :contentStyle="{ height: '100%' }" tip="访问量">
+  <CountCard meta="访问量" footerMeta="日访问量" :total="3452" :footerTotal="1123" :contentStyle="{ height: '100%' }" tip="访问量" :loading="loading">
     <Chart.Line :data="data.map((item) => Object.values(item))" :options="options" />
   </CountCard>
 </template>
