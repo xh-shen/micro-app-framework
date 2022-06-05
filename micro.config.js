@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-01 20:55:14
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 10:40:46
+ * @LastEditTime: 2022-06-05 14:39:46
  * @Description:
  */
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
       title: '基座项目',
       devScript: 'serve',
       buildScript: 'build',
-      devPort: 8000,
+      devPort: 9000,
       type: 'main',
       appName: 'framework',
     },

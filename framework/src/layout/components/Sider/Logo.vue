@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-20 21:01:18
  * @LastEditors: shen
- * @LastEditTime: 2022-05-26 10:31:41
+ * @LastEditTime: 2022-06-05 14:36:28
  * @Description: 
 -->
 <script setup lang="ts">
@@ -29,7 +29,7 @@ const logoClass = computed(() => ({
 </template>
 
 <style lang="scss" scoped>
-.micro-layout__logo {
+.mc-layout__logo {
   position: relative;
   display: flex;
   align-items: center;

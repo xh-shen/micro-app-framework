@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-20 21:25:30
  * @LastEditors: shen
- * @LastEditTime: 2022-05-26 13:33:50
+ * @LastEditTime: 2022-06-05 14:36:33
  * @Description: 
 -->
 <script setup lang="ts">
@@ -50,7 +50,7 @@ const menus = computed(() => state.permission.menuTree)
 </template>
 
 <style lang="scss">
-.micro-layout__menu {
+.mc-layout__menu {
   .el-menu {
     border-right: none;
   }

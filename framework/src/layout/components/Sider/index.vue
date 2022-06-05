@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-20 20:57:17
  * @LastEditors: shen
- * @LastEditTime: 2022-05-20 21:43:05
+ * @LastEditTime: 2022-06-05 14:36:24
  * @Description: 
 -->
 <script setup lang="ts">
@@ -37,7 +37,7 @@ const onCollapse = () => {
 </template>
 
 <style lang="scss" scoped>
-.micro-layout__collapse {
+.mc-layout__collapse {
   width: 100%;
   padding: 0 14px;
   height: 40px;

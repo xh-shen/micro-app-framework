@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-31 15:43:42
+ * @LastEditTime: 2022-06-05 14:46:12
  * @Description: 
 -->
 <script lang="ts">
@@ -82,6 +82,8 @@ const handleClose = (done: () => void) => {
   <div class="message">
     <div class="message-store">
       <div class="message-store-actions">
+        <!-- <mc-svg-icon name="board" />
+        <mc-svg-icon name="breadcrumb" /> -->
         <ElButton @click="getData('userInfo')">获取用户</ElButton>
         <ElButton @click="getData('theme')">获取主题</ElButton>
         <ElButton @click="getData('token')">获取token</ElButton>

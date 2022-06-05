@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:48:16
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 16:50:41
+ * @LastEditTime: 2022-06-05 14:36:08
  * @Description: 
 -->
 <script setup lang="ts">
@@ -26,7 +26,7 @@ const themeColor = computed(() => state.app.themeColor)
 
 const { activePath } = useMicroPath()
 
-const prefixCls = 'micro-layout'
+const prefixCls = 'mc-layout'
 
 const siderWidth = computed(() => (collapse.value ? '48px' : '208px'))
 
@@ -110,7 +110,7 @@ useProvideLayout({
 </template>
 
 <style lang="scss" scoped>
-.micro-layout {
+.mc-layout {
   width: 100%;
   height: 100%;
   background: #f0f2f5;
