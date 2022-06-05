@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:48:16
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 16:40:23
+ * @LastEditTime: 2022-06-05 21:24:11
  * @Description: 
 -->
 <script setup lang="ts">
@@ -18,8 +18,6 @@ const { activePath } = useMicroPath()
 
 const prefixCls = 'mc-layout'
 
-const siderWidth = computed(() => (collapse.value ? '48px' : '208px'))
-
 useProvideLayout({
   collapse,
   prefixCls,
@@ -32,9 +30,7 @@ useProvideLayout({
 
 <template>
   <ElContainer :class="prefixCls">
-    <ElAside :width="siderWidth" :class="`${prefixCls}__aside`">
-      <Sider />
-    </ElAside>
+    <Sider :collapse="collapse" />
     <ElContainer direction="vertical">
       <Header />
       <ElMain :class="`${prefixCls}__main`">
@@ -53,16 +49,6 @@ useProvideLayout({
   width: 100%;
   height: 100%;
   background: #f0f2f5;
-  &__aside {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
-    z-index: 10;
-    transition: width 0.2s;
-  }
   &__main {
     padding: 10px;
     height: calc(100vh - 48px);

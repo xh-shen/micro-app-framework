@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-20 21:01:18
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 14:36:28
+ * @LastEditTime: 2022-06-05 21:25:01
  * @Description: 
 -->
 <script setup lang="ts">
@@ -33,8 +33,7 @@ const logoClass = computed(() => ({
   position: relative;
   display: flex;
   align-items: center;
-  // justify-content: center;
-  padding: 5px 4px 10px 8px;
+  padding: 0 4px;
   cursor: pointer;
   overflow: hidden;
   color: #fff;
@@ -42,6 +41,7 @@ const logoClass = computed(() => ({
   height: 48px;
   flex-shrink: 1;
   &.is-collapse {
+    padding-left: 7px;
     img {
       margin-left: 0;
     }

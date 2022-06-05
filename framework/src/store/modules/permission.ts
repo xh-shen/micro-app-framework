@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 13:05:04
  * @LastEditors: shen
- * @LastEditTime: 2022-06-01 08:14:26
+ * @LastEditTime: 2022-06-05 22:02:57
  * @Description:
  */
 import { Module } from 'vuex'
@@ -13,6 +13,7 @@ import { HOME_VIEW_PATH } from '@/utils/constant'
 const dashboard: Menu = {
   id: '10086',
   pid: '0',
+  icon: 'dashboard',
   path: HOME_VIEW_PATH,
   title: '首页',
 }
@@ -22,6 +23,7 @@ const menusData = [
     id: '2',
     pid: '0',
     path: '/demo',
+    icon: 'fabulous',
     title: '示例',
   },
   {
@@ -64,6 +66,7 @@ const menusData = [
     id: '3',
     pid: '0',
     path: '/system',
+    icon: 'setting',
     title: '系统管理',
   },
   {
@@ -82,6 +85,7 @@ const menusData = [
     id: '4',
     pid: '0',
     path: '/vue2',
+    icon: 'star',
     title: 'vue2项目',
   },
   {
@@ -95,6 +99,49 @@ const menusData = [
     pid: '4',
     path: '/vue2/about',
     title: 'vue2关于',
+  },
+  {
+    id: '5',
+    pid: '0',
+    path: '/test',
+    icon: 'menu',
+    title: '测试菜单',
+  },
+  {
+    id: '5-1',
+    pid: '5',
+    path: '/test/5-1',
+    title: '菜单1-1',
+  },
+  {
+    id: '5-2',
+    pid: '5',
+    path: '/test/5-2',
+    title: '菜单1-2',
+  },
+  {
+    id: '5-1-1',
+    pid: '5-1',
+    path: '/test/5-1-1',
+    title: '菜单1-1-1',
+  },
+  {
+    id: '5-1-2',
+    pid: '5-1',
+    path: '/test/5-1-2',
+    title: '菜单1-1-2',
+  },
+  {
+    id: '5-1-1-1',
+    pid: '5-1-1',
+    path: '/test/5-1-1-1',
+    title: '菜单1-1-1-1',
+  },
+  {
+    id: '5-1-1-2',
+    pid: '5-1-1',
+    path: '/test/5-1-1-2',
+    title: '菜单1-1-1-2',
   },
 ]
 
