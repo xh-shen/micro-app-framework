@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 21:24:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 15:03:06
+ * @LastEditTime: 2022-06-05 20:46:33
  * @Description: 
 -->
 <script setup lang="ts">
@@ -106,31 +106,28 @@ watch(
 </script>
 
 <template>
-  <div class="mc-layout__tags">
-    <div class="mc-layout__tags-wrapper">
-      <el-tag
-        class="mc-layout__tags-item"
-        :type="route.path === homeTag.path ? '' : 'info'"
-        effect="plain"
-        @click="onOpenView({ path: homeTag.path })"
-        @Contextmenu.prevent="onShowContextmenu($event, homeTag, true)"
-      >
-        {{ homeTag.title }}
-      </el-tag>
-      <template v-for="view in visitedViews" :key="view.path">
-        <el-tag
-          class="mc-layout__tags-item"
-          :type="route.path === view.path ? '' : 'info'"
-          effect="plain"
-          closable
-          @click="onOpenView(view)"
-          @close="onCloseTag($event, view)"
-          @Contextmenu.prevent="onShowContextmenu($event, view)"
-          >{{ view.title }}</el-tag
+  <div class="mc-layout__tagsview">
+    <div class="mc-layout__tagsview-wrapper">
+      <ElScrollbar class="mc-layout__tagsview-scroll" noresize>
+        <div
+          :class="['mc-layout__tagsview-tag', route.path === homeTag.path ? 'is-active' : '']"
+          :key="homeTag.path"
+          @click="onOpenView({ path: homeTag.path })"
+          @Contextmenu.prevent="onShowContextmenu($event, homeTag, true)"
         >
-      </template>
+          <span class="mc-layout__tagsview-tag-title">{{ homeTag.title }}</span>
+        </div>
+        <template v-for="view in visitedViews" :key="view.path">
+          <div :class="['mc-layout__tagsview-tag', route.path === view.path ? 'is-active' : '']" @click="onOpenView(view)" @Contextmenu.prevent="onShowContextmenu($event, view)">
+            <span class="mc-layout__tagsview-tag-title">{{ view.title }}</span>
+            <span class="mc-layout__tagsview-tag-close" @click.stop="onCloseTag($event, view)">
+              <mc-svg-icon name="close" />
+            </span>
+          </div>
+        </template>
+      </ElScrollbar>
     </div>
-    <ul ref="contextmenu" v-if="visible" class="mc-layout__tags-contextmenu" :style="contextmenuStyle">
+    <ul ref="contextmenu" v-if="visible" class="mc-layout__tagsview-contextmenu" :style="contextmenuStyle">
       <li v-if="!isSelectedHome" @click="onCloseView">关闭</li>
       <li @click="onCloseOthersView">关闭其他</li>
       <li @click="onCloseAllView">关闭所有</li>
@@ -139,14 +136,66 @@ watch(
 </template>
 
 <style scoped lang="scss">
-.mc-layout__tags {
+@use '@micro/theme/common/var' as *;
+.mc-layout__tagsview {
+  flex: 1;
+  overflow: hidden;
   &-wrapper {
     display: flex;
     align-items: center;
   }
-  &-item {
-    margin-right: 5px;
+  &-scroll {
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+    top: -1px;
+    :deep(.el-scrollbar__bar) {
+      height: 0px !important;
+      width: 0px !important;
+    }
+    :deep(.el-scrollbar__wrap) {
+      height: 100%;
+      overflow-y: hidden;
+    }
+  }
+  &-tag {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    height: 22px;
+    background-color: #f3f3f3;
+    border-radius: $border-radius-base;
     cursor: pointer;
+    margin-right: 10px;
+    font-size: 12px;
+    color: $color-text-regular;
+    transition: all 0.1s;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:hover {
+      color: $color-text-primary;
+      .mc-layout__tagsview-tag-close {
+        width: auto;
+        margin-left: 5px;
+      }
+    }
+    &.is-active {
+      background-color: var(--el-color-primary);
+      color: $color-white;
+      .mc-layout__tagsview-tag-close {
+        width: auto;
+        margin-left: 5px;
+      }
+    }
+    &-close {
+      display: inline-block;
+      transition: all 0.3s ease;
+      border-radius: 50%;
+      width: 0;
+      overflow: hidden;
+    }
   }
   &-contextmenu {
     margin: 0;

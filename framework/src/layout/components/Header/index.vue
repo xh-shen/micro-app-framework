@@ -2,10 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-05 14:53:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 16:37:00
+ * @LastEditTime: 2022-06-05 19:38:15
  * @Description: 
 -->
 <script setup lang="ts">
+import MenuFold from './MenuFold.vue'
 import TagsView from '../TagsView/index.vue'
 import Search from './Search.vue'
 import Notice from './Notice.vue'
@@ -17,7 +18,8 @@ import SelectLang from './SelectLang.vue'
 
 <template>
   <ElHeader class="mc-layout__header">
-    <TagsView style="flex: 1" />
+    <MenuFold />
+    <TagsView />
     <div class="mc-layout__header-right">
       <Search class="mc-layout__header-active mc-layout__header-search" />
       <Notice class="mc-layout__header-active mc-layout__header-notice" />
