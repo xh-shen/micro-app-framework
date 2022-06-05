@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-26 21:24:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 17:06:23
+ * @LastEditTime: 2022-06-05 15:03:06
  * @Description: 
 -->
 <script setup lang="ts">
@@ -106,10 +106,10 @@ watch(
 </script>
 
 <template>
-  <div class="mc-tags">
-    <div class="mc-tags__wrapper">
+  <div class="mc-layout__tags">
+    <div class="mc-layout__tags-wrapper">
       <el-tag
-        class="mc-tags__item"
+        class="mc-layout__tags-item"
         :type="route.path === homeTag.path ? '' : 'info'"
         effect="plain"
         @click="onOpenView({ path: homeTag.path })"
@@ -119,7 +119,7 @@ watch(
       </el-tag>
       <template v-for="view in visitedViews" :key="view.path">
         <el-tag
-          class="mc-tags__item"
+          class="mc-layout__tags-item"
           :type="route.path === view.path ? '' : 'info'"
           effect="plain"
           closable
@@ -130,7 +130,7 @@ watch(
         >
       </template>
     </div>
-    <ul ref="contextmenu" v-if="visible" class="mc-tags__contextmenu" :style="contextmenuStyle">
+    <ul ref="contextmenu" v-if="visible" class="mc-layout__tags-contextmenu" :style="contextmenuStyle">
       <li v-if="!isSelectedHome" @click="onCloseView">关闭</li>
       <li @click="onCloseOthersView">关闭其他</li>
       <li @click="onCloseAllView">关闭所有</li>
@@ -139,12 +139,16 @@ watch(
 </template>
 
 <style scoped lang="scss">
-.mc-tags {
-  &__item {
+.mc-layout__tags {
+  &-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &-item {
     margin-right: 5px;
     cursor: pointer;
   }
-  &__contextmenu {
+  &-contextmenu {
     margin: 0;
     background: #fff;
     z-index: 3000;
