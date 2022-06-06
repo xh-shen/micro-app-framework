@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-21 09:52:27
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 16:50:56
+ * @LastEditTime: 2022-06-06 08:07:26
  * @Description:
  */
 import { AppState, State } from '../types'
@@ -18,6 +18,7 @@ const state: AppState = {
   themeColor: getThemeColor() || config.themeColor,
   cacheMicroNames: [],
   isDispathData: false,
+  argvs: JSON.parse(process.env.VUE_APP_ARGVS || '{}'),
 }
 
 const app: Module<AppState, State> = {
@@ -47,6 +48,7 @@ const app: Module<AppState, State> = {
         userInfo: rootState.user.userInfo,
         themeColor: state.themeColor,
         lang: state.lang,
+        argvs: state.argvs,
         visitedViews: rootState.tagsView.visitedViews,
       })
     },

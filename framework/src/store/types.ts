@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:38:43
  * @LastEditors: shen
- * @LastEditTime: 2022-05-31 16:11:56
+ * @LastEditTime: 2022-06-06 08:06:41
  * @Description:
  */
 
@@ -28,6 +28,7 @@ export interface AppState {
   lang: string
   isDispathData: boolean
   cacheMicroNames: string[]
+  argvs: Record<string, any>
 }
 
 //user module

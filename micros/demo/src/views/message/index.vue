@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-21 14:45:35
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 14:46:12
+ * @LastEditTime: 2022-06-06 08:12:23
  * @Description: 
 -->
 <script lang="ts">
@@ -18,7 +18,7 @@ import { ElNotification, ElMessage, ElMessageBox } from 'element-plus'
 const result = ref()
 const drawer = ref(false)
 const router = useMicroRouter()
-const { userInfo, themeColor, token } = useGlobalData()
+const { userInfo, themeColor, token, argvs } = useGlobalData()
 
 const getData = (key: string) => {
   if (key === 'userInfo') {
@@ -29,6 +29,9 @@ const getData = (key: string) => {
   }
   if (key === 'token') {
     result.value = 'token: ' + token.value
+  }
+  if (key === 'argvs') {
+    result.value = 'argvs: ' + JSON.stringify(argvs.value)
   }
 }
 
@@ -87,6 +90,7 @@ const handleClose = (done: () => void) => {
         <ElButton @click="getData('userInfo')">获取用户</ElButton>
         <ElButton @click="getData('theme')">获取主题</ElButton>
         <ElButton @click="getData('token')">获取token</ElButton>
+        <ElButton @click="getData('argvs')">获取环境参数</ElButton>
       </div>
       <div class="message-store-result">
         {{ result }}

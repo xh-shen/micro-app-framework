@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 15:58:11
+ * @LastEditTime: 2022-06-06 08:09:43
  * @Description:
  */
 import type { Component, App as AppInstance } from 'vue'
@@ -24,6 +24,7 @@ export type State = {
   cacheViewName: {
     [key: string]: string
   }
+  argvs: Record<string, any>
 }
 export const key: InjectionKey<Store<State>> = Symbol()
 
@@ -91,6 +92,10 @@ export default ({ routes, appComponent }: Options, onMounted: (app: AppInstance)
     if (typeof data.visitedViews !== 'undefined') {
       store?.commit('setCacheViews', data.visitedViews)
     }
+
+    if (typeof data.argvs !== 'undefined') {
+      store?.commit('setArgvs', data.argvs)
+    }
   }
 
   console.log(process.env)
@@ -113,9 +118,10 @@ export default ({ routes, appComponent }: Options, onMounted: (app: AppInstance)
         themeColor: '',
         cachePaths: [],
         cacheViewName: {},
+        argvs: {},
       },
       mutations: {
-        setUserInfo(state: State, data: Record<string, unknown>) {
+        setUserInfo(state: State, data: Record<string, any>) {
           state.userInfo = data
         },
         setLang(state: State, data: string) {
@@ -126,6 +132,9 @@ export default ({ routes, appComponent }: Options, onMounted: (app: AppInstance)
         },
         setThemeColor(state: State, data: string) {
           state.themeColor = data
+        },
+        setArgvs(state: State, data: Record<string, any>) {
+          state.argvs = data
         },
         setCacheViewName(state: State, data: { path: string; name: string }) {
           const viewNames = { ...state.cacheViewName }

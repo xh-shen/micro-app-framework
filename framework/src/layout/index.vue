@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-15 22:48:16
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 21:24:11
+ * @LastEditTime: 2022-06-06 08:05:09
  * @Description: 
 -->
 <script setup lang="ts">
 import { useMicroPath } from '@/hooks'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useProvideLayout } from './context/LayoutContext'
 import Sider from './components/Sider/index.vue'
 import Header from './components/Header/index.vue'
