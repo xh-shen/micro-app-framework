@@ -30,7 +30,7 @@ const i18n = vueCreateI18n({
   messages: globalMessages,
 })
 
-export function setupI18n(app: App<Element>): void {
+export function setupI18n(app: any): void {
   app.use(i18n)
   app.config.globalProperties.$t = i18n.global.t
 }

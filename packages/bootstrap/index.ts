@@ -2,10 +2,10 @@
  * @Author: shen
  * @Date: 2022-05-16 09:32:25
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 08:09:43
+ * @LastEditTime: 2022-06-06 09:29:10
  * @Description:
  */
-import type { Component, App as AppInstance } from 'vue'
+import type { Component } from 'vue'
 import type { RouteRecordRaw, Router, RouterHistory } from 'vue-router'
 import type { Store } from 'vuex'
 import { createApp } from 'vue'
@@ -67,8 +67,8 @@ function handlePopState() {
   }
 }
 
-export default ({ routes, appComponent }: Options, onMounted: (app: AppInstance) => void) => {
-  let app: AppInstance | null = null
+export default ({ routes, appComponent }: Options, onMounted: (app: any) => void) => {
+  let app: any = null
   let router: Router | null = null
   let history: RouterHistory | null = null
   let store: Store<State> | null = null

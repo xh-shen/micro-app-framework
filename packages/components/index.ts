@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-06-04 15:45:34
  * @Description:
  */
-import type { App, Component } from 'vue'
+import type { Component } from 'vue'
 import ProTable from '@shene/pro-table'
 import Card from './Card'
 import Loading from './Loading'
@@ -16,7 +16,7 @@ import Drawer from './Drawer'
 
 import '@shene/pro-table/dist/index.css'
 
-export function setupProTable(app: App<Element>): void {
+export function setupProTable(app: any): void {
   app.use(ProTable)
 }
 
@@ -24,7 +24,7 @@ export function setupProTable(app: App<Element>): void {
 // 全局组件必须有name属性
 const components: Component[] = [Loading, SvgIcon, Dialog, Drawer]
 
-export function setupGlobCom(app: App<Element>): void {
+export function setupGlobCom(app: any): void {
   components.forEach((component: Component) => {
     app.component(component.name as string, component)
   })

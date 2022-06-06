@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-05-21 14:30:00
  * @Description:
  */
-import { App, InjectionKey } from 'vue'
+import { InjectionKey } from 'vue'
 import { createStore, Store } from 'vuex'
 import { State as RootState } from './types'
 import modules from './modules'
@@ -18,7 +18,7 @@ const store = createStore<RootState>({
   modules,
 })
 
-export function setupStore(app: App<Element>) {
+export function setupStore(app: any) {
   app.use(store, key)
 }
 
