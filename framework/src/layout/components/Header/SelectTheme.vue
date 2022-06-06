@@ -2,12 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-05 15:46:15
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 16:18:51
+ * @LastEditTime: 2022-06-06 14:24:56
  * @Description: 
 -->
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useStore } from '@/hooks'
+import { ElColorPicker } from 'element-plus'
 
 const { state, dispatch } = useStore()
 

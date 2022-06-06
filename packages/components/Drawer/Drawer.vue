@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-04 15:25:19
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 21:44:49
+ * @LastEditTime: 2022-06-06 14:35:09
  * @Description: 
 -->
 <script lang="ts">
@@ -12,6 +12,7 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { ElDrawer } from 'element-plus'
 import { useProvideDrawer } from '../../context'
 import { isFunction, toPromise } from '../../utils'
 import Loading from '../Loading'

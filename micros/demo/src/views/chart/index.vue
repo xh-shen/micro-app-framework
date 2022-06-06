@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-28 14:27:07
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 14:29:21
+ * @LastEditTime: 2022-06-06 14:38:03
  * @Description: 
 -->
 <script lang="ts">
@@ -11,12 +11,12 @@ export default {
 }
 </script>
 <script setup lang="ts">
+import { Card } from '@micro/components'
 import BarChart from './components/BarChart.vue'
 </script>
 
 <template>
-  <ElCard class="box-card">
-    <template #header> 测试图表 </template>
+  <Card title="测试图表">
     <BarChart />
-  </ElCard>
+  </Card>
 </template>

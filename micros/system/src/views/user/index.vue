@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-05-27 13:28:25
+ * @LastEditTime: 2022-06-06 14:43:05
  * @Description: 
 -->
 <script lang="ts">
@@ -12,6 +12,7 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref } from 'vue'
+import { ElButton } from 'element-plus'
 import { useGlobalData } from '@micro/hooks'
 const count = ref(0)
 const { userInfo } = useGlobalData()

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:34:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 21:46:21
+ * @LastEditTime: 2022-06-06 14:46:51
  * @Description: 
 -->
 <script lang="ts">
@@ -11,6 +11,7 @@ export default {
 }
 </script>
 <script setup lang="ts">
+import { ElRow, ElCol } from 'element-plus'
 import CountSales from './components/CountSales.vue'
 import CountVisits from './components/CountVisits.vue'
 import CountPayments from './components/CountPayments.vue'

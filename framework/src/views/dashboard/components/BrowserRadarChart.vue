@@ -2,10 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-04 08:29:50
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 10:04:53
+ * @LastEditTime: 2022-06-06 14:28:30
  * @Description: 
 -->
 <script setup lang="ts">
+import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import Chart, { RadarChartOption } from '@micro/charts'
 import { Card } from '@micro/components'
 

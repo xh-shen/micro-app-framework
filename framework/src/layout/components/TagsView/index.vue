@@ -2,11 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-26 21:24:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 20:46:33
+ * @LastEditTime: 2022-06-06 14:27:21
  * @Description: 
 -->
 <script setup lang="ts">
 import type { VisitedView } from '@/store/types'
+import { ElScrollbar } from 'element-plus'
 import { useStore } from '@/hooks'
 import { computed, watch, ref, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'

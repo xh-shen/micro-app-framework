@@ -2,14 +2,11 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 14:37:46
+ * @LastEditTime: 2022-06-06 14:17:15
  * @Description:
  */
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
-const AutoImport = require('unplugin-auto-import/webpack')
-const Components = require('unplugin-vue-components/webpack')
-const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 const { defineConfig } = require('@vue/cli-service')
 const { iconsRoot } = require('@micro/internal')
 
@@ -45,11 +42,8 @@ module.exports = defineConfig({
   },
   configureWebpack: (config) => {
     const plugins = [
-      AutoImport({
-        resolvers: [ElementPlusResolver()],
-      }),
-      Components({
-        resolvers: [ElementPlusResolver()],
+      require('unplugin-element-plus/webpack')({
+        // options
       }),
     ]
     if (process.env.NODE_ENV === 'production') {

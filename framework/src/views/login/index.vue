@@ -2,12 +2,13 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-05-27 13:19:54
+ * @LastEditTime: 2022-06-06 14:32:34
  * @Description: 
 -->
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { useStore } from '@/hooks'
 import { sleep, Message } from '@micro/utils'
 import { useTitle } from '@vueuse/core'
@@ -59,18 +60,18 @@ const onLogin = () => {
         <span>{{ config.title }}</span>
       </div>
       <div class="micro-login__sub-title">{{ config.title }}是由微前端技术整合的管理系统，无缝接入任何框架</div>
-      <el-form ref="loginFormRef" :rules="rules" :model="loginForm" class="micro-login__form">
-        <el-form-item prop="username">
-          <el-input clearable size="large" v-model="loginForm.username" placeholder="用户名" />
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input clearable show-password size="large" v-model="loginForm.password" type="password" placeholder="密码" />
-        </el-form-item>
-        <el-form-item>
-          <el-button :loading="loading" size="large" type="primary" style="width: 100%" @click="onLogin">登录</el-button>
-        </el-form-item>
+      <ElForm ref="loginFormRef" :rules="rules" :model="loginForm" class="micro-login__form">
+        <ElFormItem prop="username">
+          <ElInput clearable size="large" v-model="loginForm.username" placeholder="用户名" />
+        </ElFormItem>
+        <ElFormItem prop="password">
+          <ElInput clearable show-password size="large" v-model="loginForm.password" type="password" placeholder="密码" />
+        </ElFormItem>
+        <ElFormItem>
+          <ElButton :loading="loading" size="large" type="primary" style="width: 100%" @click="onLogin">登录</ElButton>
+        </ElFormItem>
         <p class="micro-login__tip">此处只是模拟登录，作为演示使用</p>
-      </el-form>
+      </ElForm>
     </div>
   </div>
 </template>

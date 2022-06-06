@@ -2,12 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-05 14:56:56
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 15:26:14
+ * @LastEditTime: 2022-06-06 14:23:21
  * @Description: 
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { on, off } from '@micro/utils'
+import { ElAutocomplete } from 'element-plus'
+
 const spanEl = ref<HTMLElement>()
 const keyword = ref<string>('test')
 const show = ref<boolean>(false)

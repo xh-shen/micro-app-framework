@@ -2,11 +2,12 @@
  * @Author: shen
  * @Date: 2022-06-03 22:01:20
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 10:20:54
+ * @LastEditTime: 2022-06-06 14:31:03
  * @Description: 
 -->
 <script setup lang="ts">
 import type { CSSProperties, PropType } from 'vue'
+import { ElTooltip } from 'element-plus'
 import { Card, CountUp } from '@micro/components'
 
 defineProps({

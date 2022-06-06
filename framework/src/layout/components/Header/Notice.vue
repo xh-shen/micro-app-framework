@@ -2,11 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-05 15:31:56
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 15:37:35
+ * @LastEditTime: 2022-06-06 14:22:31
  * @Description: 
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
+import { ElPopover, ElTabs, ElTabPane, ElBadge } from 'element-plus'
+
 const active = ref<string>('notice')
 </script>
 

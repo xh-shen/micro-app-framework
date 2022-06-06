@@ -2,10 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-04 08:30:08
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 10:06:09
+ * @LastEditTime: 2022-06-06 14:28:56
  * @Description: 
 -->
 <script setup lang="ts">
+import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import Chart, { PieChartOption } from '@micro/charts'
 import { Card } from '@micro/components'
 
