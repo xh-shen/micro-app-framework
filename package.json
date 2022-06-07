@@ -12,7 +12,10 @@
     "dev": "shene-micro dev --argv argv1",
     "dev:argv1": "shene-micro dev --argv argv1",
     "dev:argv2": "shene-micro dev --argv argv2",
-    "build": "shene-micro build"
+    "build": "shene-micro build",
+    "docs:dev": "pnpm run -C docs dev",
+    "docs:build": "pnpm run -C docs build",
+    "docs:serve": "pnpm run -C docs serve"
   },
   "license": "ISC",
   "dependencies": {
