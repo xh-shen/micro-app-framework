@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-07 16:12:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-07 21:56:02
+ * @LastEditTime: 2022-06-08 09:25:32
  * @Description:
 -->
 
@@ -10,7 +10,7 @@
 
 ## micro.config.js
 
-目前`micro.config.js`是一个必须的配置文件，必须存在于`底座`的根目录，他会被`@shene/micro-cli`脚手架自动加载。
+目前`micro.config.js`是一个必须的配置文件，必须存在于`底座`的根目录，它会被`@shene/micro-cli`脚手架自动加载。
 
 这个文件应该导出一个包含了选项的对象：
 
@@ -46,7 +46,7 @@ module.exports = {
   ```
   .
   ├─ dist
-  │  ├─ framework（基座构架后）
+  │  ├─ framework（基座构建后）
   │  ├─ demo（子应用构建后）
   └─ └─ ...（若干子应用）
   ```
@@ -90,7 +90,7 @@ module.exports = {
         // 也是路由的baseUrl
         appName: 'demo',
         // 子应用的框架，子应用必须配置
-        // 因为主子应用跳转时，不同框架的路由时不同的，需要兼容性处理
+        // 因为主子应用跳转时，不同框架的路由是不同的，需要兼容性处理
         frame: 'vue3',
         // 接入模式：micro | iframe, 这个功能还在开发中...
         // 有些外部应用，可能无法通过子应用的方式接入，那么就需要使用iframe接入
@@ -135,7 +135,7 @@ module.exports = {
   }
   ```
 
-  如果使用呢, `底座`根目录的`package.json`中
+  如何使用呢, `底座`根目录的`package.json`中
 
   ```json
   {
@@ -188,7 +188,7 @@ module.exports = {
   }
   ```
 
-  如果使用呢, `底座`根目录的`package.json`中
+  如何使用呢, `底座`根目录的`package.json`中
 
   ```json
   {

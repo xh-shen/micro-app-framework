@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-08 21:03:38
  * @LastEditors: shen
- * @LastEditTime: 2022-06-07 20:22:50
+ * @LastEditTime: 2022-06-08 10:06:56
  * @Description:
  */
 import { defineConfig } from 'vitepress'
@@ -12,7 +12,7 @@ export default defineConfig({
   title: 'Shene Micro',
   description: 'Vue3为主技术栈的微前端架构。',
   lastUpdated: true,
-
+  // base: '/docs/',
   themeConfig: {
     logo: '/images/logo.png',
     nav: nav(),
@@ -52,9 +52,18 @@ function sidebarGuide() {
       text: '进阶',
       collapsible: true,
       items: [
-        { text: '子应用注册', link: '/guide/sub-app' },
+        { text: '子应用注册', link: '/guide/register' },
         { text: '主题', link: '/guide/theme' },
         { text: '国际化', link: '/guide/locale' },
+        { text: '数据共享', link: '/guide/store' },
+        { text: '路由跳转', link: '/guide/router' },
+        { text: '组件注册', link: '/guide/comp' },
+        { text: 'SvgIcon', link: '/guide/svg-icon' },
+        { text: '图表', link: '/guide/charts' },
+        { text: '网络请求', link: '/guide/request' },
+        { text: '自定义hooks', link: '/guide/hooks' },
+        { text: '工具函数', link: '/guide/utils' },
+        { text: '脚手架', link: '/guide/cli' },
       ],
     },
   ]
@@ -65,7 +74,23 @@ function sidebarComponent() {
     {
       text: '基础组件',
       collapsible: true,
-      items: [{ text: '卡片', link: '/component/card' }],
+      items: [
+        { text: 'Card 卡片', link: '/component/card' },
+        { text: 'Loading 加载', link: '/component/loading' },
+        { text: 'CountUp 数字动画', link: '/component/count-up' },
+        { text: 'Drawer 抽屉', link: '/component/drawer' },
+        { text: 'SvgIcon 图标', link: '/component/svg-icon' },
+      ],
+    },
+    {
+      text: '高阶组件',
+      collapsible: true,
+      items: [
+        { text: 'Table 表格', link: '/component/table' },
+        { text: 'Form 表单', link: '/component/form' },
+        { text: 'Excel 导出', link: '/component/excel' },
+        { text: 'Print 打印', link: '/component/print' },
+      ],
     },
   ]
 }
