@@ -2,12 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-04 15:26:15
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 15:45:30
+ * @LastEditTime: 2022-06-08 11:10:57
  * @Description:
  */
 import { withInstall } from '../../utils'
-import _Drawer from './Drawer.vue'
+import Drawer from './src/Drawer.vue'
 
-const Drawer = withInstall(_Drawer)
-export default Drawer
-export { Drawer }
+export const McDrawer = withInstall(Drawer)
+export default McDrawer

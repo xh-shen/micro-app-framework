@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-04 15:25:19
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:35:09
+ * @LastEditTime: 2022-06-08 11:07:41
  * @Description: 
 -->
 <script lang="ts">
@@ -13,9 +13,9 @@ export default {
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { ElDrawer } from 'element-plus'
-import { useProvideDrawer } from '../../context'
-import { isFunction, toPromise } from '../../utils'
-import Loading from '../Loading'
+import { useProvideDrawer } from '@micro/context'
+import { isFunction, toPromise } from '@micro/utils'
+import Loading from '../../Loading'
 import drawerProps from './props'
 
 type Handler = null | (() => Promise<boolean> | boolean)

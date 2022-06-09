@@ -1,0 +1,8 @@
+.mc-form {
+  &__field-date {
+    width: 100% !important;
+    .el-input__wrapper {
+      width: 100%;
+    }
+  }
+}

@@ -2,12 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-04 15:25:14
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 15:45:08
+ * @LastEditTime: 2022-06-08 11:06:24
  * @Description:
  */
-import { withInstall } from '../../utils'
-import _Dialog from './Dialog.vue'
+import { withInstall } from '@micro/utils'
+import Dialog from './src/Dialog.vue'
 
-const Dialog = withInstall(_Dialog)
-export default Dialog
-export { Dialog }
+export const McDialog = withInstall(Dialog)
+export default McDialog

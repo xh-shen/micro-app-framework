@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-04 08:29:50
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:28:30
+ * @LastEditTime: 2022-06-08 11:12:51
  * @Description: 
 -->
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import Chart, { RadarChartOption } from '@micro/charts'
-import { Card } from '@micro/components'
+import { McCard } from '@micro/components'
 
 function genSeries() {
   const series = []
@@ -70,7 +70,7 @@ const options = {
 </script>
 
 <template>
-  <Card title="浏览器占比变化" headerBorder style="margin-bottom: 15px">
+  <McCard title="浏览器占比变化" headerBorder style="margin-bottom: 15px">
     <template #extra>
       <ElDropdown placement="bottom-end">
         <mc-svg-icon name="more-fill"></mc-svg-icon>
@@ -83,7 +83,7 @@ const options = {
       </ElDropdown>
     </template>
     <Chart.Radar :options="options" style="height: 400px" />
-  </Card>
+  </McCard>
 </template>
 
 <style scoped lang="scss"></style>

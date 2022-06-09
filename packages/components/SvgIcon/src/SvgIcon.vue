@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-04 10:16:08
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 11:40:06
+ * @LastEditTime: 2022-06-08 11:01:11
  * @Description: 
 -->
 <script lang="ts">
@@ -13,7 +13,7 @@ export default {
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { computed } from 'vue'
-import { classNames } from '../../utils'
+import { classNames } from '@micro/utils'
 const props = defineProps({
   name: {
     type: String as PropType<string>,
@@ -58,7 +58,7 @@ const svgStyle = computed(() =>
 </template>
 
 <style scoped lang="scss">
-@use '../../theme/common/var' as *;
+@use '@micro/theme/common/var' as *;
 .mc-svg-icon {
   width: 1em;
   height: 1em;

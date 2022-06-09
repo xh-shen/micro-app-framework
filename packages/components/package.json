@@ -3,5 +3,10 @@
   "version": "1.0.0",
   "description": "micro components",
   "main": "index.ts",
-  "module": "index.ts"
+  "module": "index.ts",
+  "dependencies": {
+    "@micro/utils": "workspace:^1.0.0",
+    "@micro/context": "workspace:^1.0.0",
+    "@micro/theme": "workspace:^1.0.0"
+  }
 }

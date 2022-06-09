@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-04 08:03:10
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:29:16
+ * @LastEditTime: 2022-06-08 11:13:13
  * @Description: 
 -->
 <script setup lang="ts">
 import { ElDatePicker, ElCol, ElRow } from 'element-plus'
 import Chart, { BarLineChartOption } from '@micro/charts'
-import { Card } from '@micro/components'
+import { McCard } from '@micro/components'
 
 const data = [
   { product: 'product', item1: 'Milk Tea', item2: 'Ma LiYa' },
@@ -69,7 +69,7 @@ const options: BarLineChartOption = {
 </script>
 
 <template>
-  <Card title="销售额" headerBorder collapsible style="margin-bottom: 15px" class="chart-sales">
+  <McCard title="销售额" headerBorder collapsible style="margin-bottom: 15px" class="chart-sales">
     <template #extra>
       <div style="width: 350px; position: relative">
         <ElDatePicker :modelValue="['2021-01-20', '2021-02-10']" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" />
@@ -91,7 +91,7 @@ const options: BarLineChartOption = {
         </div>
       </ElCol>
     </ElRow>
-  </Card>
+  </McCard>
 </template>
 
 <style scoped lang="scss">

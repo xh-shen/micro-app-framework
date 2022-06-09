@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-03 22:01:20
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:31:03
+ * @LastEditTime: 2022-06-08 11:12:36
  * @Description: 
 -->
 <script setup lang="ts">
 import type { CSSProperties, PropType } from 'vue'
 import { ElTooltip } from 'element-plus'
-import { Card, CountUp } from '@micro/components'
+import { McCard, McCountUp } from '@micro/components'
 
 defineProps({
   loading: {
@@ -54,7 +54,7 @@ defineProps({
 </script>
 
 <template>
-  <Card class="count-card" :bodyStyle="{ paddingTop: 0 }" :loading="loading">
+  <McCard class="count-card" :bodyStyle="{ paddingTop: 0 }" :loading="loading">
     <div class="count-card__body">
       <div class="count-card__content" :style="contentStyle">
         <slot />
@@ -70,18 +70,18 @@ defineProps({
             </ElTooltip>
           </span>
         </div>
-        <div class="count-card__header-total"><CountUp :delay="100" :end-val="total!" :options="{ prefix, suffix }" /></div>
+        <div class="count-card__header-total"><McCountUp :delay="100" :end-val="total!" :options="{ prefix, suffix }" /></div>
       </div>
     </template>
     <template #footer>
       <div class="count-card__footer">
         <slot name="footer">
           <span>{{ footerMeta }}</span>
-          <span style="margin-left: 8px"> <CountUp :delay="100" :end-val="footerTotal!" :options="{ prefix: footerPrefix || prefix, suffix: footerSuffix || suffix }" /> </span>
+          <span style="margin-left: 8px"> <McCountUp :delay="100" :end-val="footerTotal!" :options="{ prefix: footerPrefix || prefix, suffix: footerSuffix || suffix }" /> </span>
         </slot>
       </div>
     </template>
-  </Card>
+  </McCard>
 </template>
 
 <style scoped lang="scss">

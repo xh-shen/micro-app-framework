@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 10:25:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 14:16:56
+ * @LastEditTime: 2022-06-08 11:00:32
  * @Description: 
 -->
 <script lang="ts">
@@ -12,10 +12,10 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue'
-import { classNames } from '../../utils'
+import { classNames } from '@micro/utils'
 import cardProps from './props'
-import SvgIcon from '../SvgIcon'
-import Loading from '../Loading'
+import SvgIcon from '../../SvgIcon'
+import Loading from '../../Loading'
 
 const props = defineProps(cardProps)
 const emit = defineEmits(['collapse'])
@@ -89,7 +89,7 @@ const cardFooterClass = computed(() =>
 </template>
 
 <style lang="scss" scoped>
-@use '../../theme/common/var' as *;
+@use '@micro/theme/common/var' as *;
 $card-padding-vertical: 15px !default;
 $card-padding-horizontal: 20px !default;
 .mc-card {

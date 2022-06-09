@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-04 08:30:08
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:28:56
+ * @LastEditTime: 2022-06-08 11:13:32
  * @Description: 
 -->
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import Chart, { PieChartOption } from '@micro/charts'
-import { Card } from '@micro/components'
+import { McCard } from '@micro/components'
 
 const data = [
   {
@@ -97,7 +97,7 @@ const options: PieChartOption = {
 </script>
 
 <template>
-  <Card title="访问来源占比" headerBorder style="margin-bottom: 15px">
+  <McCard title="访问来源占比" headerBorder style="margin-bottom: 15px">
     <template #extra>
       <ElDropdown placement="bottom-end">
         <mc-svg-icon name="more-fill"></mc-svg-icon>
@@ -110,7 +110,7 @@ const options: PieChartOption = {
       </ElDropdown>
     </template>
     <Chart.Pie :data="data" :options="options" style="height: 400px" />
-  </Card>
+  </McCard>
 </template>
 
 <style scoped lang="scss"></style>

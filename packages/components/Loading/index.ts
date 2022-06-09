@@ -2,12 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-03 19:53:21
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 19:56:51
+ * @LastEditTime: 2022-06-08 11:05:13
  * @Description:
  */
-import { withInstall } from '../../utils'
-import _Loading from './Loading.vue'
+import { withInstall } from '@micro/utils'
+import Loading from './src/Loading.vue'
 
-const Loading = withInstall(_Loading)
-export default Loading
-export { Loading }
+export const McLoading = withInstall(Loading)
+export default McLoading
