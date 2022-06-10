@@ -2,15 +2,18 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 10:37:23
+ * @LastEditTime: 2022-06-10 17:09:08
  * @Description: 
 -->
 <script lang="tsx">
-import type { FormItemType } from '@micro/components'
-import { defineComponent } from 'vue'
+import type { FormItemType, FormInstance } from '@micro/components'
+import { ElButton } from 'element-plus'
+import { defineComponent, ref } from 'vue'
 export default defineComponent({
   name: 'DemoForm',
+  components: { ElButton },
   setup() {
+    const formRef = ref<FormInstance>()
     const initialValue = {
       name: '1111',
       region: '',
@@ -50,9 +53,16 @@ export default defineComponent({
         },
       },
     ]
+
+    const onSubmit = () => {
+      console.log(formRef.value?.getFormValue())
+    }
+
     return {
       initialValue,
       formItems,
+      formRef,
+      onSubmit,
     }
   },
 })
@@ -60,7 +70,8 @@ export default defineComponent({
 
 <template>
   <div class="form-container">
-    <McForm :initial-value="initialValue" :form-items="formItems" label-position="top" />
+    <McForm ref="formRef" :initial-value="initialValue" :form-items="formItems" label-position="top" />
+    <ElButton @click="onSubmit">提交</ElButton>
   </div>
 </template>
 

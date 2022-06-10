@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 20:07:35
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 09:59:56
+ * @LastEditTime: 2022-06-10 15:58:30
  * @Description:
  */
 import type { InjectionKey, ComputedRef, Ref } from 'vue'
@@ -16,6 +16,7 @@ export interface FormContextProps {
   colProps: ComputedRef<ColProps>
   formValue: Ref<Record<string, any>>
   genItems: (items: FormItemType[]) => FormItemType[]
+  updateFormValue: (dataIndex: string, value: any) => void
 }
 export const FormContextKey: InjectionKey<FormContextProps> = Symbol('FormContext')
 

@@ -2,18 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 10:00:18
+ * @LastEditTime: 2022-06-10 17:09:37
  * @Description: 
 -->
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
 <script setup lang="ts">
 import type { ColProps, FormItemType } from './interface'
-import { computed, shallowRef, watch, toRaw } from 'vue'
-import { ElForm } from 'element-plus'
+import { computed, shallowRef, watch, toRaw, ref } from 'vue'
+import { ElForm, FormInstance } from 'element-plus'
 import { formProps } from './interface'
 import { useProvideForm } from './context/FormContext'
 import useFormValue from './hooks/useFormValue'
@@ -42,7 +37,7 @@ watch(
 
 const { items, genItems, mergeInitialValue } = useFormItems(rawItems, toRaw(props.initialValue))
 
-const { formValue } = useFormValue(mergeInitialValue)
+const { formValue, updateFormValue, getFormValue } = useFormValue(mergeInitialValue)
 
 useProvideForm({
   labelWidth,
@@ -51,12 +46,19 @@ useProvideForm({
   colProps,
   genItems,
   formValue,
+  updateFormValue,
 })
+
+defineExpose({
+  getFormValue,
+})
+
+const formRef = ref<FormInstance>()
 </script>
 
 <template>
   <div class="mc-form__wrapper">
-    <ElForm :model="formValue" :label-width="labelWidth" :label-position="labelPosition" :disabled="disabled" :size="size">
+    <ElForm ref="formRef" :model="formValue" :label-width="labelWidth" :label-position="labelPosition" :disabled="disabled" :size="size">
       <FormRow :gutter="gutter">
         <FormItems :list="items" />
       </FormRow>

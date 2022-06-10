@@ -2,15 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 10:37:13
+ * @LastEditTime: 2022-06-10 16:07:17
  * @Description: 
 -->
 <script setup lang="ts">
 import type { FormItemType } from '../interface'
 import type { PropType } from 'vue'
-import { ref, watchEffect } from 'vue'
 import { ElInput } from 'element-plus'
-import { useInjectForm } from '../context/FormContext'
+import useFieldValue from '../hooks/useFieldValue'
 
 const props = defineProps({
   item: {
@@ -19,21 +18,15 @@ const props = defineProps({
   },
 })
 
-const { formValue } = useInjectForm()
-
-const textValue = ref('')
+const { fieldValue, onValueChange } = useFieldValue(props.item)
 
 const onChange = (value: string) => {
-  formValue.value[props.item.dataIndex!] = value
+  onValueChange(value)
 }
-
-watchEffect(() => {
-  textValue.value = formValue.value[props.item.dataIndex!]
-})
 </script>
 
 <template>
-  <ElInput v-model="textValue" @change="onChange" :clearable="item.clearable" :disabled="item.disabled"></ElInput>
+  <ElInput v-model="fieldValue" @change="onChange" :clearable="item.clearable" :disabled="item.disabled"></ElInput>
 </template>
 
 <style scoped lang="scss"></style>
