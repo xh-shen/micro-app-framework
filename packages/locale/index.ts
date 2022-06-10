@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-20 15:11:58
  * @LastEditors: shen
- * @LastEditTime: 2022-05-31 08:01:55
+ * @LastEditTime: 2022-06-10 14:23:35
  * @Description:
  */
-import type { App } from 'vue'
+// import type { App } from 'vue'
 import { createI18n as vueCreateI18n } from 'vue-i18n'
-import { getLang } from '../utils'
+import { getLang } from '@micro/utils'
 import merge from 'lodash-es/merge'
 import isObject from 'lodash-es/isObject'
 import globalMessages from './lang'

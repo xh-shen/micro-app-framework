@@ -2,10 +2,11 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-09 21:44:56
+ * @LastEditTime: 2022-06-10 10:37:23
  * @Description: 
 -->
 <script lang="tsx">
+import type { FormItemType } from '@micro/components'
 import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'DemoForm',
@@ -20,12 +21,14 @@ export default defineComponent({
       desc: '',
     }
 
-    const formItems: any[] = [
+    const formItems: FormItemType[] = [
       {
         key: 'input',
         type: 'input',
         dataIndex: 'name',
         label: '文本',
+        clearable: true,
+        rules: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }],
         colProps: {
           xs: 24,
           md: 12,

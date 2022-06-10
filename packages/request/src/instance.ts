@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-21 20:41:45
  * @LastEditors: shen
- * @LastEditTime: 2022-05-25 10:08:35
+ * @LastEditTime: 2022-06-10 14:31:37
  * @Description:
  */
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { requestConfig, CODE_MESSAGE } from './config'
-import { getToken, Notification } from '../utils'
+import { getToken, Notification } from '@micro/utils'
 
 const instance: AxiosInstance = axios.create(requestConfig)
 

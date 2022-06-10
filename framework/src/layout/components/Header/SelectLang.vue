@@ -2,11 +2,12 @@
  * @Author: shen
  * @Date: 2022-05-29 16:37:40
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:24:33
+ * @LastEditTime: 2022-06-10 14:08:06
  * @Description: 
 -->
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
+import { McSvgIcon } from '@micro/components'
 import { useStore } from '@/hooks'
 import { useMicroI18n } from '@micro/hooks'
 import { Message } from '@micro/utils'
@@ -40,7 +41,7 @@ const onCommand = async (command: string) => {
 <template>
   <ElDropdown @command="onCommand">
     <span class="mc-layout__lang">
-      <mc-svg-icon name="lang" />
+      <McSvgIcon name="lang" />
     </span>
     <template #dropdown>
       <ElDropdownMenu>

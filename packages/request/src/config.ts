@@ -2,11 +2,11 @@
  * @Author: shen
  * @Date: 2022-05-21 20:41:45
  * @LastEditors: shen
- * @LastEditTime: 2022-05-26 10:33:23
+ * @LastEditTime: 2022-06-10 14:26:28
  * @Description:
  */
 import { AxiosRequestConfig } from 'axios'
-import config from '../config'
+import config from '@micro/config'
 
 export const CODE_MESSAGE: { [prop: number]: string } = {
   200: '服务器成功返回请求的数据。',

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-09 21:46:57
+ * @LastEditTime: 2022-06-10 09:29:24
  * @Description: 
 -->
 <script setup lang="ts">
@@ -24,7 +24,7 @@ const FieldComponent = computed(() => fieldMap[props.item.type || 'text'])
 </script>
 
 <template>
-  <ElFormItem :prop="item.dataIndex">
+  <ElFormItem :prop="item.dataIndex" :rules="item.rules">
     <template #label>
       <RenderVNode :vnode="item.label" />
     </template>

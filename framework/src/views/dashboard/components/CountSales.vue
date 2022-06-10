@@ -8,6 +8,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { sleep } from '@micro/utils'
+import { McSvgIcon } from '@micro/components'
 import CountCard from './CountCard.vue'
 const loading = ref(false)
 
@@ -24,14 +25,14 @@ onMounted(async () => {
       <span>周同比</span>
       <span style="margin-left: 8px">12%</span>
       <span style="display: inline-block; font-size: 12px; color: #f5222d; margin-left: 8px; transform: scale(0.7)">
-        <mc-svg-icon name="triangle" />
+        <McSvgIcon name="triangle" />
       </span>
     </div>
     <div style="display: inline-block">
       <span>日同比</span>
       <span style="margin-left: 8px">11%</span>
       <span style="display: inline-block; font-size: 12px; color: #52c41a; margin-left: 8px; transform: scale(0.7)">
-        <mc-svg-icon name="triangle" :rotate="180" />
+        <McSvgIcon name="triangle" :rotate="180" />
       </span>
     </div>
   </CountCard>

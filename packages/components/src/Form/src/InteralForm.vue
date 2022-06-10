@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-09 21:42:34
+ * @LastEditTime: 2022-06-10 10:00:18
  * @Description: 
 -->
 <script lang="ts">
@@ -40,24 +40,22 @@ watch(
   { immediate: true },
 )
 
-const { items, mergeInitialValue } = useFormItems(rawItems, toRaw(props.initialValue))
+const { items, genItems, mergeInitialValue } = useFormItems(rawItems, toRaw(props.initialValue))
 
-console.log(mergeInitialValue)
-
-const { formValue } = useFormValue({ initialValue: mergeInitialValue })
+const { formValue } = useFormValue(mergeInitialValue)
 
 useProvideForm({
   labelWidth,
   labelPosition,
   disabled,
   colProps,
+  genItems,
   formValue,
 })
 </script>
 
 <template>
   <div class="mc-form__wrapper">
-    {{ formValue }}
     <ElForm :model="formValue" :label-width="labelWidth" :label-position="labelPosition" :disabled="disabled" :size="size">
       <FormRow :gutter="gutter">
         <FormItems :list="items" />

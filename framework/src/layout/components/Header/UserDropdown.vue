@@ -2,11 +2,12 @@
  * @Author: shen
  * @Date: 2022-06-05 16:21:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:25:18
+ * @LastEditTime: 2022-06-10 14:08:29
  * @Description: 
 -->
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
+import { McSvgIcon } from '@micro/components'
 import { useStore } from '@/hooks'
 import { useRouter } from 'vue-router'
 import { useInjectLayout } from '../../context/LayoutContext'
@@ -36,9 +37,9 @@ const onCommand = async (command: string) => {
     </span>
     <template #dropdown>
       <ElDropdownMenu>
-        <ElDropdownItem style="width: 150px"><mc-svg-icon name="user" style="margin-right: 8px" />用户信息</ElDropdownItem>
-        <ElDropdownItem style="width: 150px"><mc-svg-icon name="setting" style="margin-right: 8px" />用户设置</ElDropdownItem>
-        <ElDropdownItem style="width: 150px" divided command="logout"><mc-svg-icon name="logout" style="margin-right: 8px" />退出登录</ElDropdownItem>
+        <ElDropdownItem style="width: 150px"><McSvgIcon name="user" style="margin-right: 8px" />用户信息</ElDropdownItem>
+        <ElDropdownItem style="width: 150px"><McSvgIcon name="setting" style="margin-right: 8px" />用户设置</ElDropdownItem>
+        <ElDropdownItem style="width: 150px" divided command="logout"><McSvgIcon name="logout" style="margin-right: 8px" />退出登录</ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>

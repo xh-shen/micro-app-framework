@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import Chart, { PieChartOption } from '@micro/charts'
-import { McCard } from '@micro/components'
+import { McCard, McSvgIcon } from '@micro/components'
 
 const data = [
   {
@@ -100,7 +100,7 @@ const options: PieChartOption = {
   <McCard title="访问来源占比" headerBorder style="margin-bottom: 15px">
     <template #extra>
       <ElDropdown placement="bottom-end">
-        <mc-svg-icon name="more-fill"></mc-svg-icon>
+        <McSvgIcon name="more-fill" />
         <template #dropdown>
           <ElDropdownMenu>
             <ElDropdownItem>操作1</ElDropdownItem>

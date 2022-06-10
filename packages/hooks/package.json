@@ -3,5 +3,14 @@
   "version": "1.0.0",
   "description": "micro hooks",
   "main": "index.ts",
-  "module": "index.ts"
+  "module": "index.ts",
+  "dependencies": {
+    "@micro/components": "workspace:^1.0.0",
+    "@micro/context": "workspace:^1.0.0",
+    "@micro/utils": "workspace:^1.0.0",
+    "@micro/request": "workspace:^1.0.0",
+    "@micro/locale": "workspace:^1.0.0",
+    "@micro/config": "workspace:^1.0.0",
+    "@micro/types": "workspace:^1.0.0"
+  }
 }

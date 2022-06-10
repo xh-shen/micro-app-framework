@@ -2,11 +2,12 @@
  * @Author: shen
  * @Date: 2022-06-05 21:34:45
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 10:42:10
+ * @LastEditTime: 2022-06-10 14:06:28
  * @Description: 
 -->
 <script setup lang="ts">
 import { ElSubMenu, ElIcon, ElMenuItem } from 'element-plus'
+import { McSvgIcon } from '@micro/components'
 
 defineProps({
   menus: {
@@ -21,7 +22,7 @@ defineProps({
       <ElSubMenu :index="menu.path">
         <template #title>
           <ElIcon class="mc-layout__menu-icon" v-if="menu.icon">
-            <mc-svg-icon :name="menu.icon" />
+            <McSvgIcon :name="menu.icon" />
           </ElIcon>
           <span class="mc-layout__menu-title">{{ menu.title }}</span>
         </template>
@@ -30,7 +31,7 @@ defineProps({
     </template>
     <ElMenuItem :index="menu.path" v-else>
       <ElIcon class="mc-layout__menu-icon" v-if="menu.icon">
-        <mc-svg-icon :name="menu.icon" />
+        <McSvgIcon :name="menu.icon" />
       </ElIcon>
       <template #title
         ><span class="mc-layout__menu-title">{{ menu.title }}</span></template

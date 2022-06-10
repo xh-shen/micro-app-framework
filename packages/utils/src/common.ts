@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-20 20:34:42
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 21:06:26
+ * @LastEditTime: 2022-06-10 09:42:43
  * @Description:
  */
 
@@ -60,4 +60,17 @@ export function toPromise(promiseLike: Promise<unknown> | unknown) {
   }
 
   return Promise.resolve(promiseLike)
+}
+
+export function omitUndefined<T extends Record<string, any>>(obj: T): T {
+  const newObj = {} as any
+  Object.keys(obj || {}).forEach((key: string) => {
+    if (obj[key] !== undefined) {
+      newObj[key] = obj[key]
+    }
+  })
+  if (Object.keys(newObj).length < 1) {
+    return undefined as any
+  }
+  return newObj as T
 }

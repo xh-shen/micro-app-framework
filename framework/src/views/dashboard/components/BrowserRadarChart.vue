@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-04 08:29:50
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 11:12:51
+ * @LastEditTime: 2022-06-10 14:09:09
  * @Description: 
 -->
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import Chart, { RadarChartOption } from '@micro/charts'
-import { McCard } from '@micro/components'
+import { McCard, McSvgIcon } from '@micro/components'
 
 function genSeries() {
   const series = []
@@ -73,7 +73,7 @@ const options = {
   <McCard title="浏览器占比变化" headerBorder style="margin-bottom: 15px">
     <template #extra>
       <ElDropdown placement="bottom-end">
-        <mc-svg-icon name="more-fill"></mc-svg-icon>
+        <McSvgIcon name="more-fill" />
         <template #dropdown>
           <ElDropdownMenu>
             <ElDropdownItem>操作1</ElDropdownItem>

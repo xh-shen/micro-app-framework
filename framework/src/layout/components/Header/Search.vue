@@ -2,13 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-05 14:56:56
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:23:21
+ * @LastEditTime: 2022-06-10 14:07:50
  * @Description: 
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { on, off } from '@micro/utils'
 import { ElAutocomplete } from 'element-plus'
+import { McSvgIcon } from '@micro/components'
 
 const spanEl = ref<HTMLElement>()
 const keyword = ref<string>('test')
@@ -43,7 +44,7 @@ const onShow = () => {
 
 <template>
   <span>
-    <mc-svg-icon name="search" @click="onShow" />
+    <McSvgIcon name="search" @click="onShow" />
     <span ref="spanEl" :class="['mc-layout__search-input', show ? 'show' : '']">
       <ElAutocomplete name="search" :fetch-suggestions="querySearch" v-model="keyword" placeholder="请输入" />
     </span>

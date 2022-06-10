@@ -2,11 +2,10 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 11:41:06
+ * @LastEditTime: 2022-06-10 14:05:04
  * @Description:
  */
 import { createApp } from 'vue'
-import { setupGlobCom } from '@micro/components'
 import { setupGlobalIcons } from '@micro/icons'
 import { setupI18n } from './locale'
 import { setupRouter } from './router'
@@ -32,6 +31,5 @@ setupMicro()
 setupTheme()
 setupRouter(app)
 setupStore(app)
-setupGlobCom(app)
 setupI18n(app)
 app.mount('#app')

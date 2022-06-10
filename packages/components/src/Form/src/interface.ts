@@ -2,17 +2,17 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-09 21:28:17
+ * @LastEditTime: 2022-06-10 09:52:54
  * @Description:
  */
 import type { ExtractPropTypes, PropType, VNode } from 'vue'
-import type { ColProps } from 'element-plus'
+import type { ColProps, FormRules, FormItemRule } from 'element-plus'
 
 export type FormSize = 'default' | 'small' | 'large'
 export type FormLabelPosition = 'left' | 'right' | 'top'
 export type Type = 'input' | 'date' | 'select' | 'textarea' | 'checkbox' | 'checkboxGroup' | 'radioGroup' | 'group'
 
-export type { ColProps }
+export type { ColProps, FormRules, FormItemRule }
 
 export type Key = string | number
 
@@ -23,10 +23,11 @@ export type FormItemType = {
   disabled?: boolean
   readonly?: boolean
   placeholder?: string
-  initialValue?: Readonly<any>
-  dataIndex: Readonly<string>
+  initialValue?: any
+  dataIndex?: Readonly<string>
   label?: string | number | ((opt: any) => VNode | string | number | null | undefined)
-  colProps?: ColProps
+  colProps?: Partial<ColProps>
+  rules?: FormItemRule[]
   [key: string]: any
 }
 

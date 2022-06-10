@@ -2,10 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-05 19:22:45
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 19:27:04
+ * @LastEditTime: 2022-06-10 14:07:10
  * @Description: 
 -->
 <script setup lang="ts">
+import { McSvgIcon } from '@micro/components'
 import { useInjectLayout } from '../../context/LayoutContext'
 
 const { collapse, updateCollapse } = useInjectLayout()
@@ -18,7 +19,7 @@ const onCollapse = () => {
 <template>
   <div @click="onCollapse" class="mc-layout__collapse">
     <span id="sidebar-trigger">
-      <mc-svg-icon :name="collapse ? 'menu-unfold' : 'menu-fold'" />
+      <McSvgIcon :name="collapse ? 'menu-unfold' : 'menu-fold'" />
     </span>
   </div>
 </template>

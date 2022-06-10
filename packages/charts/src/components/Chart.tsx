@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2021-01-29 21:37:07
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 23:11:40
+ * @LastEditTime: 2022-06-10 14:14:41
  * @Description:
  */
 import { defineComponent, nextTick, onMounted, onUnmounted, ref, watch, PropType, onActivated } from 'vue'
 import ChartFactory, { ECharts, ECBasicOption } from '../ChartFactory'
-import { useElementResize } from '../../hooks'
+import { useElementResize } from '@micro/hooks'
 import ChartProps from '../props'
 
 const BaseChartProps = {

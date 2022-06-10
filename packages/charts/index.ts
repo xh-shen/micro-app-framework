@@ -2,18 +2,18 @@
  * @Author: shen
  * @Date: 2021-01-29 13:05:35
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 14:06:58
+ * @LastEditTime: 2022-06-10 13:20:26
  * @Description:
  */
-import { withInstall } from '../utils'
-import _Chart from './components/Chart'
-import { ECharts, ec as echarts, ECBasicOption } from './ChartFactory'
-import LineChart, { LineChartOption } from './components/LineChart'
-import BarChart, { BarChartOption } from './components/BarChart'
-import PieChart, { PieChartOption } from './components/PieChart'
-import BarLineChart, { BarLineChartOption } from './components/BarLineChart'
-import RadarChart, { RadarChartOption } from './components/RadarChart'
-import ScatterChart, { ScatterChartOption } from './components/ScatterChart'
+import { withInstall } from '@micro/utils'
+import _Chart from './src/components/Chart'
+import { ECharts, ec as echarts, ECBasicOption } from './src/ChartFactory'
+import LineChart, { LineChartOption } from './src/components/LineChart'
+import BarChart, { BarChartOption } from './src/components/BarChart'
+import PieChart, { PieChartOption } from './src/components/PieChart'
+import BarLineChart, { BarLineChartOption } from './src/components/BarLineChart'
+import RadarChart, { RadarChartOption } from './src/components/RadarChart'
+import ScatterChart, { ScatterChartOption } from './src/components/ScatterChart'
 
 _Chart.Line = LineChart
 _Chart.Bar = BarChart

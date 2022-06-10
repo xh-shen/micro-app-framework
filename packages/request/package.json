@@ -3,5 +3,10 @@
   "version": "1.0.0",
   "description": "micro request",
   "main": "index.ts",
-  "module": "index.ts"
+  "module": "index.ts",
+  "dependencies": {
+    "@micro/utils": "workspace:^1.0.0",
+    "@micro/config": "workspace:^1.0.0",
+    "@micro/types": "workspace:^1.0.0"
+  }
 }

@@ -2,12 +2,13 @@
  * @Author: shen
  * @Date: 2022-05-26 21:24:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:27:21
+ * @LastEditTime: 2022-06-10 14:08:45
  * @Description: 
 -->
 <script setup lang="ts">
 import type { VisitedView } from '@/store/types'
 import { ElScrollbar } from 'element-plus'
+import { McSvgIcon } from '@micro/components'
 import { useStore } from '@/hooks'
 import { computed, watch, ref, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -122,7 +123,7 @@ watch(
           <div :class="['mc-layout__tagsview-tag', route.path === view.path ? 'is-active' : '']" @click="onOpenView(view)" @Contextmenu.prevent="onShowContextmenu($event, view)">
             <span class="mc-layout__tagsview-tag-title">{{ view.title }}</span>
             <span class="mc-layout__tagsview-tag-close" @click.stop="onCloseTag($event, view)">
-              <mc-svg-icon name="close" />
+              <McSvgIcon name="close" />
             </span>
           </div>
         </template>

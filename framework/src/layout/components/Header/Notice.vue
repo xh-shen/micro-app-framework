@@ -2,12 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-05 15:31:56
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:22:31
+ * @LastEditTime: 2022-06-10 14:07:25
  * @Description: 
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ElPopover, ElTabs, ElTabPane, ElBadge } from 'element-plus'
+import { McSvgIcon } from '@micro/components'
 
 const active = ref<string>('notice')
 </script>
@@ -18,7 +19,7 @@ const active = ref<string>('notice')
       <template #reference>
         <span class="notice-content">
           <ElBadge :value="200" :max="99" type="danger" class="notice-badge" is-dot>
-            <mc-svg-icon name="notice" />
+            <McSvgIcon name="notice" />
           </ElBadge>
         </span>
       </template>

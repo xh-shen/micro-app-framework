@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-03 22:01:20
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 11:12:36
+ * @LastEditTime: 2022-06-10 14:09:23
  * @Description: 
 -->
 <script setup lang="ts">
 import type { CSSProperties, PropType } from 'vue'
 import { ElTooltip } from 'element-plus'
-import { McCard, McCountUp } from '@micro/components'
+import { McCard, McCountUp, McSvgIcon } from '@micro/components'
 
 defineProps({
   loading: {
@@ -66,7 +66,7 @@ defineProps({
           <span>{{ meta }}</span>
           <span class="count-card__header-tip">
             <ElTooltip effect="dark" :content="meta || tip" placement="top">
-              <mc-svg-icon name="warning" />
+              <McSvgIcon name="warning" />
             </ElTooltip>
           </span>
         </div>
