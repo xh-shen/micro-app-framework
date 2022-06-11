@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 15:22:15
+ * @LastEditTime: 2022-06-11 22:32:55
  * @Description:
  */
 import type { ExtractPropTypes, PropType, VNode } from 'vue'
@@ -30,6 +30,27 @@ export type FormItemType = {
   rules?: FormItemRule[]
   [key: string]: any
 }
+
+export const commonFieldProps = {
+  name: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String as PropType<FieldType>,
+    required: true,
+  },
+  width: String,
+  disabled: Boolean,
+  readonly: Boolean,
+  clearable: Boolean,
+  placeholder: String,
+  onChange: Function,
+  fieldProps: {
+    type: Object as PropType<Record<string, any>>,
+    default: () => ({}),
+  },
+} as const
 
 export const formProps = {
   mode: {
@@ -73,4 +94,5 @@ export const formProps = {
     type: Object as PropType<ColProps>,
   },
 }
+
 export type FormProps = ExtractPropTypes<typeof formProps>

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 16:28:22
+ * @LastEditTime: 2022-06-11 22:31:09
  * @Description: 
 -->
 <script lang="tsx">
@@ -33,16 +33,16 @@ export default defineComponent({
         placeholder: '请选择',
         clearable: true,
         width: '300px',
-        rules: [{ required: true, message: 'Please input Activity name', trigger: 'change' }],
+        rules: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }],
         fieldProps: {
-          type: 'text',
-          maxlength: 10,
-          minlength: 4,
-          showWordLimit: true,
-          formatter: (value: string) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-          parser: (value: string) => value.replace(/\$\s?|(,*)/g, ''),
-          showPassword: true,
-          renderPrefix: () => 'a',
+          // type: 'text',
+          // maxlength: 10,
+          // minlength: 4,
+          // showWordLimit: true,
+          // formatter: (value: string) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+          // parser: (value: string) => value.replace(/\$\s?|(,*)/g, ''),
+          // showPassword: true,
+          // renderPrefix: () => 'a',
           renderSuffix: () => 'a',
           renderPrepend: () => 'a',
           renderAppend: () => 'a',

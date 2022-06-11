@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-20 20:34:42
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 09:42:43
+ * @LastEditTime: 2022-06-11 22:45:18
  * @Description:
  */
 
@@ -66,6 +66,32 @@ export function omitUndefined<T extends Record<string, any>>(obj: T): T {
   const newObj = {} as any
   Object.keys(obj || {}).forEach((key: string) => {
     if (obj[key] !== undefined) {
+      newObj[key] = obj[key]
+    }
+  })
+  if (Object.keys(newObj).length < 1) {
+    return undefined as any
+  }
+  return newObj as T
+}
+
+export function pickKeys<T extends Record<string, any>>(obj: T, keys: string[]): T {
+  const newObj = {} as any
+  if (isArray(keys) && keys.length > 0) {
+    Object.keys(obj || {}).forEach((key: string) => {
+      if (keys.includes(key)) {
+        newObj[key] = obj[key]
+      }
+    })
+  }
+
+  return newObj as T
+}
+
+export function omitKeysAndUndefined<T extends Record<string, any>>(obj: T, keys: string[]): T {
+  const newObj = {} as any
+  Object.keys(obj || {}).forEach((key: string) => {
+    if (!keys.includes(key) && obj[key] !== undefined) {
       newObj[key] = obj[key]
     }
   })

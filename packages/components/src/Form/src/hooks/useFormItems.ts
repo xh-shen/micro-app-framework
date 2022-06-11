@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 13:32:36
+ * @LastEditTime: 2022-06-11 22:15:56
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -58,6 +58,7 @@ export default function useFormItems(
           params: originItem.params,
           transform: originItem.transform,
           convertValue: originItem.convertValue,
+          onChange: originItem.onChange,
         })
 
         item.key = item.key || item.name?.toString() || index

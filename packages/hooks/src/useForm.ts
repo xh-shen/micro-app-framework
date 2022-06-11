@@ -2,22 +2,22 @@
  * @Author: shen
  * @Date: 2022-06-10 15:12:02
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 12:49:29
+ * @LastEditTime: 2022-06-11 21:14:02
  * @Description:
  */
 import type { Ref } from 'vue'
-import type { FormInstance, FormMethods } from '@micro/components'
+import type { FormInstance } from '@micro/components'
 import { ref, watchEffect } from 'vue'
 
 export function useForm(form?: Ref<FormInstance>): {
   formRef: Ref<FormInstance | undefined>
-  getFormValue: FormMethods['getFormValue']
-  setFormValue: FormMethods['setFormValue']
-  getFieldValue: FormMethods['getFieldValue']
-  setFieldValue: FormMethods['setFieldValue']
-  validate: FormMethods['validate']
-  resetFields: FormMethods['resetFields']
-  clearValidate: FormMethods['clearValidate']
+  getFormValue: FormInstance['getFormValue']
+  setFormValue: FormInstance['setFormValue']
+  getFieldValue: FormInstance['getFieldValue']
+  setFieldValue: FormInstance['setFieldValue']
+  validate: FormInstance['validate']
+  resetFields: FormInstance['resetFields']
+  clearValidate: FormInstance['clearValidate']
 } {
   const formRef = ref<FormInstance>()
 
@@ -27,31 +27,32 @@ export function useForm(form?: Ref<FormInstance>): {
     }
   })
 
-  const getFormValue: FormMethods['getFormValue'] = () => {
+  const getFormValue: FormInstance['getFormValue'] = () => {
     return formRef.value?.getFormValue() || {}
   }
 
-  const setFormValue: FormMethods['setFormValue'] = (values) => {
+  const setFormValue: FormInstance['setFormValue'] = (values) => {
     formRef.value?.setFormValue(values)
   }
 
-  const getFieldValue: FormMethods['getFieldValue'] = (prop) => {
+  const getFieldValue: FormInstance['getFieldValue'] = (prop) => {
     return formRef.value?.getFieldValue(prop)
   }
 
-  const setFieldValue: FormMethods['setFieldValue'] = (prop, value) => {
+  const setFieldValue: FormInstance['setFieldValue'] = (prop, value) => {
     formRef.value?.setFieldValue(prop, value)
   }
 
-  const validate: FormMethods['validate'] = (callback) => {
+  const validate: FormInstance['validate'] = (callback) => {
+    console.log(formRef.value)
     return formRef.value?.validate(callback)
   }
 
-  const resetFields: FormMethods['resetFields'] = (props) => {
+  const resetFields: FormInstance['resetFields'] = (props) => {
     formRef.value?.resetFields(props)
   }
 
-  const clearValidate: FormMethods['clearValidate'] = (props) => {
+  const clearValidate: FormInstance['clearValidate'] = (props) => {
     formRef.value?.clearValidate(props)
   }
 
