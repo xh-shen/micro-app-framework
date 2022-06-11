@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 17:02:01
+ * @LastEditTime: 2022-06-11 15:21:41
  * @Description: 
 -->
 <script setup lang="ts">
@@ -11,7 +11,7 @@ import type { PropType } from 'vue'
 import { computed } from 'vue'
 import { ElFormItem } from 'element-plus'
 import { RenderVNode } from '@micro/utils'
-import { fieldMap } from '../fieldMap'
+import { fieldComponentMap } from '../fieldMap'
 
 const props = defineProps({
   item: {
@@ -20,11 +20,11 @@ const props = defineProps({
   },
 })
 
-const FieldComponent = computed(() => fieldMap[props.item.type || 'text'])
+const FieldComponent = computed(() => fieldComponentMap[props.item.type || 'text'])
 </script>
 
 <template>
-  <ElFormItem :prop="item.dataIndex" :rules="item.rules">
+  <ElFormItem :prop="item.name" :rules="item.rules">
     <template #label>
       <RenderVNode :vnode="item.label" />
     </template>

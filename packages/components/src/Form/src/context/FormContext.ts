@@ -16,7 +16,7 @@ export interface FormContextProps {
   colProps: ComputedRef<ColProps>
   formValue: Ref<Record<string, any>>
   genItems: (items: FormItemType[]) => FormItemType[]
-  updateFormValue: (dataIndex: string, value: any) => void
+  updateValue: (name: string, value: any) => void
 }
 export const FormContextKey: InjectionKey<FormContextProps> = Symbol('FormContext')
 

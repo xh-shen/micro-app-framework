@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-06-09 08:00:11
  * @LastEditors: shen
- * @LastEditTime: 2022-06-09 15:50:40
+ * @LastEditTime: 2022-06-11 15:22:35
  * @Description: 
 -->
 <script setup lang="ts">
 import { PropType } from 'vue'
-import type { FormItem as FormItemType } from '../interface'
+import type { FormItemType } from '../interface'
 import FormCol from './FormCol.vue'
 
 defineProps({
@@ -19,7 +19,7 @@ defineProps({
 </script>
 
 <template>
-  <template v-for="(item, index) in list" :key="item.key || item.dataIndex || index">
+  <template v-for="item in list" :key="item.key">
     <FormCol :item="item" />
   </template>
 </template>

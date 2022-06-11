@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-06-09 08:00:11
  * @LastEditors: shen
- * @LastEditTime: 2022-06-09 21:49:05
+ * @LastEditTime: 2022-06-11 13:28:50
  * @Description: 
 -->
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { FormItemType, ColProps } from '../interface'
+import type { FormItemType } from '../interface'
 import { computed } from 'vue'
 import { ElCol } from 'element-plus'
 import { useInjectForm } from '../context/FormContext'
@@ -20,9 +20,9 @@ const props = defineProps({
   },
 })
 
-const formContext = useInjectForm()
+const { colProps: formColProps } = useInjectForm()
 
-const colProps = computed<ColProps>(() => props.item.colProps || formContext.colProps.value || {})
+const colProps = computed(() => props.item.colProps || formColProps.value || {})
 </script>
 
 <template>

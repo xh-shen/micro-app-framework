@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 16:07:17
+ * @LastEditTime: 2022-06-11 13:31:32
  * @Description: 
 -->
 <script setup lang="ts">
@@ -26,7 +26,7 @@ const onChange = (value: string) => {
 </script>
 
 <template>
-  <ElInput v-model="fieldValue" @change="onChange" :clearable="item.clearable" :disabled="item.disabled"></ElInput>
+  <ElInput v-model="fieldValue" @change="onChange" :clearable="item.clearable" :disabled="item.disabled" :style="{ width: item.width || '100%' }"></ElInput>
 </template>
 
 <style scoped lang="scss"></style>

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 10:36:59
+ * @LastEditTime: 2022-06-11 13:32:36
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -39,9 +39,10 @@ export default function useFormItems(
           key: originItem.key,
           type: originItem.type,
           children: originItem.children,
-          dataIndex: originItem.dataIndex,
+          name: originItem.name,
           initialValue: originItem.initialValue,
           index: originItem.index,
+          width: originItem.width,
           readonly: originItem.readonly,
           disabled: originItem.disabled,
           clearable: originItem.clearable,
@@ -59,7 +60,7 @@ export default function useFormItems(
           convertValue: originItem.convertValue,
         })
 
-        item.key = item.key || item.dataIndex?.toString() || index
+        item.key = item.key || item.name?.toString() || index
 
         return item
       })
@@ -72,8 +73,8 @@ export default function useFormItems(
       if (item.type === 'group' && isArray(item.children) && item.children.length > 0) {
         genDefaultValue(item.children)
       } else {
-        if (item.dataIndex) {
-          mergeInitialValue[item.dataIndex] = rawInitialValue[item.dataIndex] || item.initialValue
+        if (item.name) {
+          mergeInitialValue[item.name] = rawInitialValue[item.name] || item.initialValue
         }
       }
     })

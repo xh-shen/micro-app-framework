@@ -16,14 +16,14 @@ export default function useFieldValue(item: FormItemType): {
 } {
   const fieldValue = shallowRef()
 
-  const { formValue, updateFormValue } = useInjectForm()
+  const { formValue, updateValue } = useInjectForm()
 
   const onValueChange = (value: any) => {
-    updateFormValue(item.dataIndex!, value)
+    updateValue(item.name!, value)
   }
 
   watchEffect(() => {
-    fieldValue.value = formValue.value[item.dataIndex!]
+    fieldValue.value = formValue.value[item.name!]
   })
 
   return {

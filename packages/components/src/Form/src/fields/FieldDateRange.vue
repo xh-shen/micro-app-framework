@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-10 16:07:44
+ * @LastEditTime: 2022-06-11 13:32:58
  * @Description: 
 -->
 <script setup lang="ts">
@@ -26,5 +26,5 @@ const onChange = (value: Event) => {
 </script>
 
 <template>
-  <ElDatePicker type="date" v-model="fieldValue" @change="onChange" />
+  <ElDatePicker class="mc-form__field-date" type="date" format="YYYY-MM-DD" value-format="YYYY-MM-DD" v-model="fieldValue" :style="{ width: item.width || '100%' }" @change="onChange" />
 </template>

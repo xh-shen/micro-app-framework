@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 19:59:54
  * @LastEditors: shen
- * @LastEditTime: 2022-06-09 13:57:40
+ * @LastEditTime: 2022-06-11 15:26:06
  * @Description: 
 -->
 <script setup lang="ts">
@@ -17,7 +17,7 @@ defineProps({
 </script>
 
 <template>
-  <ElRow :gutter="gutter">
+  <ElRow :gutter="gutter" class="mc-form__wrapper">
     <slot />
   </ElRow>
 </template>
