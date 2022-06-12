@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 22:15:56
+ * @LastEditTime: 2022-06-12 14:06:17
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -13,13 +13,13 @@ import isArray from 'lodash-es/isArray'
 
 export default function useFormItems(
   rawItems: Ref<FormItemType[]>,
-  rawInitialValue: Record<string, any>,
+  rawInitialValues: Record<string, any>,
 ): {
-  mergeInitialValue: Record<string, any>
+  mergeInitialValues: Record<string, any>
   items: Ref<FormItemType[]>
   genItems: (items: FormItemType[]) => FormItemType[]
 } {
-  const mergeInitialValue: Record<string, any> = { ...rawInitialValue }
+  const mergeInitialValues: Record<string, any> = { ...rawInitialValues }
   const items = ref<FormItemType[]>([])
 
   const genItems = (items: FormItemType[]) =>
@@ -48,7 +48,7 @@ export default function useFormItems(
           clearable: originItem.clearable,
           rules: originItem.rules,
           colProps: originItem.colProps,
-          tooltip: originItem.tooltip || originItem.tip,
+          tooltip: originItem.tooltip,
           fieldProps: originItem.fieldProps,
           formItemProps: originItem.formItemProps,
           render: originItem.render,
@@ -75,7 +75,7 @@ export default function useFormItems(
         genDefaultValue(item.children)
       } else {
         if (item.name) {
-          mergeInitialValue[item.name] = rawInitialValue[item.name] || item.initialValue
+          mergeInitialValues[item.name] = rawInitialValues[item.name] || item.initialValue
         }
       }
     })
@@ -90,6 +90,6 @@ export default function useFormItems(
   return {
     items,
     genItems,
-    mergeInitialValue,
+    mergeInitialValues,
   }
 }

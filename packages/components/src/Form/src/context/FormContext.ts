@@ -14,7 +14,7 @@ export interface FormContextProps {
   labelPosition: ComputedRef<FormLabelPosition>
   disabled: ComputedRef<boolean>
   colProps: ComputedRef<ColProps>
-  formValue: Ref<Record<string, any>>
+  formValues: Ref<Record<string, any>>
   genItems: (items: FormItemType[]) => FormItemType[]
   updateValue: (name: string, value: any) => void
 }

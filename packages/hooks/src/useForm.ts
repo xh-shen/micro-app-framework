@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-10 15:12:02
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 21:14:02
+ * @LastEditTime: 2022-06-12 13:36:17
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -11,8 +11,8 @@ import { ref, watchEffect } from 'vue'
 
 export function useForm(form?: Ref<FormInstance>): {
   formRef: Ref<FormInstance | undefined>
-  getFormValue: FormInstance['getFormValue']
-  setFormValue: FormInstance['setFormValue']
+  getFormValues: FormInstance['getFormValues']
+  setFormValues: FormInstance['setFormValues']
   getFieldValue: FormInstance['getFieldValue']
   setFieldValue: FormInstance['setFieldValue']
   validate: FormInstance['validate']
@@ -27,12 +27,12 @@ export function useForm(form?: Ref<FormInstance>): {
     }
   })
 
-  const getFormValue: FormInstance['getFormValue'] = () => {
-    return formRef.value?.getFormValue() || {}
+  const getFormValues: FormInstance['getFormValues'] = () => {
+    return formRef.value?.getFormValues() || {}
   }
 
-  const setFormValue: FormInstance['setFormValue'] = (values) => {
-    formRef.value?.setFormValue(values)
+  const setFormValues: FormInstance['setFormValues'] = (values) => {
+    formRef.value?.setFormValues(values)
   }
 
   const getFieldValue: FormInstance['getFieldValue'] = (prop) => {
@@ -58,8 +58,8 @@ export function useForm(form?: Ref<FormInstance>): {
 
   return {
     formRef,
-    getFormValue,
-    setFormValue,
+    getFormValues,
+    setFormValues,
     getFieldValue,
     setFieldValue,
     validate,

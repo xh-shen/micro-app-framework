@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 21:14:43
+ * @LastEditTime: 2022-06-12 15:42:14
  * @Description: 
 -->
 <script lang="ts">
@@ -11,7 +11,7 @@ import { defineComponent, computed, shallowRef, watch, toRaw, ref } from 'vue'
 import { ElForm, FormInstance } from 'element-plus'
 import { formProps } from './interface'
 import { useProvideForm } from './context/FormContext'
-import useFormValue from './hooks/useFormValue'
+import useFormValues from './hooks/useFormValues'
 import useFormItems from './hooks/useFormItems'
 import FormWrapper from './components/FormWrapper.vue'
 import FormItems from './components/FormItems.vue'
@@ -39,11 +39,11 @@ export default defineComponent({
       { immediate: true },
     )
 
-    const { items, genItems, mergeInitialValue } = useFormItems(rawItems, toRaw(props.initialValue))
+    const { items, genItems, mergeInitialValues } = useFormItems(rawItems, toRaw(props.initialValues))
 
-    const { formValue, updateValue, getFormValue, setFormValue, setFieldValue, getFieldValue, validate, resetFields, clearValidate } = useFormValue(mergeInitialValue, elFormRef)
+    const { formValues, updateValue, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate } = useFormValues(mergeInitialValues, elFormRef)
 
-    const instanceMethods = { updateValue, getFormValue, setFormValue, setFieldValue, getFieldValue, validate, resetFields, clearValidate }
+    const instanceMethods = { updateValue, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate }
 
     useProvideForm({
       labelWidth,
@@ -51,7 +51,7 @@ export default defineComponent({
       disabled,
       colProps,
       genItems,
-      formValue,
+      formValues,
       updateValue,
     })
 
@@ -61,7 +61,7 @@ export default defineComponent({
 
     return {
       items,
-      formValue,
+      formValues,
       elFormRef,
       ...instanceMethods,
     }
@@ -70,7 +70,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <ElForm ref="elFormRef" class="mc-form" :model="formValue" :label-width="labelWidth" :label-position="labelPosition" :disabled="disabled">
+  <ElForm ref="elFormRef" class="mc-form" :model="formValues" :label-width="labelWidth" :label-position="labelPosition" :disabled="disabled">
     <FormWrapper :gutter="gutter">
       <FormItems :list="items" />
     </FormWrapper>

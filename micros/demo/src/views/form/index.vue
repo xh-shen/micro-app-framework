@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 22:31:09
+ * @LastEditTime: 2022-06-12 15:46:48
  * @Description: 
 -->
 <script lang="tsx">
@@ -14,8 +14,8 @@ export default defineComponent({
   name: 'DemoForm',
   components: { ElButton },
   setup() {
-    const { formRef, getFormValue, validate } = useForm()
-    const initialValue = {
+    const { formRef, getFormValues, validate } = useForm()
+    const initialValues = {
       name: '',
       region: '',
       date: '',
@@ -29,7 +29,10 @@ export default defineComponent({
       {
         key: 'input',
         name: 'name',
-        label: '文本',
+        label: ({ formValues }) => {
+          return `文本${formValues.name || ''}`
+        },
+        tooltip: '测试提示',
         placeholder: '请选择',
         clearable: true,
         width: '300px',
@@ -59,12 +62,12 @@ export default defineComponent({
             console.log('onClear')
           },
         },
-        // colProps: {
-        //   xs: 24,
-        //   md: 12,
-        //   lg: 6,
-        //   xl: 6,
-        // },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
         onChange: (value: any) => {
           console.log(value)
         },
@@ -76,12 +79,21 @@ export default defineComponent({
         label: '日期',
         width: '400px',
         placeholder: '请选择',
-        // colProps: {
-        //   xs: 24,
-        //   md: 12,
-        //   lg: 6,
-        //   xl: 6,
-        // },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
+      },
+      {
+        key: 'custom',
+        colProps: {
+          span: 24,
+        },
+        render: () => {
+          return 'render'
+        },
       },
     ]
 
@@ -98,7 +110,7 @@ export default defineComponent({
     }
 
     return {
-      initialValue,
+      initialValues,
       formItems,
       formRef,
       onSubmit,
@@ -109,7 +121,7 @@ export default defineComponent({
 
 <template>
   <div class="form-container">
-    <McForm ref="formRef" :colProps="{ span: 24 }" :initial-value="initialValue" :form-items="formItems" label-position="top" />
+    <McForm ref="formRef" :colProps="{ span: 24 }" :initial-values="initialValues" :form-items="formItems" label-position="top" />
     <ElButton @click="onSubmit">提交</ElButton>
   </div>
 </template>

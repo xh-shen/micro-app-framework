@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 22:32:55
+ * @LastEditTime: 2022-06-12 16:20:11
  * @Description:
  */
 import type { ExtractPropTypes, PropType, VNode } from 'vue'
@@ -24,10 +24,13 @@ export type FormItemType = {
   placeholder?: string
   initialValue?: any
   width?: string
+  tooltip?: string
   name?: Readonly<string>
-  label?: string | number | ((opt: any) => VNode | string | number | null | undefined)
+  label?: string | number | ((opt: { value: any; formValues: Record<string, any> }) => VNode | string | number | null | undefined)
   colProps?: Partial<ColProps>
   rules?: FormItemRule[]
+  render?: (opt: { formValues: Record<string, any> }) => VNode | string | number | null | undefined
+  renderField?: (opt: { value: any; formValues: Record<string, any>; updateValue: (name: string, value: any) => void }) => VNode | string | number | null | undefined
   [key: string]: any
 }
 
@@ -61,7 +64,7 @@ export const formProps = {
     type: Number,
     default: 20,
   },
-  initialValue: {
+  initialValues: {
     type: Object as PropType<any>,
   },
   formItems: {
