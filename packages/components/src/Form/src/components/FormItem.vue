@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-12 16:22:40
+ * @LastEditTime: 2022-06-13 15:44:52
  * @Description: 
 -->
 <script setup lang="ts">
@@ -10,7 +10,7 @@ import type { FormItemType } from '../interface'
 import type { PropType } from 'vue'
 import { computed } from 'vue'
 import { ElFormItem, ElTooltip } from 'element-plus'
-import { RenderVNode, isFunction } from '@micro/utils'
+import { RenderVNode, isFunction, omitUndefined } from '@micro/utils'
 import { fieldComponentMap } from '../fieldMap'
 import { useInjectForm } from '../context/FormContext'
 import cloneDeep from 'lodash-es/cloneDeep'
@@ -23,30 +23,33 @@ const props = defineProps({
   },
 })
 
-const { formValues, updateValue } = useInjectForm()
+const { formValues, updateValue, mode } = useInjectForm()
 
 const cloneFormValues = computed(() => cloneDeep(formValues.value))
 
-const FieldComponent = computed(() => fieldComponentMap[props.item.type || 'text'] || fieldComponentMap['text'])
+const FieldComponent = computed(() => fieldComponentMap[props.item.type!] || fieldComponentMap['input'])
 
-const fieldProps = computed(() => ({
-  type: props.item.type || 'text',
-  disabled: props.item.disabled,
-  clearable: props.item.clearable,
-  readonly: props.item.readonly,
-  placeholder: props.item.placeholder,
-  name: props.item.name,
-  width: props.item.width,
-  onChange: props.item.onChange,
-  fieldProps: props.item.fieldProps,
-}))
+const fieldProps = computed(() =>
+  omitUndefined({
+    type: props.item.type || 'text',
+    disabled: props.item.disabled,
+    clearable: props.item.clearable,
+    readonly: props.item.readonly,
+    placeholder: props.item.placeholder,
+    options: props.item.options,
+    name: props.item.name,
+    width: props.item.width,
+    onChange: props.item.onChange,
+    fieldProps: props.item.fieldProps,
+  }),
+)
 
 const isCustomRender = computed(() => props.item.render && isFunction(props.item.render))
 const isCustomRenderField = computed(() => props.item.renderField && isFunction(props.item.renderField))
 </script>
 
 <template>
-  <ElFormItem :prop="item.name" :rules="item.rules" v-if="!isCustomRender">
+  <ElFormItem :prop="item.name" :rules="mode === 'edit' ? item.rules : undefined" v-if="!isCustomRender">
     <template #label>
       <RenderVNode :vnode="item.label" :props="{ value: item.name ? cloneFormValues[item.name] : undefined, formValues: cloneFormValues }" />
       <ElTooltip v-if="item.tooltip" append-to="body" effect="dark" :content="item.tooltip" placement="top">
@@ -55,8 +58,10 @@ const isCustomRenderField = computed(() => props.item.renderField && isFunction(
         </span>
       </ElTooltip>
     </template>
-    <component v-if="!isCustomRenderField" :is="FieldComponent" v-bind="fieldProps"></component>
-    <RenderVNode v-else :vnode="item.renderField" :props="{ value: item.name, formValues: cloneFormValues, updateValue }" />
+    <template v-if="mode === 'edit'">
+      <component v-if="!isCustomRenderField" :is="FieldComponent" v-bind="fieldProps"></component>
+      <RenderVNode v-else :vnode="item.renderField" :props="{ value: item.name, formValues: cloneFormValues, updateValue }" />
+    </template>
   </ElFormItem>
   <RenderVNode v-else :vnode="item.render" :props="{ formValues: cloneFormValues }" />
 </template>

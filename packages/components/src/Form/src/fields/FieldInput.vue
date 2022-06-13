@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 22:44:29
+ * @LastEditTime: 2022-06-13 15:33:03
  * @Description: 
 -->
 <script setup lang="ts">
@@ -21,7 +21,7 @@ const elFieldProps = computed(() =>
   omitKeysAndUndefined(pickKeys(props.fieldProps || {}, fieldPropsMap[props.type]!), ['renderPrefix', 'renderSuffix', 'renderPrepend', 'renderAppend', 'onFocus', 'onBlur', 'onInput', 'onClear']),
 )
 
-const { fieldValue, onValueChange } = useFieldValue(props.name)
+const { fieldValue, onValueChange } = useFieldValue<string | number>(props.name)
 
 const onChange = (value: string | number) => {
   onValueChange(value)
@@ -74,5 +74,3 @@ const onClear = () => {
     </template>
   </ElInput>
 </template>
-
-<style scoped lang="scss"></style>

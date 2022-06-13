@@ -2,14 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-12 14:06:17
+ * @LastEditTime: 2022-06-13 15:15:06
  * @Description:
  */
 import type { Ref } from 'vue'
 import type { FormItemType } from '../interface'
 import { ref, watchEffect } from 'vue'
 import { omitUndefined } from '@micro/utils'
-import isArray from 'lodash-es/isArray'
+// import isArray from 'lodash-es/isArray'
 
 export default function useFormItems(
   rawItems: Ref<FormItemType[]>,
@@ -37,7 +37,7 @@ export default function useFormItems(
         const item = omitUndefined({
           label: originItem.label,
           key: originItem.key,
-          type: originItem.type,
+          type: originItem.type || 'input',
           children: originItem.children,
           name: originItem.name,
           initialValue: originItem.initialValue,
@@ -46,6 +46,7 @@ export default function useFormItems(
           readonly: originItem.readonly,
           disabled: originItem.disabled,
           clearable: originItem.clearable,
+          options: originItem.options,
           rules: originItem.rules,
           colProps: originItem.colProps,
           tooltip: originItem.tooltip,
@@ -71,13 +72,13 @@ export default function useFormItems(
 
   const genDefaultValue = (list: FormItemType[]) => {
     list.forEach((item) => {
-      if (item.type === 'group' && isArray(item.children) && item.children.length > 0) {
-        genDefaultValue(item.children)
-      } else {
-        if (item.name) {
-          mergeInitialValues[item.name] = rawInitialValues[item.name] || item.initialValue
-        }
+      // if (item.type === 'group' && isArray(item.children) && item.children.length > 0) {
+      //   genDefaultValue(item.children)
+      // } else {
+      if (item.name && item.initialValue) {
+        mergeInitialValues[item.name] = rawInitialValues[item.name] || item.initialValue
       }
+      // }
     })
   }
 

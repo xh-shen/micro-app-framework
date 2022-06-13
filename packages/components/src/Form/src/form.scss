@@ -1,7 +1,20 @@
 .mc-form {
-  &__field-date {
-    .el-input__wrapper {
-      width: 100%;
+  // &__field-date {
+  //   .el-input__wrapper {
+  //     width: 100%;
+  //     .el-input__inner {
+  //       text-align: left !important;
+  //     }
+  //   }
+  // }
+
+  .el-input__wrapper {
+    width: 100%;
+    .el-input__inner, .el-range-input {
+      text-align: left !important;
+    }
+    .el-range-input {
+      padding-left: 10px;
     }
   }
 }

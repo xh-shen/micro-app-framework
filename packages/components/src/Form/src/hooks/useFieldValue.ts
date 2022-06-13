@@ -2,27 +2,27 @@
  * @Author: shen
  * @Date: 2022-06-10 15:44:38
  * @LastEditors: shen
- * @LastEditTime: 2022-06-11 21:48:52
+ * @LastEditTime: 2022-06-13 13:48:01
  * @Description:
  */
 import type { Ref } from 'vue'
 import { shallowRef, watchEffect } from 'vue'
 import { useInjectForm } from '../context/FormContext'
 
-export default function useFieldValue(name: string): {
-  fieldValue: Ref<any>
-  onValueChange: (value: any) => void
+export default function useFieldValue<T>(name: string): {
+  fieldValue: Ref<T | undefined>
+  onValueChange: (value: T) => void
 } {
-  const fieldValue = shallowRef()
+  const fieldValue = shallowRef<T | undefined>()
 
   const { formValues, updateValue } = useInjectForm()
 
-  const onValueChange = (value: any) => {
+  const onValueChange = (value: T) => {
     updateValue(name!, value)
   }
 
   watchEffect(() => {
-    fieldValue.value = formValues.value[name!]
+    fieldValue.value = formValues.value[name!] as T
   })
 
   return {

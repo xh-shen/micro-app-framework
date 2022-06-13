@@ -2,16 +2,19 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-12 16:20:11
+ * @LastEditTime: 2022-06-13 16:37:16
  * @Description:
  */
 import type { ExtractPropTypes, PropType, VNode } from 'vue'
 import type { ColProps, FormRules, FormItemRule } from 'element-plus'
 
+export type SingleOrRange<T> = T | [T, T]
 export type Key = string | number
+export type FormMode = 'edit' | 'read'
 export type FormSize = 'default' | 'small' | 'large'
 export type FormLabelPosition = 'left' | 'right' | 'top'
-export type FieldType = 'text' | 'date' | 'select' | 'textarea' | 'checkbox' | 'checkboxGroup' | 'radioGroup' | 'group'
+export type FieldType = 'input' | 'input-number' | 'date-picker' | 'select' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group'
+export type Option = { value: string | number | boolean; text: string; disabled?: boolean }
 
 export type { ColProps, FormRules, FormItemRule }
 
@@ -28,7 +31,9 @@ export type FormItemType = {
   name?: Readonly<string>
   label?: string | number | ((opt: { value: any; formValues: Record<string, any> }) => VNode | string | number | null | undefined)
   colProps?: Partial<ColProps>
+  fieldProps?: Record<string, any>
   rules?: FormItemRule[]
+  options?: Option[]
   render?: (opt: { formValues: Record<string, any> }) => VNode | string | number | null | undefined
   renderField?: (opt: { value: any; formValues: Record<string, any>; updateValue: (name: string, value: any) => void }) => VNode | string | number | null | undefined
   [key: string]: any
@@ -57,7 +62,7 @@ export const commonFieldProps = {
 
 export const formProps = {
   mode: {
-    type: String,
+    type: String as PropType<FormMode>,
     default: 'edit',
   },
   gutter: {

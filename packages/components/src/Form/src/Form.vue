@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-12 15:42:14
+ * @LastEditTime: 2022-06-13 08:34:31
  * @Description: 
 -->
 <script lang="ts">
@@ -24,6 +24,7 @@ export default defineComponent({
 
     const EMPTY_LIST: FormItemType[] = []
 
+    const mode = computed(() => props.mode || 'edit')
     const labelWidth = computed(() => props.labelWidth)
     const labelPosition = computed(() => props.labelPosition)
     const disabled = computed(() => props.disabled)
@@ -46,6 +47,7 @@ export default defineComponent({
     const instanceMethods = { updateValue, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate }
 
     useProvideForm({
+      mode,
       labelWidth,
       labelPosition,
       disabled,
