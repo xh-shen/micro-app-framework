@@ -2,10 +2,10 @@
  * @Author: shen
  * @Date: 2022-05-15 22:28:32
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 09:25:44
+ * @LastEditTime: 2022-06-13 21:50:12
  * @Description:
  */
-// import { App } from 'vue'
+import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 
@@ -14,7 +14,7 @@ const router = createRouter({
   routes,
 })
 
-export function setupRouter(app: any) {
+export function setupRouter(app: App) {
   app.use(router)
 }
 
