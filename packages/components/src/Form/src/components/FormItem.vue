@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 15:44:52
+ * @LastEditTime: 2022-06-13 23:00:07
  * @Description: 
 -->
 <script setup lang="ts">
@@ -39,6 +39,7 @@ const fieldProps = computed(() =>
     options: props.item.options,
     name: props.item.name,
     width: props.item.width,
+    fieldStyle: props.item.fieldStyle,
     onChange: props.item.onChange,
     fieldProps: props.item.fieldProps,
   }),

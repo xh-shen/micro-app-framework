@@ -2,10 +2,10 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 16:37:16
+ * @LastEditTime: 2022-06-13 23:08:58
  * @Description:
  */
-import type { ExtractPropTypes, PropType, VNode } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
 import type { ColProps, FormRules, FormItemRule } from 'element-plus'
 
 export type SingleOrRange<T> = T | [T, T]
@@ -13,7 +13,7 @@ export type Key = string | number
 export type FormMode = 'edit' | 'read'
 export type FormSize = 'default' | 'small' | 'large'
 export type FormLabelPosition = 'left' | 'right' | 'top'
-export type FieldType = 'input' | 'input-number' | 'date-picker' | 'select' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group'
+export type FieldType = 'input' | 'input-number' | 'date-picker' | 'select' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
 export type Option = { value: string | number | boolean; text: string; disabled?: boolean }
 
 export type { ColProps, FormRules, FormItemRule }
@@ -27,6 +27,7 @@ export type FormItemType = {
   placeholder?: string
   initialValue?: any
   width?: string
+  fieldStyle?: CSSProperties
   tooltip?: string
   name?: Readonly<string>
   label?: string | number | ((opt: { value: any; formValues: Record<string, any> }) => VNode | string | number | null | undefined)
@@ -47,6 +48,9 @@ export const commonFieldProps = {
   type: {
     type: String as PropType<FieldType>,
     required: true,
+  },
+  fieldStyle: {
+    type: Object as PropType<CSSProperties>,
   },
   width: String,
   disabled: Boolean,

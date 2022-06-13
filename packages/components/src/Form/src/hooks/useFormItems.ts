@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 15:15:06
+ * @LastEditTime: 2022-06-13 22:57:40
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -43,6 +43,7 @@ export default function useFormItems(
           initialValue: originItem.initialValue,
           index: originItem.index,
           width: originItem.width,
+          fieldStyle: originItem.fieldStyle,
           readonly: originItem.readonly,
           disabled: originItem.disabled,
           clearable: originItem.clearable,

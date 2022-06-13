@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 21:39:58
+ * @LastEditTime: 2022-06-13 22:31:59
  * @Description: 
 -->
 <script setup lang="ts">
@@ -23,7 +23,6 @@ const options = computed(() => props.options)
 const { fieldValue, onValueChange } = useFieldValue<Array<string | number>>(props.name)
 
 const onChange = (value: any) => {
-  console.log(value)
   onValueChange(value)
   props.onChange?.(value)
 }

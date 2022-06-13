@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 14:55:38
+ * @LastEditTime: 2022-06-13 23:13:27
  * @Description: 
 -->
 <script setup lang="ts">
@@ -35,6 +35,7 @@ const elFieldProps = computed(() =>
 
 const onChange = (value: any) => {
   onValueChange(value as DateModelValue)
+  props.onChange?.(value)
 }
 
 const onFocus = (event: Event) => {

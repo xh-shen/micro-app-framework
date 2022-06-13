@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:13:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 21:03:39
+ * @LastEditTime: 2022-06-13 23:11:06
  * @Description:
  */
 import type { Component } from 'vue'
@@ -12,7 +12,10 @@ import FieldInputNumber from './fields/FieldInputNumber.vue'
 import FieldSelect from './fields/FieldSelect.vue'
 import FieldDatePicker from './fields/FieldDatePicker.vue'
 import FieldRadioGroup from './fields/FieldRadioGroup.vue'
+import FieldCheckbox from './fields/FieldCheckbox.vue'
 import FieldCheckboxGroup from './fields/FieldCheckboxGroup.vue'
+import FieldSwitch from './fields/FieldSwitch.vue'
+import FieldSlider from './fields/FieldSlider.vue'
 
 export const fieldComponentMap: Partial<Record<FieldType, Component>> = {
   input: FieldInput,
@@ -21,9 +24,10 @@ export const fieldComponentMap: Partial<Record<FieldType, Component>> = {
   select: FieldSelect,
   'radio-group': FieldRadioGroup,
   'checkbox-group': FieldCheckboxGroup,
+  checkbox: FieldCheckbox,
+  switch: FieldSwitch,
+  slider: FieldSlider,
   // textarea: FieldText,
-  // checkbox: FieldText,
-  // radioGroup: FieldText,
 }
 
 export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
@@ -108,9 +112,22 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
   ],
   'radio-group': [],
   'checkbox-group': ['min', 'max'],
+  checkbox: ['true-label', 'trueLabel', 'false-label', 'falseLabel'],
+  switch: [
+    'active-value',
+    'activeValue',
+    'inactive-value',
+    'inactiveValue',
+    'loading',
+    'inline-prompt',
+    'inlinePrompt',
+    'active-text',
+    'activeText',
+    'inactive-text',
+    'inactiveText',
+    'before-change',
+    'beforeChange',
+  ],
+  slider: ['min', 'max', 'step', 'show-stops', 'showStops', 'show-tooltip', 'showTooltip', 'format-tooltip', 'formatTooltip', 'range', 'marks'],
   // textarea: [],
-  // checkbox: [],
-  // checkboxGroup: [],
-
-  // group: [],
 }

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 21:14:22
+ * @LastEditTime: 2022-06-13 23:14:16
  * @Description: 
 -->
 <script lang="tsx">
@@ -139,6 +139,22 @@ export default defineComponent({
         },
       },
       {
+        type: 'checkbox',
+        name: 'checkbox',
+        label: '复选框',
+        initialValue: '1',
+        fieldProps: {
+          trueLabel: '1',
+          falseLabel: '2',
+        },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
+      },
+      {
         type: 'checkbox-group',
         name: 'checkbox-group',
         label: '复选框组',
@@ -147,6 +163,29 @@ export default defineComponent({
           { text: '长春', value: 'changchun' },
           { text: '吉林', value: 'jilin' },
         ],
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
+      },
+      {
+        type: 'switch',
+        name: 'switch',
+        label: '开关',
+        initialValue: '1',
+        width: '100px',
+        fieldStyle: {
+          '--el-switch-on-color': '#13ce66',
+          '--el-switch-off-color': '#ff4949',
+        },
+        fieldProps: {
+          activeValue: '1',
+          inactiveValue: '2',
+          // activeText: 'Pay by month',
+          // inactiveText: 'Pay by year',
+        },
         colProps: {
           xs: 24,
           md: 12,
@@ -208,6 +247,17 @@ export default defineComponent({
             },
           ],
         },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
+      },
+      {
+        type: 'slider',
+        name: 'slider',
+        label: '滑块',
         colProps: {
           xs: 24,
           md: 12,
