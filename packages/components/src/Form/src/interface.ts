@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 10:15:17
+ * @LastEditTime: 2022-06-14 15:39:32
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -15,6 +15,7 @@ export type FormSize = 'default' | 'small' | 'large'
 export type FormLabelPosition = 'left' | 'right' | 'top'
 export type FieldType = 'input' | 'input-number' | 'date-picker' | 'time-picker' | 'select' | 'cascader' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
 export type Option = { value: string | number | boolean; label?: string; text?: string; disabled?: boolean; leaf?: boolean; children?: Option[] }
+export type Request = (params: Record<string, any>) => Promise<Option[]>
 
 export type { ColProps, FormRules, FormItemRule, CascaderOption }
 
@@ -22,7 +23,7 @@ export type FormItemType = {
   key?: Key
   type?: FieldType
   hidden?: boolean
-  disabled?: boolean
+  disabled?: boolean | ((formValues: Record<string, any>) => boolean)
   readonly?: boolean
   placeholder?: string
   initialValue?: any
@@ -35,6 +36,8 @@ export type FormItemType = {
   fieldProps?: Record<string, any>
   rules?: FormItemRule[]
   options?: Option[]
+  request?: Request
+  params?: Record<string, any>
   render?: (opt: { formValues: Record<string, any> }) => VNode | string | number | null | undefined
   renderField?: (opt: { value: any; formValues: Record<string, any>; updateValue: (name: string, value: any) => void }) => VNode | string | number | null | undefined
   [key: string]: any

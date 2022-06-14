@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 23:00:07
+ * @LastEditTime: 2022-06-14 14:58:46
  * @Description: 
 -->
 <script setup lang="ts">
@@ -32,7 +32,6 @@ const FieldComponent = computed(() => fieldComponentMap[props.item.type!] || fie
 const fieldProps = computed(() =>
   omitUndefined({
     type: props.item.type || 'text',
-    disabled: props.item.disabled,
     clearable: props.item.clearable,
     readonly: props.item.readonly,
     placeholder: props.item.placeholder,
@@ -40,10 +39,19 @@ const fieldProps = computed(() =>
     name: props.item.name,
     width: props.item.width,
     fieldStyle: props.item.fieldStyle,
+    request: props.item.request,
+    params: props.item.params,
     onChange: props.item.onChange,
     fieldProps: props.item.fieldProps,
   }),
 )
+
+const disabled = computed(() => {
+  if (isFunction(props.item.disabled)) {
+    return props.item.disabled(cloneFormValues.value)
+  }
+  return props.item.disabled
+})
 
 const isCustomRender = computed(() => props.item.render && isFunction(props.item.render))
 const isCustomRenderField = computed(() => props.item.renderField && isFunction(props.item.renderField))
@@ -60,7 +68,7 @@ const isCustomRenderField = computed(() => props.item.renderField && isFunction(
       </ElTooltip>
     </template>
     <template v-if="mode === 'edit'">
-      <component v-if="!isCustomRenderField" :is="FieldComponent" v-bind="fieldProps"></component>
+      <component v-if="!isCustomRenderField" :is="FieldComponent" v-bind="fieldProps" :disabled="disabled"></component>
       <RenderVNode v-else :vnode="item.renderField" :props="{ value: item.name, formValues: cloneFormValues, updateValue }" />
     </template>
   </ElFormItem>

@@ -2,25 +2,32 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 10:30:58
+ * @LastEditTime: 2022-06-14 16:39:49
  * @Description: 
 -->
 <script setup lang="ts">
 import { computed, PropType } from 'vue'
 import { ElCascader } from 'element-plus'
-import { omitKeysAndUndefined, pickKeys, RenderVNode } from '@micro/utils'
+import { omitKeysAndUndefined, pickKeys } from '@micro/utils'
 import { fieldPropsMap } from '../fieldMap'
-import { commonFieldProps, CascaderOption } from '../interface'
+import { commonFieldProps, CascaderOption, Request } from '../interface'
 import useFieldValue from '../hooks/useFieldValue'
+import useFieldOptions from '../hooks/useFieldOptions'
+
 const props = defineProps({
   ...commonFieldProps,
   options: {
     type: Array as PropType<CascaderOption[]>,
     default: () => [],
   },
+  request: Function as PropType<Request>,
+  params: Object as PropType<Record<string, any>>,
 })
 
 const options = computed(() => props.options)
+const params = computed(() => props.params)
+
+const { finallyOptions } = useFieldOptions(options as any, props.request, params)
 
 const elFieldProps = computed(() => omitKeysAndUndefined(pickKeys(props.fieldProps || {}, fieldPropsMap[props.type]!), ['onBlur', 'onFocus', 'onRemoveTag', 'onVisibleChange', 'onExpandChange']))
 
@@ -60,7 +67,7 @@ const onClear = () => {
     :clearable="clearable"
     :disabled="disabled"
     :readonly="readonly"
-    :options="options"
+    :options="(finallyOptions as  CascaderOption[])"
     :style="{ width: width || '100%' }"
     @change="onChange"
     @focus="onFocus"
@@ -68,8 +75,7 @@ const onClear = () => {
     @clear="onClear"
     @remove-tag="onRemoveTag"
     @visible-change="onVisibleChange"
-  >
-  </ElCascader>
+  />
 </template>
 
 <style scoped lang="scss"></style>

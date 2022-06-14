@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-02 19:30:26
  * @LastEditors: shen
- * @LastEditTime: 2022-06-04 19:51:11
+ * @LastEditTime: 2022-06-14 15:35:04
  * @Description: 
 -->
 <script lang="ts">
@@ -72,6 +72,8 @@ const containerClass = computed(() => ({
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:map';
+
 .mc-loading {
   position: relative;
   height: 100%;
@@ -193,6 +195,27 @@ const containerClass = computed(() => ({
     opacity: 0.5;
     user-select: none;
     pointer-events: none;
+  }
+  &--large {
+    .mc-loading__dot {
+      width: 1.4em;
+      height: 1.4em;
+      &-item {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  &--small {
+    .mc-loading__dot {
+      width: 0.8em;
+      height: 0.8em;
+      &-item {
+        width: 7px;
+        height: 7px;
+      }
+    }
   }
 }
 

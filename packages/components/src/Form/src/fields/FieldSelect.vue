@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 10:47:10
+ * @LastEditTime: 2022-06-14 16:35:23
  * @Description: 
 -->
 <script setup lang="ts">
@@ -10,22 +10,27 @@ import { computed, PropType } from 'vue'
 import { ElSelect, ElOption } from 'element-plus'
 import { omitKeysAndUndefined, pickKeys, RenderVNode } from '@micro/utils'
 import { fieldPropsMap } from '../fieldMap'
-import { commonFieldProps, Option } from '../interface'
+import { commonFieldProps, Option, Request } from '../interface'
 import useFieldValue from '../hooks/useFieldValue'
+import useFieldOptions from '../hooks/useFieldOptions'
 const props = defineProps({
   ...commonFieldProps,
   options: {
     type: Array as PropType<Option[]>,
     default: () => [],
   },
+  request: Function as PropType<Request>,
+  params: Object as PropType<Record<string, any>>,
 })
 
 const options = computed(() => props.options)
+const params = computed(() => props.params)
 
 const elFieldProps = computed(() =>
   omitKeysAndUndefined(pickKeys(props.fieldProps || {}, fieldPropsMap[props.type]!), ['renderOption', 'onBlur', 'onFocus', 'onClear', 'onRemoveTag', 'onVisibleChange']),
 )
 
+const { finallyOptions } = useFieldOptions(options, props.request, params)
 const { fieldValue, onValueChange } = useFieldValue<string | number | boolean | Record<string, any>>(props.name)
 
 const onChange = (value: string | number | boolean | Record<string, any>) => {
@@ -70,7 +75,7 @@ const onClear = () => {
     @remove-tag="onRemoveTag"
     @visible-change="onVisibleChange"
   >
-    <ElOption v-for="opt in options" :key="(opt.value as any)" :label="((opt.label || opt.text || opt.value) as string)" :disabled="opt.disabled" :value="opt.value">
+    <ElOption v-for="opt in finallyOptions" :key="(opt.value as any)" :label="((opt.label || opt.text || opt.value) as string)" :disabled="opt.disabled" :value="opt.value">
       <RenderVNode v-if="fieldProps.renderOption" :vnode="fieldProps.renderOption" :props="{ item: opt, value: fieldValue }" />
     </ElOption>
   </ElSelect>

@@ -2,15 +2,16 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 10:14:53
+ * @LastEditTime: 2022-06-14 16:31:42
  * @Description: 
 -->
 <script lang="tsx">
 import type { FormItemType } from '@micro/components'
 import { ElButton, ElIcon } from 'element-plus'
-import { defineComponent } from 'vue'
-
+import { defineComponent, reactive } from 'vue'
 import { useForm } from '@micro/hooks'
+import { sleep } from '@micro/utils'
+
 export default defineComponent({
   name: 'DemoForm',
   components: { ElButton },
@@ -26,7 +27,7 @@ export default defineComponent({
       desc: '',
     }
 
-    const formItems: FormItemType[] = [
+    const formItems: FormItemType[] = reactive([
       {
         key: 'input',
         name: 'name',
@@ -59,18 +60,18 @@ export default defineComponent({
               <mc-svg-icon name="search" />
             </ElButton>
           ),
-          onFocus: () => {
-            console.log('onFocus')
-          },
-          onBlur: () => {
-            console.log('onBlur')
-          },
-          onInput: () => {
-            console.log('onInput')
-          },
-          onClear: () => {
-            console.log('onClear')
-          },
+          // onFocus: () => {
+          //   console.log('onFocus')
+          // },
+          // onBlur: () => {
+          //   console.log('onBlur')
+          // },
+          // onInput: () => {
+          //   console.log('onInput')
+          // },
+          // onClear: () => {
+          //   console.log('onClear')
+          // },
         },
         colProps: {
           xs: 24,
@@ -78,9 +79,9 @@ export default defineComponent({
           lg: 6,
           xl: 6,
         },
-        onChange: (value: any) => {
-          console.log(value)
-        },
+        // onChange: (value: string) => {
+        // console.log(value)
+        // },
       },
       {
         type: 'input-number',
@@ -88,6 +89,7 @@ export default defineComponent({
         label: '数字输入',
         placeholder: '请输入',
         clearable: true,
+        disabled: (formValues) => !formValues.name,
         // width: '300px',
         rules: [{ required: true, message: 'Please input Activity name', trigger: 'change' }],
         fieldProps: {},
@@ -96,9 +98,6 @@ export default defineComponent({
           md: 12,
           lg: 6,
           xl: 6,
-        },
-        onChange: (value: any) => {
-          console.log(value)
         },
       },
       {
@@ -112,6 +111,19 @@ export default defineComponent({
           { text: 'option3', value: '3' },
           { text: 'option4', value: '4' },
         ],
+        params: {
+          a: '1',
+        },
+        request: async (params) => {
+          console.log(params)
+          await sleep(2000)
+          return [
+            { text: 'request1', value: '1' },
+            { text: 'request2', value: '2' },
+            { text: 'request3', value: '3' },
+            { text: 'request4', value: '4' },
+          ]
+        },
         fieldProps: {
           // renderOption: ({ item }: any) => <div>{item.text}</div>,
         },
@@ -446,6 +458,19 @@ export default defineComponent({
           { text: '长春', value: 'changchun' },
           { text: '吉林', value: 'jilin' },
         ],
+        params: {
+          a: '1',
+        },
+        request: async (params) => {
+          console.log(params)
+          await sleep(2000)
+          return [
+            { text: 'request1', value: '1' },
+            { text: 'request2', value: '2' },
+            { text: 'request3', value: '3' },
+            { text: 'request4', value: '4' },
+          ]
+        },
         colProps: {
           xs: 24,
           md: 12,
@@ -601,7 +626,13 @@ export default defineComponent({
       //     return 'render'
       //   },
       // },
-    ]
+    ])
+
+    setTimeout(() => {
+      formItems[2].params = {
+        a: '5',
+      }
+    }, 3000)
 
     const onSubmit = async () => {
       // validate((valid: boolean, values: Record<string, any>) => {

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-10 15:12:02
  * @LastEditors: shen
- * @LastEditTime: 2022-06-12 13:36:17
+ * @LastEditTime: 2022-06-14 14:31:54
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -44,7 +44,6 @@ export function useForm(form?: Ref<FormInstance>): {
   }
 
   const validate: FormInstance['validate'] = (callback) => {
-    console.log(formRef.value)
     return formRef.value?.validate(callback)
   }
 

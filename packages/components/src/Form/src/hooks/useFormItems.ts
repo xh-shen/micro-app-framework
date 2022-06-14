@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 22:57:40
+ * @LastEditTime: 2022-06-14 16:24:54
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -38,10 +38,10 @@ export default function useFormItems(
           label: originItem.label,
           key: originItem.key,
           type: originItem.type || 'input',
-          children: originItem.children,
+          // children: originItem.children,
           name: originItem.name,
           initialValue: originItem.initialValue,
-          index: originItem.index,
+          // index: originItem.index,
           width: originItem.width,
           fieldStyle: originItem.fieldStyle,
           readonly: originItem.readonly,
@@ -52,14 +52,13 @@ export default function useFormItems(
           colProps: originItem.colProps,
           tooltip: originItem.tooltip,
           fieldProps: originItem.fieldProps,
-          formItemProps: originItem.formItemProps,
           render: originItem.render,
-          renderFormItem: originItem.renderFormItem,
+          renderField: originItem.renderField,
           renderText: originItem.renderText,
           request: originItem.request,
           params: originItem.params,
-          transform: originItem.transform,
-          convertValue: originItem.convertValue,
+          // transform: originItem.transform,
+          // convertValue: originItem.convertValue,
           onChange: originItem.onChange,
         })
 

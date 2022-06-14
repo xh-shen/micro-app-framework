@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 08:04:38
+ * @LastEditTime: 2022-06-14 16:24:33
  * @Description: 
 -->
 <script lang="ts">
 import type { ColProps, FormItemType } from './interface'
-import { defineComponent, computed, shallowRef, watch, toRaw, ref } from 'vue'
+import { defineComponent, computed, watch, toRaw, ref } from 'vue'
 import { ElForm, FormInstance } from 'element-plus'
 import { formProps } from './interface'
 import { useProvideForm } from './context/FormContext'
@@ -30,7 +30,7 @@ export default defineComponent({
     const disabled = computed(() => props.disabled)
     const colProps = computed(() => props.colProps || ({ span: 6 } as ColProps))
 
-    const rawItems = shallowRef<FormItemType[]>([])
+    const rawItems = ref<FormItemType[]>([])
 
     watch(
       () => props.formItems,
