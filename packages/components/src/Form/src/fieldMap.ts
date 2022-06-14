@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:13:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 23:11:06
+ * @LastEditTime: 2022-06-14 10:30:48
  * @Description:
  */
 import type { Component } from 'vue'
@@ -11,23 +11,28 @@ import FieldInput from './fields/FieldInput.vue'
 import FieldInputNumber from './fields/FieldInputNumber.vue'
 import FieldSelect from './fields/FieldSelect.vue'
 import FieldDatePicker from './fields/FieldDatePicker.vue'
+import FieldTimePicker from './fields/FieldTimePicker.vue'
 import FieldRadioGroup from './fields/FieldRadioGroup.vue'
 import FieldCheckbox from './fields/FieldCheckbox.vue'
 import FieldCheckboxGroup from './fields/FieldCheckboxGroup.vue'
 import FieldSwitch from './fields/FieldSwitch.vue'
 import FieldSlider from './fields/FieldSlider.vue'
+import FieldTextarea from './fields/FieldTextarea.vue'
+import FieldCascader from './fields/FieldCascader.vue'
 
 export const fieldComponentMap: Partial<Record<FieldType, Component>> = {
   input: FieldInput,
   'input-number': FieldInputNumber,
   'date-picker': FieldDatePicker,
+  'time-picker': FieldTimePicker,
   select: FieldSelect,
+  cascader: FieldCascader,
   'radio-group': FieldRadioGroup,
   'checkbox-group': FieldCheckboxGroup,
   checkbox: FieldCheckbox,
   switch: FieldSwitch,
   slider: FieldSlider,
-  // textarea: FieldText,
+  textarea: FieldTextarea,
 }
 
 export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
@@ -50,6 +55,7 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
     'onInput',
     'onClear',
   ],
+  textarea: ['maxlength', 'minlength', 'rows', 'autosize', 'show-word-limit', 'showWordLimit', 'onFocus', 'onBlur', 'onInput', 'onClear'],
   'input-number': ['min', 'max', 'step', 'step-strictly', 'stepStrictly', 'controls', 'value-on-clear', 'onFocus', 'onBlur'],
   'date-picker': [
     'editable',
@@ -58,6 +64,7 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
     'end-placeholder',
     'endPlaceholder',
     'type',
+    'format',
     'range-separator',
     'rangeSeparator',
     'default-value',
@@ -77,6 +84,34 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
     'onFocus',
     'onCalendarChange',
     'onPanelChange',
+    'onVisibleChange',
+  ],
+  'time-picker': [
+    'editable',
+    'start-placeholder',
+    'startPlaceholder',
+    'end-placeholder',
+    'endPlaceholder',
+    'is-range',
+    'isRange',
+    'arrow-control',
+    'arrowControl',
+    'align',
+    'range-separator',
+    'rangeSeparator',
+    'format',
+    'value-format',
+    'valueFormat',
+    'default-value',
+    'defaultValue',
+    'disabled-hours',
+    'disabledHours',
+    'disabled-minutes',
+    'disabledMinutes',
+    'disabled-seconds',
+    'disabledSeconds',
+    'onBlur',
+    'onFocus',
     'onVisibleChange',
   ],
   select: [
@@ -110,6 +145,26 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
     'onRemoveTag',
     'onVisibleChange',
   ],
+  cascader: [
+    'props',
+    'show-all-levels',
+    'showAllLevels',
+    'collapse-tags-tooltip',
+    'collapseTagsTooltip',
+    'separator',
+    'filterable',
+    'filter-method',
+    'filterMethod',
+    'debounce',
+    'before-filter',
+    'beforeFilter',
+    'tagType',
+    'onBlur',
+    'onFocus',
+    'onRemoveTag',
+    'onVisibleChange',
+    'onExpandChange',
+  ],
   'radio-group': [],
   'checkbox-group': ['min', 'max'],
   checkbox: ['true-label', 'trueLabel', 'false-label', 'falseLabel'],
@@ -130,4 +185,16 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
   ],
   slider: ['min', 'max', 'step', 'show-stops', 'showStops', 'show-tooltip', 'showTooltip', 'format-tooltip', 'formatTooltip', 'range', 'marks'],
   // textarea: [],
+}
+
+export const fieldDateFormatterMap: Record<string, string> = {
+  year: 'YYYY',
+  month: 'YYYY-MM',
+  monthrange: 'YYYY-MM',
+  date: 'YYYY-MM-DD',
+  dates: 'YYYY-MM-DD',
+  daterange: 'YYYY-MM-DD',
+  datetime: 'YYYY-MM-DD HH:mm:ss',
+  datetimerange: 'YYYY-MM-DD HH:mm:ss',
+  time: 'HH:mm:ss',
 }

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 23:14:16
+ * @LastEditTime: 2022-06-14 10:14:53
  * @Description: 
 -->
 <script lang="tsx">
@@ -31,8 +31,8 @@ export default defineComponent({
         key: 'input',
         name: 'name',
         label: ({ formValues }) => {
-          // return `文本${formValues.name || ''}`
-          return `文本`
+          return `文本${formValues.name || ''}`
+          // return `文本`
         },
         tooltip: '测试提示',
         placeholder: '请选择',
@@ -139,6 +139,289 @@ export default defineComponent({
         },
       },
       {
+        type: 'cascader',
+        name: 'cascader',
+        label: '级联选择器',
+        placeholder: '请选择',
+        options: [
+          {
+            value: 'guide',
+            label: 'Guide',
+            children: [
+              {
+                value: 'disciplines',
+                label: 'Disciplines',
+                children: [
+                  {
+                    value: 'consistency',
+                    label: 'Consistency',
+                  },
+                  {
+                    value: 'feedback',
+                    label: 'Feedback',
+                  },
+                  {
+                    value: 'efficiency',
+                    label: 'Efficiency',
+                  },
+                  {
+                    value: 'controllability',
+                    label: 'Controllability',
+                  },
+                ],
+              },
+              {
+                value: 'navigation',
+                label: 'Navigation',
+                children: [
+                  {
+                    value: 'side nav',
+                    label: 'Side Navigation',
+                  },
+                  {
+                    value: 'top nav',
+                    label: 'Top Navigation',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            value: 'component',
+            label: 'Component',
+            children: [
+              {
+                value: 'basic',
+                label: 'Basic',
+                children: [
+                  {
+                    value: 'layout',
+                    label: 'Layout',
+                  },
+                  {
+                    value: 'color',
+                    label: 'Color',
+                  },
+                  {
+                    value: 'typography',
+                    label: 'Typography',
+                  },
+                  {
+                    value: 'icon',
+                    label: 'Icon',
+                  },
+                  {
+                    value: 'button',
+                    label: 'Button',
+                  },
+                ],
+              },
+              {
+                value: 'form',
+                label: 'Form',
+                children: [
+                  {
+                    value: 'radio',
+                    label: 'Radio',
+                  },
+                  {
+                    value: 'checkbox',
+                    label: 'Checkbox',
+                  },
+                  {
+                    value: 'input',
+                    label: 'Input',
+                  },
+                  {
+                    value: 'input-number',
+                    label: 'InputNumber',
+                  },
+                  {
+                    value: 'select',
+                    label: 'Select',
+                  },
+                  {
+                    value: 'cascader',
+                    label: 'Cascader',
+                  },
+                  {
+                    value: 'switch',
+                    label: 'Switch',
+                  },
+                  {
+                    value: 'slider',
+                    label: 'Slider',
+                  },
+                  {
+                    value: 'time-picker',
+                    label: 'TimePicker',
+                  },
+                  {
+                    value: 'date-picker',
+                    label: 'DatePicker',
+                  },
+                  {
+                    value: 'datetime-picker',
+                    label: 'DateTimePicker',
+                  },
+                  {
+                    value: 'upload',
+                    label: 'Upload',
+                  },
+                  {
+                    value: 'rate',
+                    label: 'Rate',
+                  },
+                  {
+                    value: 'form',
+                    label: 'Form',
+                  },
+                ],
+              },
+              {
+                value: 'data',
+                label: 'Data',
+                children: [
+                  {
+                    value: 'table',
+                    label: 'Table',
+                  },
+                  {
+                    value: 'tag',
+                    label: 'Tag',
+                  },
+                  {
+                    value: 'progress',
+                    label: 'Progress',
+                  },
+                  {
+                    value: 'tree',
+                    label: 'Tree',
+                  },
+                  {
+                    value: 'pagination',
+                    label: 'Pagination',
+                  },
+                  {
+                    value: 'badge',
+                    label: 'Badge',
+                  },
+                ],
+              },
+              {
+                value: 'notice',
+                label: 'Notice',
+                children: [
+                  {
+                    value: 'alert',
+                    label: 'Alert',
+                  },
+                  {
+                    value: 'loading',
+                    label: 'Loading',
+                  },
+                  {
+                    value: 'message',
+                    label: 'Message',
+                  },
+                  {
+                    value: 'message-box',
+                    label: 'MessageBox',
+                  },
+                  {
+                    value: 'notification',
+                    label: 'Notification',
+                  },
+                ],
+              },
+              {
+                value: 'navigation',
+                label: 'Navigation',
+                children: [
+                  {
+                    value: 'menu',
+                    label: 'Menu',
+                  },
+                  {
+                    value: 'tabs',
+                    label: 'Tabs',
+                  },
+                  {
+                    value: 'breadcrumb',
+                    label: 'Breadcrumb',
+                  },
+                  {
+                    value: 'dropdown',
+                    label: 'Dropdown',
+                  },
+                  {
+                    value: 'steps',
+                    label: 'Steps',
+                  },
+                ],
+              },
+              {
+                value: 'others',
+                label: 'Others',
+                children: [
+                  {
+                    value: 'dialog',
+                    label: 'Dialog',
+                  },
+                  {
+                    value: 'tooltip',
+                    label: 'Tooltip',
+                  },
+                  {
+                    value: 'popover',
+                    label: 'Popover',
+                  },
+                  {
+                    value: 'card',
+                    label: 'Card',
+                  },
+                  {
+                    value: 'carousel',
+                    label: 'Carousel',
+                  },
+                  {
+                    value: 'collapse',
+                    label: 'Collapse',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            value: 'resource',
+            label: 'Resource',
+            children: [
+              {
+                value: 'axure',
+                label: 'Axure Components',
+              },
+              {
+                value: 'sketch',
+                label: 'Sketch Templates',
+              },
+              {
+                value: 'docs',
+                label: 'Design Documentation',
+              },
+            ],
+          },
+        ],
+        fieldProps: {
+          // renderOption: ({ item }: any) => <div>{item.text}</div>,
+        },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
+      },
+      {
         type: 'checkbox',
         name: 'checkbox',
         label: '复选框',
@@ -199,6 +482,7 @@ export default defineComponent({
         name: 'date',
         label: '日期',
         placeholder: '请选择',
+        fieldProps: {},
         colProps: {
           xs: 24,
           md: 12,
@@ -213,9 +497,9 @@ export default defineComponent({
         label: '日期区间',
         placeholder: '请选择',
         fieldProps: {
-          type: 'daterange',
-          startPlaceholder: 'Start Date',
-          endPlaceholder: 'End Date',
+          type: 'datetimerange',
+          startPlaceholder: '请选择',
+          endPlaceholder: '请选择',
           defaultValue: [new Date(2010, 9, 1), new Date(2010, 10, 1)],
           shortcuts: [
             {
@@ -255,14 +539,57 @@ export default defineComponent({
         },
       },
       {
-        type: 'slider',
-        name: 'slider',
-        label: '滑块',
+        type: 'time-picker',
+        name: 'time',
+        label: '时间',
+        placeholder: '请选择',
         colProps: {
           xs: 24,
           md: 12,
           lg: 6,
           xl: 6,
+        },
+      },
+      {
+        type: 'time-picker',
+        name: 'time-range',
+        label: '时间区间',
+        fieldProps: {
+          isRange: true,
+          startPlaceholder: '请选择',
+          endPlaceholder: '请选择',
+        },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
+      },
+      {
+        type: 'slider',
+        name: 'slider',
+        label: '滑块',
+        initialValue: [4, 8],
+        fieldProps: {
+          range: true,
+          showStops: true,
+          max: 10,
+        },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 6,
+          xl: 6,
+        },
+      },
+      {
+        type: 'textarea',
+        name: 'textarea',
+        label: '文本域',
+        fieldProps: {},
+        colProps: {
+          span: 24,
         },
       },
       // {
@@ -277,15 +604,15 @@ export default defineComponent({
     ]
 
     const onSubmit = async () => {
-      validate((valid: boolean, values: Record<string, any>) => {
-        console.log(valid, values)
-      })
-      // try {
-      //   const result = await validate()
-      //   console.log(result)
-      // } catch (error) {
-      //   console.log(error)
-      // }
+      // validate((valid: boolean, values: Record<string, any>) => {
+      //   console.log(valid, values)
+      // })
+      try {
+        const result = await validate()
+        console.log(result)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     return {
@@ -300,8 +627,8 @@ export default defineComponent({
 
 <template>
   <div class="form-container">
-    <McForm ref="formRef" :colProps="{ span: 24 }" :initial-values="initialValues" :form-items="formItems" />
-    <ElButton @click="onSubmit"><McSvgIcon name="search" /> 提交</ElButton>
+    <McForm ref="formRef" :initial-values="initialValues" :form-items="formItems" label-position="top" />
+    <ElButton @click="onSubmit" type="primary">提交</ElButton>
   </div>
 </template>
 

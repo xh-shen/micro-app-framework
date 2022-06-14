@@ -2,21 +2,21 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 23:08:58
+ * @LastEditTime: 2022-06-14 10:15:17
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
-import type { ColProps, FormRules, FormItemRule } from 'element-plus'
+import type { ColProps, FormRules, FormItemRule, CascaderOption } from 'element-plus'
 
 export type SingleOrRange<T> = T | [T, T]
 export type Key = string | number
 export type FormMode = 'edit' | 'read'
 export type FormSize = 'default' | 'small' | 'large'
 export type FormLabelPosition = 'left' | 'right' | 'top'
-export type FieldType = 'input' | 'input-number' | 'date-picker' | 'select' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
-export type Option = { value: string | number | boolean; text: string; disabled?: boolean }
+export type FieldType = 'input' | 'input-number' | 'date-picker' | 'time-picker' | 'select' | 'cascader' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
+export type Option = { value: string | number | boolean; label?: string; text?: string; disabled?: boolean; leaf?: boolean; children?: Option[] }
 
-export type { ColProps, FormRules, FormItemRule }
+export type { ColProps, FormRules, FormItemRule, CascaderOption }
 
 export type FormItemType = {
   key?: Key

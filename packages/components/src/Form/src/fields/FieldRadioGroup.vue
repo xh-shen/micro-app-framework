@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 21:41:03
+ * @LastEditTime: 2022-06-14 10:46:54
  * @Description: 
 -->
 <script setup lang="ts">
@@ -30,7 +30,7 @@ const onChange = (value: string | number | boolean) => {
 
 <template>
   <ElRadioGroup :model-value="fieldValue" :disabled="disabled" @change="onChange">
-    <ElRadio v-for="opt in options" :key="(opt.value as any)" :label="opt.value" :disabled="opt.disabled">{{ opt.text }}</ElRadio>
+    <ElRadio v-for="opt in options" :key="(opt.value as any)" :label="opt.value" :disabled="opt.disabled">{{ opt.label || opt.text || opt.value }}</ElRadio>
   </ElRadioGroup>
 </template>
 

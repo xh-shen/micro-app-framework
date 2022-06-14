@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 23:13:35
+ * @LastEditTime: 2022-06-14 07:46:22
  * @Description: 
 -->
 <script setup lang="ts">
@@ -28,5 +28,5 @@ const onChange = (value: number) => {
 </script>
 
 <template>
-  <ElSlider v-model="fieldValue" v-bind="elFieldProps" :disabled="disabled" @change="onChange" />
+  <ElSlider v-model="fieldValue" v-bind="elFieldProps" :style="fieldStyle" :disabled="disabled" @change="onChange" />
 </template>
