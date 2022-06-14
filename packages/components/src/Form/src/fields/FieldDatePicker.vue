@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 09:40:24
+ * @LastEditTime: 2022-06-14 21:43:57
  * @Description: 
 -->
 <script setup lang="ts">
@@ -72,7 +72,7 @@ const onVisibleChange = (visibility: boolean) => {
     :clearable="clearable"
     :disabled="disabled"
     :readonly="readonly"
-    :style="{ width: width || '100%' }"
+    style="width: 100%"
     :value-format="valueFormat"
     @change="onChange"
     @focus="onFocus"

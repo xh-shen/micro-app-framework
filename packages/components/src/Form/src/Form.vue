@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 16:24:33
+ * @LastEditTime: 2022-06-14 21:52:51
  * @Description: 
 -->
 <script lang="ts">
@@ -15,6 +15,7 @@ import useFormValues from './hooks/useFormValues'
 import useFormItems from './hooks/useFormItems'
 import FormWrapper from './components/FormWrapper.vue'
 import FormItems from './components/FormItems.vue'
+
 export default defineComponent({
   name: 'McForm',
   props: formProps,
@@ -24,13 +25,14 @@ export default defineComponent({
 
     const EMPTY_LIST: FormItemType[] = []
 
+    const rawItems = ref<FormItemType[]>([])
     const mode = computed(() => props.mode || 'edit')
+    const grid = computed(() => props.grid)
+    const gutter = computed(() => props.gutter)
     const labelWidth = computed(() => props.labelWidth)
     const labelPosition = computed(() => props.labelPosition)
     const disabled = computed(() => props.disabled)
-    const colProps = computed(() => props.colProps || ({ span: 6 } as ColProps))
-
-    const rawItems = ref<FormItemType[]>([])
+    const colProps = computed(() => props.colProps || ({ span: 8 } as ColProps))
 
     watch(
       () => props.formItems,
@@ -48,6 +50,8 @@ export default defineComponent({
 
     useProvideForm({
       mode,
+      grid,
+      gutter,
       labelWidth,
       labelPosition,
       disabled,

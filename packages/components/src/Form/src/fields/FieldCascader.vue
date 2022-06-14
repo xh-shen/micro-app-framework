@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 16:39:49
+ * @LastEditTime: 2022-06-14 21:43:41
  * @Description: 
 -->
 <script setup lang="ts">
@@ -68,7 +68,7 @@ const onClear = () => {
     :disabled="disabled"
     :readonly="readonly"
     :options="(finallyOptions as  CascaderOption[])"
-    :style="{ width: width || '100%' }"
+    style="width: 100%"
     @change="onChange"
     @focus="onFocus"
     @blur="onBlur"

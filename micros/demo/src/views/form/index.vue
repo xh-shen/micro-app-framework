@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 16:31:42
+ * @LastEditTime: 2022-06-14 21:54:01
  * @Description: 
 -->
 <script lang="tsx">
@@ -73,12 +73,6 @@ export default defineComponent({
           //   console.log('onClear')
           // },
         },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
         // onChange: (value: string) => {
         // console.log(value)
         // },
@@ -93,12 +87,6 @@ export default defineComponent({
         // width: '300px',
         rules: [{ required: true, message: 'Please input Activity name', trigger: 'change' }],
         fieldProps: {},
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         type: 'select',
@@ -127,12 +115,6 @@ export default defineComponent({
         fieldProps: {
           // renderOption: ({ item }: any) => <div>{item.text}</div>,
         },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         type: 'radio-group',
@@ -143,12 +125,6 @@ export default defineComponent({
           { text: '男', value: '1' },
           { text: '女', value: '2' },
         ],
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         type: 'cascader',
@@ -426,12 +402,6 @@ export default defineComponent({
         fieldProps: {
           // renderOption: ({ item }: any) => <div>{item.text}</div>,
         },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         type: 'checkbox',
@@ -441,12 +411,6 @@ export default defineComponent({
         fieldProps: {
           trueLabel: '1',
           falseLabel: '2',
-        },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
         },
       },
       {
@@ -471,12 +435,6 @@ export default defineComponent({
             { text: 'request4', value: '4' },
           ]
         },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         type: 'switch',
@@ -494,12 +452,6 @@ export default defineComponent({
           // activeText: 'Pay by month',
           // inactiveText: 'Pay by year',
         },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         key: 'date',
@@ -511,8 +463,8 @@ export default defineComponent({
         colProps: {
           xs: 24,
           md: 12,
-          lg: 6,
-          xl: 6,
+          lg: 8,
+          xl: 8,
         },
       },
       {
@@ -556,24 +508,12 @@ export default defineComponent({
             },
           ],
         },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         type: 'time-picker',
         name: 'time',
         label: '时间',
         placeholder: '请选择',
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
-        },
       },
       {
         type: 'time-picker',
@@ -583,12 +523,6 @@ export default defineComponent({
           isRange: true,
           startPlaceholder: '请选择',
           endPlaceholder: '请选择',
-        },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
         },
       },
       {
@@ -600,12 +534,6 @@ export default defineComponent({
           range: true,
           showStops: true,
           max: 10,
-        },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 6,
-          xl: 6,
         },
       },
       {
@@ -658,7 +586,7 @@ export default defineComponent({
 
 <template>
   <div class="form-container">
-    <McForm ref="formRef" :initial-values="initialValues" :form-items="formItems" label-position="top" />
+    <McForm ref="formRef" :initial-values="initialValues" :form-items="formItems" />
     <ElButton @click="onSubmit" type="primary">提交</ElButton>
   </div>
 </template>
@@ -667,5 +595,6 @@ export default defineComponent({
 .form-container {
   background-color: #fff;
   padding: 10px;
+  width: 1200px;
 }
 </style>

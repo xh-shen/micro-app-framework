@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 09:58:23
+ * @LastEditTime: 2022-06-14 21:44:23
  * @Description: 
 -->
 
@@ -52,7 +52,7 @@ const onClear = () => {
     :clearable="clearable"
     :disabled="disabled"
     :readonly="readonly"
-    :style="{ width: width || '100%' }"
+    style="width: 100%"
     type="textarea"
     @change="onChange"
     @focus="onFocus"

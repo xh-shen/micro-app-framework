@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 14:58:46
+ * @LastEditTime: 2022-06-14 20:57:32
  * @Description: 
 -->
 <script setup lang="ts">
@@ -37,7 +37,6 @@ const fieldProps = computed(() =>
     placeholder: props.item.placeholder,
     options: props.item.options,
     name: props.item.name,
-    width: props.item.width,
     fieldStyle: props.item.fieldStyle,
     request: props.item.request,
     params: props.item.params,
@@ -58,7 +57,7 @@ const isCustomRenderField = computed(() => props.item.renderField && isFunction(
 </script>
 
 <template>
-  <ElFormItem :prop="item.name" :rules="mode === 'edit' ? item.rules : undefined" v-if="!isCustomRender">
+  <ElFormItem :prop="item.name" :rules="mode === 'edit' ? item.rules : undefined" v-if="!isCustomRender" :style="{ width: item.width || 'auto' }">
     <template #label>
       <RenderVNode :vnode="item.label" :props="{ value: item.name ? cloneFormValues[item.name] : undefined, formValues: cloneFormValues }" />
       <ElTooltip v-if="item.tooltip" append-to="body" effect="dark" :content="item.tooltip" placement="top">

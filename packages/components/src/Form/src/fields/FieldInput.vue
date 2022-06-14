@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 16:25:37
+ * @LastEditTime: 2022-06-14 20:55:36
  * @Description: 
 -->
 <script setup lang="ts">
@@ -53,7 +53,7 @@ const onClear = () => {
     :clearable="clearable"
     :disabled="disabled"
     :readonly="readonly"
-    :style="{ width: width || '100%' }"
+    style="width: 100%"
     @change="onChange"
     @focus="onFocus"
     @blur="onBlur"

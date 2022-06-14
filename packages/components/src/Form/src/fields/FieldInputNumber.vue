@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-13 16:40:26
+ * @LastEditTime: 2022-06-14 21:43:27
  * @Description: 
 -->
 <script setup lang="ts">
@@ -36,14 +36,5 @@ const onBlur = (event: Event) => {
 </script>
 
 <template>
-  <ElInputNumber
-    v-model="fieldValue"
-    v-bind="elFieldProps"
-    :placeholder="placeholder || '请输入'"
-    :disabled="disabled"
-    :style="{ width: width || '100%' }"
-    @change="onChange"
-    @focus="onFocus"
-    @blur="onBlur"
-  />
+  <ElInputNumber v-model="fieldValue" v-bind="elFieldProps" :placeholder="placeholder || '请输入'" :disabled="disabled" style="width: 100%" @change="onChange" @focus="onFocus" @blur="onBlur" />
 </template>

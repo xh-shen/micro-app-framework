@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 15:39:32
+ * @LastEditTime: 2022-06-14 18:45:02
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -71,6 +71,10 @@ export const formProps = {
   mode: {
     type: String as PropType<FormMode>,
     default: 'edit',
+  },
+  grid: {
+    type: Boolean,
+    default: true,
   },
   gutter: {
     type: Number,
