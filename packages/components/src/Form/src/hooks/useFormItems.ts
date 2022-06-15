@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 16:24:54
+ * @LastEditTime: 2022-06-15 22:28:08
  * @Description:
  */
 import type { Ref } from 'vue'
@@ -75,9 +75,11 @@ export default function useFormItems(
       // if (item.type === 'group' && isArray(item.children) && item.children.length > 0) {
       //   genDefaultValue(item.children)
       // } else {
-      if (item.name && item.initialValue) {
+      if (item.name) {
         mergeInitialValues[item.name] = rawInitialValues[item.name] || item.initialValue
       }
+      // console.log(mergeInitialValues)
+
       // }
     })
   }

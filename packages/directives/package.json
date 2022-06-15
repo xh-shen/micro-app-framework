@@ -1,0 +1,11 @@
+{
+  "name": "@micro/directives",
+  "version": "1.0.0",
+  "description": "micro directives",
+  "main": "index.ts",
+  "module": "index.ts",
+  "dependencies": {
+    "@micro/components": "workspace:^1.0.0",
+    "@micro/utils": "workspace:^1.0.0"
+  }
+}

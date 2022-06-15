@@ -14,3 +14,15 @@
     }
   }
 }
+
+.mc-query-filter {
+  &-form-item {
+    justify-content: space-around;
+    .el-form-item__content {
+      justify-content: right;
+    }
+    .el-form-item__label {
+      opacity: 0;
+    }
+  }
+}

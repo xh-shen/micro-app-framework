@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 18:45:02
+ * @LastEditTime: 2022-06-15 21:08:51
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -13,6 +13,7 @@ export type Key = string | number
 export type FormMode = 'edit' | 'read'
 export type FormSize = 'default' | 'small' | 'large'
 export type FormLabelPosition = 'left' | 'right' | 'top'
+export type FormLayout = 'horizontal' | 'vertical'
 export type FieldType = 'input' | 'input-number' | 'date-picker' | 'time-picker' | 'select' | 'cascader' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
 export type Option = { value: string | number | boolean; label?: string; text?: string; disabled?: boolean; leaf?: boolean; children?: Option[] }
 export type Request = (params: Record<string, any>) => Promise<Option[]>
@@ -28,6 +29,7 @@ export type FormItemType = {
   placeholder?: string
   initialValue?: any
   width?: string
+  colSize?: number
   fieldStyle?: CSSProperties
   tooltip?: string
   name?: Readonly<string>
@@ -87,10 +89,9 @@ export const formProps = {
     type: Array as PropType<FormItemType[]>,
     default: () => [],
   },
-  labelPosition: {
-    type: String as PropType<FormLabelPosition>,
-    values: ['left', 'right', 'top'] as const,
-    default: 'right',
+  layout: {
+    type: String as PropType<FormLayout>,
+    default: 'horizontal',
   },
   labelWidth: {
     type: [String, Number],
@@ -110,8 +111,71 @@ export const formProps = {
     default: false,
   },
   colProps: {
-    type: Object as PropType<ColProps>,
+    type: Object as PropType<Partial<ColProps>>,
+  },
+  showDefaultActions: {
+    type: Boolean,
+    default: false,
   },
 }
 
 export type FormProps = ExtractPropTypes<typeof formProps>
+
+export type SpanConfig =
+  | number
+  | {
+      xs: number
+      sm: number
+      md: number
+      lg: number
+      xl: number
+      xxl: number
+    }
+
+export const queryFilterProps = {
+  defaultCollapsed: {
+    type: Boolean,
+    default: true,
+  },
+  collapsed: {
+    type: Boolean as PropType<boolean | undefined>,
+    default: undefined,
+  },
+  defaultColsNumber: Number,
+  layout: {
+    type: String as PropType<FormLayout>,
+    default: 'horizontal',
+  },
+  labelWidth: {
+    type: [String, Number],
+    default: '80px',
+  },
+  searchGutter: {
+    type: Number,
+    default: 20,
+  },
+  span: [Number, Object] as PropType<SpanConfig>,
+  showHiddenNum: Boolean,
+  searchText: {
+    type: String,
+    default: '搜索',
+  },
+  resetText: {
+    type: String,
+    default: '重置',
+  },
+  ignoreRules: Boolean,
+  initialValues: {
+    type: Object as PropType<any>,
+  },
+  formItems: {
+    type: Array as PropType<FormItemType[]>,
+    default: () => [],
+  },
+  size: {
+    type: String as PropType<FormSize>,
+    default: '',
+  },
+}
+
+export type QueryFilterProps = ExtractPropTypes<typeof queryFilterProps>

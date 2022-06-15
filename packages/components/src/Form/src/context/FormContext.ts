@@ -2,11 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-08 20:07:35
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 21:11:23
+ * @LastEditTime: 2022-06-15 09:47:33
  * @Description:
  */
 import type { InjectionKey, ComputedRef, Ref } from 'vue'
-import type { FormLabelPosition, ColProps, FormItemType, FormMode } from '../interface'
+import type { ColProps, FormItemType, FormMode } from '../interface'
 import { inject, provide } from 'vue'
 
 export interface FormContextProps {
@@ -14,9 +14,8 @@ export interface FormContextProps {
   grid: ComputedRef<boolean>
   gutter: ComputedRef<number>
   labelWidth: ComputedRef<string | number>
-  labelPosition: ComputedRef<FormLabelPosition>
   disabled: ComputedRef<boolean>
-  colProps: ComputedRef<ColProps>
+  colProps: ComputedRef<Partial<ColProps>>
   formValues: Ref<Record<string, any>>
   genItems: (items: FormItemType[]) => FormItemType[]
   updateValue: (name: string, value: any) => void

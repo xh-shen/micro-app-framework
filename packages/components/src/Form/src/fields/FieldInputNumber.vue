@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 21:43:27
+ * @LastEditTime: 2022-06-14 21:57:40
  * @Description: 
 -->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { ElInputNumber } from 'element-plus'
-import { omitKeysAndUndefined, pickKeys, RenderVNode } from '@micro/utils'
+import { omitKeysAndUndefined, pickKeys } from '@micro/utils'
 import { fieldPropsMap } from '../fieldMap'
 import { commonFieldProps } from '../interface'
 import useFieldValue from '../hooks/useFieldValue'

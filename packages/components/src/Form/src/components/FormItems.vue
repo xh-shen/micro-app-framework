@@ -8,7 +8,6 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import type { FormItemType } from '../interface'
-import { computed } from 'vue'
 
 import { ElCol } from 'element-plus'
 import { useInjectForm } from '../context/FormContext'

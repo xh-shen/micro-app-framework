@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 21:54:01
+ * @LastEditTime: 2022-06-15 22:22:01
  * @Description: 
 -->
 <script lang="tsx">
@@ -422,19 +422,19 @@ export default defineComponent({
           { text: '长春', value: 'changchun' },
           { text: '吉林', value: 'jilin' },
         ],
-        params: {
-          a: '1',
-        },
-        request: async (params) => {
-          console.log(params)
-          await sleep(2000)
-          return [
-            { text: 'request1', value: '1' },
-            { text: 'request2', value: '2' },
-            { text: 'request3', value: '3' },
-            { text: 'request4', value: '4' },
-          ]
-        },
+        // params: {
+        //   a: '1',
+        // },
+        // request: async (params) => {
+        //   console.log(params)
+        //   await sleep(2000)
+        //   return [
+        //     { text: 'request1', value: '1' },
+        //     { text: 'request2', value: '2' },
+        //     { text: 'request3', value: '3' },
+        //     { text: 'request4', value: '4' },
+        //   ]
+        // },
       },
       {
         type: 'switch',
@@ -556,11 +556,11 @@ export default defineComponent({
       // },
     ])
 
-    setTimeout(() => {
-      formItems[2].params = {
-        a: '5',
-      }
-    }, 3000)
+    // setTimeout(() => {
+    //   formItems[2].params = {
+    //     a: '5',
+    //   }
+    // }, 3000)
 
     const onSubmit = async () => {
       // validate((valid: boolean, values: Record<string, any>) => {
@@ -574,11 +574,104 @@ export default defineComponent({
       }
     }
 
+    const filterItems: FormItemType[] = [
+      {
+        name: 'title',
+        label: '标题',
+        tooltip: '测试提示',
+        placeholder: '请选择',
+        clearable: true,
+        rules: [{ required: true, message: '请输入标题', trigger: 'blur' }],
+      },
+      {
+        type: 'date-picker',
+        name: 'date',
+        label: '日期',
+        placeholder: '请选择',
+      },
+      {
+        type: 'select',
+        name: 'select',
+        label: '选择器',
+        placeholder: '请选择',
+        options: [
+          { text: 'option1', value: '1' },
+          { text: 'option2', value: '2' },
+          { text: 'option3', value: '3' },
+          { text: 'option4', value: '4' },
+        ],
+      },
+      {
+        type: 'checkbox-group',
+        name: 'checkbox-group',
+        label: '复选框组',
+        initialValue: ['changchun'],
+        options: [
+          { text: '长春', value: 'changchun' },
+          { text: '吉林', value: 'jilin' },
+        ],
+      },
+      {
+        key: 'date-range',
+        type: 'date-picker',
+        name: 'date-range',
+        label: '日期区间',
+        placeholder: '请选择',
+        colSize: 3,
+        fieldProps: {
+          type: 'datetimerange',
+          startPlaceholder: '请选择',
+          endPlaceholder: '请选择',
+          defaultValue: [new Date(2010, 9, 1), new Date(2010, 10, 1)],
+          shortcuts: [
+            {
+              text: 'Last week',
+              value: () => {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+                return [start, end]
+              },
+            },
+            {
+              text: 'Last month',
+              value: () => {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+                return [start, end]
+              },
+            },
+            {
+              text: 'Last 3 months',
+              value: () => {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+                return [start, end]
+              },
+            },
+          ],
+        },
+      },
+    ]
+
+    const onCollapse = (value: boolean) => {
+      console.log(' onCollapse', value)
+    }
+
+    const onFinish = (values: Record<string, any>) => {
+      console.log(values)
+    }
+
     return {
       initialValues,
       formItems,
       formRef,
+      filterItems,
       onSubmit,
+      onFinish,
+      onCollapse,
     }
   },
 })
@@ -588,6 +681,8 @@ export default defineComponent({
   <div class="form-container">
     <McForm ref="formRef" :initial-values="initialValues" :form-items="formItems" />
     <ElButton @click="onSubmit" type="primary">提交</ElButton>
+    <div style="margin: 20px">查询</div>
+    <McQueryFilter :form-items="filterItems" :span="6" @collapse="onCollapse" @finish="onFinish" />
   </div>
 </template>
 
@@ -595,6 +690,6 @@ export default defineComponent({
 .form-container {
   background-color: #fff;
   padding: 10px;
-  width: 1200px;
+  // width: 1200px;
 }
 </style>

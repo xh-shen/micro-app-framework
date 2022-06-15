@@ -12,6 +12,7 @@
     "@micro/request": "workspace:^1.0.0",
     "@micro/locale": "workspace:^1.0.0",
     "@micro/config": "workspace:^1.0.0",
+    "@micro/directives": "workspace:^1.0.0",
     "@micro/types": "workspace:^1.0.0"
   }
 }

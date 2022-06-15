@@ -2,11 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 21:52:51
+ * @LastEditTime: 2022-06-15 22:23:15
  * @Description: 
 -->
 <script lang="ts">
-import type { ColProps, FormItemType } from './interface'
+import type { ColProps, FormItemType, FormLabelPosition } from './interface'
 import { defineComponent, computed, watch, toRaw, ref } from 'vue'
 import { ElForm, FormInstance } from 'element-plus'
 import { formProps } from './interface'
@@ -15,12 +15,14 @@ import useFormValues from './hooks/useFormValues'
 import useFormItems from './hooks/useFormItems'
 import FormWrapper from './components/FormWrapper.vue'
 import FormItems from './components/FormItems.vue'
+import FormActions from './components/FormActions.vue'
 
 export default defineComponent({
   name: 'McForm',
   props: formProps,
-  components: { ElForm, FormWrapper, FormItems },
-  setup(props, { expose }) {
+  components: { ElForm, FormWrapper, FormItems, FormActions },
+  emits: ['submit', 'reset'],
+  setup(props, { expose, emit }) {
     const elFormRef = ref<FormInstance>()
 
     const EMPTY_LIST: FormItemType[] = []
@@ -30,7 +32,7 @@ export default defineComponent({
     const grid = computed(() => props.grid)
     const gutter = computed(() => props.gutter)
     const labelWidth = computed(() => props.labelWidth)
-    const labelPosition = computed(() => props.labelPosition)
+    const labelPosition = computed<FormLabelPosition>(() => (props.layout === 'horizontal' ? 'right' : 'top'))
     const disabled = computed(() => props.disabled)
     const colProps = computed(() => props.colProps || ({ span: 8 } as ColProps))
 
@@ -42,18 +44,25 @@ export default defineComponent({
       { immediate: true },
     )
 
-    const { items, genItems, mergeInitialValues } = useFormItems(rawItems, toRaw(props.initialValues))
+    const { items, genItems, mergeInitialValues } = useFormItems(rawItems, toRaw(props.initialValues || {}))
 
     const { formValues, updateValue, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate } = useFormValues(mergeInitialValues, elFormRef)
 
     const instanceMethods = { updateValue, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate }
+
+    const onSubmit = () => {
+      emit('submit')
+    }
+
+    const onReset = () => {
+      emit('reset')
+    }
 
     useProvideForm({
       mode,
       grid,
       gutter,
       labelWidth,
-      labelPosition,
       disabled,
       colProps,
       genItems,
@@ -69,6 +78,9 @@ export default defineComponent({
       items,
       formValues,
       elFormRef,
+      labelPosition,
+      onSubmit,
+      onReset,
       ...instanceMethods,
     }
   },
@@ -76,9 +88,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <ElForm ref="elFormRef" class="mc-form" :model="formValues" :label-width="labelWidth" :label-position="labelPosition" :disabled="disabled">
+  <ElForm ref="elFormRef" class="mc-form" :model="formValues" :label-position="labelPosition" :label-width="labelWidth" :disabled="disabled">
     <FormWrapper :gutter="gutter">
       <FormItems :list="items" />
+      <slot name="actions">
+        <FormActions v-if="showDefaultActions" @submit="onSubmit" @reset="onReset" />
+      </slot>
     </FormWrapper>
   </ElForm>
 </template>
