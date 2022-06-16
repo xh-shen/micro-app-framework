@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:19:24
  * @LastEditors: shen
- * @LastEditTime: 2022-06-15 08:48:56
+ * @LastEditTime: 2022-06-16 08:20:58
  * @Description:
  */
 export * from './src/useGlobalData'
@@ -13,3 +13,4 @@ export * from './src/useMicroI18n'
 export * from './src/useForm'
 export * from './src/useState'
 export * from './src/useMergedState'
+export * from './src/usePrevious'

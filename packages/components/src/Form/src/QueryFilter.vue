@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-14 22:59:50
  * @LastEditors: shen
- * @LastEditTime: 2022-06-15 21:13:33
+ * @LastEditTime: 2022-06-16 10:59:23
  * @Description: 
 -->
 <script lang="ts">
@@ -64,7 +64,7 @@ export default defineComponent({
     resize,
   },
   components: { BaseForm, ElCol, ElButton, ElFormItem, ElLink, ElSpace, SvgIcon },
-  emits: ['collapse', 'finish', 'reset'],
+  emits: ['collapse', 'finish', 'reset', 'resizeheight'],
   setup(props, { emit }) {
     const currentSpan = ref(0)
     const totalSpan = ref(0)
@@ -73,6 +73,7 @@ export default defineComponent({
     const processedList = ref<FormItemType[]>([])
 
     const [width, setWidth] = useMergedState(() => document?.body?.clientWidth as number)
+    const [height, setHeight] = useMergedState(() => 0)
     const [collapsed, setCollapsed] = useMergedState<boolean | undefined>(() => props.defaultCollapsed, {
       value: computed(() => props.collapsed),
       onChange: (val) => {
@@ -142,6 +143,10 @@ export default defineComponent({
       if (width.value !== e.detail.width && e.detail.width > 17) {
         setWidth(e.detail.width)
       }
+      if (height.value !== e.detail.height) {
+        setHeight(e.detail.height)
+        emit('resizeheight', e.detail.height)
+      }
     }
 
     const onCollapsed = () => {
@@ -180,7 +185,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <BaseForm ref="formRef" v-resize:width="true" class="mc-query-filter" :form-items="processedList" :layout="spanSize.layout" :col-props="{ span: spanSize.span }" @resizewidth="onResize">
+  <BaseForm
+    ref="formRef"
+    v-resize="true"
+    class="mc-query-filter"
+    :form-items="processedList"
+    :layout="spanSize.layout"
+    :col-props="{ span: spanSize.span }"
+    :initial-values="initialValues"
+    @resize="onResize"
+  >
     <template #actions>
       <ElCol :span="spanSize.span" :offset="offset">
         <ElFormItem label="actions" class="mc-query-filter-form-item" label-width="0">

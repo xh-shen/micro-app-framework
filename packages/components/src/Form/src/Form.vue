@@ -2,13 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-15 22:23:15
+ * @LastEditTime: 2022-06-16 14:40:23
  * @Description: 
 -->
 <script lang="ts">
 import type { ColProps, FormItemType, FormLabelPosition } from './interface'
 import { defineComponent, computed, watch, toRaw, ref } from 'vue'
 import { ElForm, FormInstance } from 'element-plus'
+import { usePrevious } from '@micro/hooks'
 import { formProps } from './interface'
 import { useProvideForm } from './context/FormContext'
 import useFormValues from './hooks/useFormValues'
@@ -21,7 +22,7 @@ export default defineComponent({
   name: 'McForm',
   props: formProps,
   components: { ElForm, FormWrapper, FormItems, FormActions },
-  emits: ['submit', 'reset'],
+  emits: ['finish', 'reset'],
   setup(props, { expose, emit }) {
     const elFormRef = ref<FormInstance>()
 
@@ -36,6 +37,16 @@ export default defineComponent({
     const disabled = computed(() => props.disabled)
     const colProps = computed(() => props.colProps || ({ span: 8 } as ColProps))
 
+    const preInitialValues = usePrevious(props.initialValues)
+
+    watch(
+      () => props.initialValues,
+      () => {
+        if (!props.initialValues || !preInitialValues) return
+      },
+      { immediate: true },
+    )
+
     watch(
       () => props.formItems,
       () => {
@@ -44,14 +55,30 @@ export default defineComponent({
       { immediate: true },
     )
 
-    const { items, genItems, mergeInitialValues } = useFormItems(rawItems, toRaw(props.initialValues || {}))
+    const { items, genItems, fieldInitialValues } = useFormItems(rawItems)
 
-    const { formValues, updateValue, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate } = useFormValues(mergeInitialValues, elFormRef)
+    const { formValues, updateValue, setInitialValues, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate } = useFormValues(elFormRef)
+
+    const mountRef = ref<boolean | null>(null)
+    setInitialValues({ ...fieldInitialValues.value, ...props.initialValues }, !mountRef.value)
+    if (!mountRef.value) {
+      mountRef.value = true
+    }
+
+    // watch(
+    //   formValues,
+    //   () => {
+    //     console.log(formValues.value)
+    //   },
+    //   {
+    //     deep: true,
+    //   },
+    // )
 
     const instanceMethods = { updateValue, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate }
 
-    const onSubmit = () => {
-      emit('submit')
+    const onFinish = () => {
+      emit('finish')
     }
 
     const onReset = () => {
@@ -79,7 +106,7 @@ export default defineComponent({
       formValues,
       elFormRef,
       labelPosition,
-      onSubmit,
+      onFinish,
       onReset,
       ...instanceMethods,
     }
@@ -92,7 +119,7 @@ export default defineComponent({
     <FormWrapper :gutter="gutter">
       <FormItems :list="items" />
       <slot name="actions">
-        <FormActions v-if="showDefaultActions" @submit="onSubmit" @reset="onReset" />
+        <FormActions v-if="showDefaultActions" @submit="onFinish" @reset="onReset" />
       </slot>
     </FormWrapper>
   </ElForm>

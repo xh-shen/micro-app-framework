@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:38
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 23:15:57
+ * @LastEditTime: 2022-06-16 07:56:07
  * @Description:
  */
 
@@ -21,5 +21,5 @@ export { QueryFilter as McQueryFilter }
 
 export * from './src/interface'
 
-export type FormInstance = InstanceType<typeof Form>
+export type FormInstance = InstanceType<typeof McForm>
 export type QueryFilterInstance = InstanceType<typeof QueryFilter>

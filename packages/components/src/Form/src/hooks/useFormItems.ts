@@ -2,30 +2,35 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-15 22:28:08
+ * @LastEditTime: 2022-06-16 09:47:48
  * @Description:
  */
-import type { Ref } from 'vue'
+import type { Ref, ComputedRef } from 'vue'
 import type { FormItemType } from '../interface'
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 import { omitUndefined } from '@micro/utils'
-// import isArray from 'lodash-es/isArray'
 
-export default function useFormItems(
-  rawItems: Ref<FormItemType[]>,
-  rawInitialValues: Record<string, any>,
-): {
-  mergeInitialValues: Record<string, any>
+export default function useFormItems(rawItems: Ref<FormItemType[]>): {
   items: Ref<FormItemType[]>
   genItems: (items: FormItemType[]) => FormItemType[]
+  fieldInitialValues: ComputedRef<Record<string, any>>
 } {
-  const mergeInitialValues: Record<string, any> = { ...rawInitialValues }
   const items = ref<FormItemType[]>([])
+
+  const fieldInitialValues = computed(() => {
+    const values: Record<string, any> = {}
+    rawItems.value.forEach((item) => {
+      if (item.initialValue && item.name) {
+        values[item.name] = item.initialValue
+      }
+    })
+    return values
+  })
 
   const genItems = (items: FormItemType[]) =>
     items
       .filter((originItem) => {
-        return !originItem.hidden
+        return !originItem.hidden && originItem.name
       })
       .sort((a, b) => {
         if (b.order || a.order) {
@@ -70,22 +75,6 @@ export default function useFormItems(
         return Boolean(field)
       })
 
-  const genDefaultValue = (list: FormItemType[]) => {
-    list.forEach((item) => {
-      // if (item.type === 'group' && isArray(item.children) && item.children.length > 0) {
-      //   genDefaultValue(item.children)
-      // } else {
-      if (item.name) {
-        mergeInitialValues[item.name] = rawInitialValues[item.name] || item.initialValue
-      }
-      // console.log(mergeInitialValues)
-
-      // }
-    })
-  }
-
-  genDefaultValue(rawItems.value)
-
   watchEffect(() => {
     items.value = genItems(rawItems.value)
   })
@@ -93,6 +82,6 @@ export default function useFormItems(
   return {
     items,
     genItems,
-    mergeInitialValues,
+    fieldInitialValues,
   }
 }

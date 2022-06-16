@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-15 22:22:01
+ * @LastEditTime: 2022-06-16 15:14:13
  * @Description: 
 -->
 <script lang="tsx">
@@ -16,7 +16,7 @@ export default defineComponent({
   name: 'DemoForm',
   components: { ElButton },
   setup() {
-    const { formRef, validate } = useForm()
+    const { formRef, validate, setFormValues, setFieldValue } = useForm()
     const initialValues = {
       name: '',
       region: '',
@@ -562,6 +562,14 @@ export default defineComponent({
     //   }
     // }, 3000)
 
+    setTimeout(() => {
+      setFormValues({
+        name: '222',
+        select: '2',
+      })
+      setFieldValue(null as any, 1)
+    }, 2000)
+
     const onSubmit = async () => {
       // validate((valid: boolean, values: Record<string, any>) => {
       //   console.log(valid, values)
@@ -664,6 +672,10 @@ export default defineComponent({
       console.log(values)
     }
 
+    const onResizeHeight = (height: number) => {
+      console.log(height)
+    }
+
     return {
       initialValues,
       formItems,
@@ -672,6 +684,7 @@ export default defineComponent({
       onSubmit,
       onFinish,
       onCollapse,
+      onResizeHeight,
     }
   },
 })
@@ -682,7 +695,7 @@ export default defineComponent({
     <McForm ref="formRef" :initial-values="initialValues" :form-items="formItems" />
     <ElButton @click="onSubmit" type="primary">提交</ElButton>
     <div style="margin: 20px">查询</div>
-    <McQueryFilter :form-items="filterItems" :span="6" @collapse="onCollapse" @finish="onFinish" />
+    <McQueryFilter :initialValues="{ title: '111' }" :form-items="filterItems" @collapse="onCollapse" @finish="onFinish" @resizeheight="onResizeHeight" />
   </div>
 </template>
 
