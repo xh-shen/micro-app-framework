@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-15 21:08:51
+ * @LastEditTime: 2022-06-17 15:56:47
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -12,11 +12,14 @@ export type SingleOrRange<T> = T | [T, T]
 export type Key = string | number
 export type FormMode = 'edit' | 'read'
 export type FormSize = 'default' | 'small' | 'large'
-export type FormLabelPosition = 'left' | 'right' | 'top'
+export type FormPosition = 'left' | 'right' | 'top'
 export type FormLayout = 'horizontal' | 'vertical'
-export type FieldType = 'input' | 'input-number' | 'date-picker' | 'time-picker' | 'select' | 'cascader' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
+export type FormLayoutType = 'QueryFilter' | 'TabsForm' | 'Form'
+export type FieldType = 'group' | 'input' | 'input-number' | 'date-picker' | 'time-picker' | 'select' | 'cascader' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
 export type Option = { value: string | number | boolean; label?: string; text?: string; disabled?: boolean; leaf?: boolean; children?: Option[] }
 export type Request = (params: Record<string, any>) => Promise<Option[]>
+export type FormLabel = string | number | ((opt: { formValues: Record<string, any> }) => VNode | string | number | null | undefined)
+export type FormTab = { label: FormLabel; key: Key; el: HTMLElement }
 
 export type { ColProps, FormRules, FormItemRule, CascaderOption }
 
@@ -32,8 +35,8 @@ export type FormItemType = {
   colSize?: number
   fieldStyle?: CSSProperties
   tooltip?: string
-  name?: Readonly<string>
-  label?: string | number | ((opt: { value: any; formValues: Record<string, any> }) => VNode | string | number | null | undefined)
+  name?: string
+  label?: FormLabel
   colProps?: Partial<ColProps>
   fieldProps?: Record<string, any>
   rules?: FormItemRule[]
@@ -93,9 +96,17 @@ export const formProps = {
     type: String as PropType<FormLayout>,
     default: 'horizontal',
   },
+  layoutType: {
+    type: String as PropType<FormLayoutType>,
+    default: 'Form',
+  },
+  tabPosition: {
+    type: String as PropType<FormPosition>,
+    default: 'left',
+  },
   labelWidth: {
     type: [String, Number],
-    default: '80px',
+    default: '',
   },
   showMessage: {
     type: Boolean,

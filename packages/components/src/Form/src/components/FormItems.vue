@@ -2,16 +2,15 @@
  * @Author: shen
  * @Date: 2022-06-09 08:00:11
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 21:42:15
+ * @LastEditTime: 2022-06-17 15:54:45
  * @Description: 
 -->
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import type { FormItemType } from '../interface'
-
-import { ElCol } from 'element-plus'
-import { useInjectForm } from '../context/FormContext'
+import FormGroup from './FormGroup.vue'
 import FormItem from './FormItem.vue'
+import FormLabel from './FormLabel.vue'
 
 defineProps({
   list: {
@@ -19,16 +18,11 @@ defineProps({
     default: () => [],
   },
 })
-
-const { colProps } = useInjectForm()
 </script>
 
 <template>
   <template v-for="item in list" :key="item.key">
-    <ElCol v-bind="item.colProps || colProps">
-      <FormItem :item="item" />
-    </ElCol>
+    <FormGroup v-if="item.type === 'group'" :label="item.label" :group-key="item.key" :field-props="item.fieldProps" :tooltip="item.tooltip" />
+    <FormItem v-else :item="item" />
   </template>
 </template>
-
-<style scoped lang="scss"></style>

@@ -2,11 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-08 19:59:54
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 21:41:45
+ * @LastEditTime: 2022-06-17 22:17:09
  * @Description: 
 -->
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { ElRow } from 'element-plus'
+import { useEventListener, useThrottleFn } from '@vueuse/core'
+import { useInjectForm } from '../context/FormContext'
 
 defineProps({
   gutter: {
@@ -14,10 +17,31 @@ defineProps({
     default: 20,
   },
 })
+
+const emit = defineEmits(['scroll'])
+
+const { layoutType } = useInjectForm()
+
+const wrapRef = ref()
+
+let stop: () => void
+
+onMounted(() => {
+  if (layoutType.value === 'TabsForm') {
+    const onScroll = useThrottleFn(() => {
+      emit('scroll', wrapRef.value?.$el.scrollTop)
+    }, 60)
+    stop = useEventListener(wrapRef.value?.$el, 'scroll', onScroll)
+  }
+})
+
+onUnmounted(() => {
+  stop && stop()
+})
 </script>
 
 <template>
-  <ElRow :gutter="gutter" class="mc-form__wrapper">
+  <ElRow ref="wrapRef" :gutter="gutter" class="mc-form__wrapper">
     <slot />
   </ElRow>
 </template>

@@ -2,19 +2,19 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 20:57:32
+ * @LastEditTime: 2022-06-17 09:03:54
  * @Description: 
 -->
 <script setup lang="ts">
 import type { FormItemType } from '../interface'
 import type { PropType } from 'vue'
 import { computed } from 'vue'
-import { ElFormItem, ElTooltip } from 'element-plus'
+import { ElFormItem, ElSpace, ElCol } from 'element-plus'
 import { RenderVNode, isFunction, omitUndefined } from '@micro/utils'
 import { fieldComponentMap } from '../fieldMap'
 import { useInjectForm } from '../context/FormContext'
 import cloneDeep from 'lodash-es/cloneDeep'
-import SvgIcon from '../../../SvgIcon'
+import FormLabel from './FormLabel.vue'
 
 const props = defineProps({
   item: {
@@ -23,11 +23,11 @@ const props = defineProps({
   },
 })
 
-const { formValues, updateValue, mode } = useInjectForm()
+const { formValues, updateValue, mode, colProps } = useInjectForm()
 
 const cloneFormValues = computed(() => cloneDeep(formValues.value))
 
-const FieldComponent = computed(() => fieldComponentMap[props.item.type!] || fieldComponentMap['input'])
+const FieldComponent = fieldComponentMap[props.item.type!] || fieldComponentMap['input']
 
 const fieldProps = computed(() =>
   omitUndefined({
@@ -57,21 +57,18 @@ const isCustomRenderField = computed(() => props.item.renderField && isFunction(
 </script>
 
 <template>
-  <ElFormItem :prop="item.name" :rules="mode === 'edit' ? item.rules : undefined" v-if="!isCustomRender" :style="{ width: item.width || 'auto' }">
-    <template #label>
-      <RenderVNode :vnode="item.label" :props="{ value: item.name ? cloneFormValues[item.name] : undefined, formValues: cloneFormValues }" />
-      <ElTooltip v-if="item.tooltip" append-to="body" effect="dark" :content="item.tooltip" placement="top">
-        <span style="margin-left: 5px; display: inline-block">
-          <SvgIcon name="warning" />
-        </span>
-      </ElTooltip>
-    </template>
-    <template v-if="mode === 'edit'">
-      <component v-if="!isCustomRenderField" :is="FieldComponent" v-bind="fieldProps" :disabled="disabled"></component>
-      <RenderVNode v-else :vnode="item.renderField" :props="{ value: item.name, formValues: cloneFormValues, updateValue }" />
-    </template>
-  </ElFormItem>
-  <RenderVNode v-else :vnode="item.render" :props="{ formValues: cloneFormValues }" />
+  <ElCol v-bind="item.colProps || colProps">
+    <ElFormItem :prop="item.name" :rules="mode === 'edit' ? item.rules : undefined" v-if="!isCustomRender" :style="{ width: item.width || 'auto' }">
+      <template #label>
+        <FormLabel :label="item.label" :tooltip="item.tooltip" />
+      </template>
+      <template v-if="mode === 'edit'">
+        <component v-if="!isCustomRenderField" :is="FieldComponent" v-bind="fieldProps" :disabled="disabled"></component>
+        <RenderVNode v-else :vnode="item.renderField" :props="{ value: item.name, formValues: cloneFormValues, updateValue }" />
+      </template>
+    </ElFormItem>
+    <ElSpace v-else direction="vertical">
+      <RenderVNode :vnode="item.render" :props="{ formValues: cloneFormValues }" />
+    </ElSpace>
+  </ElCol>
 </template>
-
-<style scoped lang="scss"></style>

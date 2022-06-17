@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-16 15:14:13
+ * @LastEditTime: 2022-06-17 22:32:25
  * @Description: 
 -->
 <script lang="tsx">
@@ -28,6 +28,13 @@ export default defineComponent({
     }
 
     const formItems: FormItemType[] = reactive([
+      {
+        key: 'group1',
+        type: 'group',
+        label: '分组1',
+        tooltip: '测试分组提示',
+        fieldProps: {},
+      },
       {
         key: 'input',
         name: 'name',
@@ -437,6 +444,13 @@ export default defineComponent({
         // },
       },
       {
+        key: 'group2',
+        type: 'group',
+        label: '分组测试',
+        tooltip: '测试分组提示',
+        fieldProps: {},
+      },
+      {
         type: 'switch',
         name: 'switch',
         label: '开关',
@@ -545,15 +559,15 @@ export default defineComponent({
           span: 24,
         },
       },
-      // {
-      //   key: 'custom',
-      //   colProps: {
-      //     span: 24,
-      //   },
-      //   render: () => {
-      //     return 'render'
-      //   },
-      // },
+      {
+        key: 'custom',
+        colProps: {
+          span: 24,
+        },
+        render: () => {
+          return 'render'
+        },
+      },
     ])
 
     // setTimeout(() => {
@@ -562,13 +576,13 @@ export default defineComponent({
     //   }
     // }, 3000)
 
-    setTimeout(() => {
-      setFormValues({
-        name: '222',
-        select: '2',
-      })
-      setFieldValue(null as any, 1)
-    }, 2000)
+    // setTimeout(() => {
+    //   setFormValues({
+    //     name: '222',
+    //     select: '2',
+    //   })
+    //   setFieldValue(null as any, 1)
+    // }, 2000)
 
     const onSubmit = async () => {
       // validate((valid: boolean, values: Record<string, any>) => {
@@ -692,7 +706,9 @@ export default defineComponent({
 
 <template>
   <div class="form-container">
-    <McForm ref="formRef" :initial-values="initialValues" :form-items="formItems" />
+    <div style="height: 400px; margin-bottom: 20px">
+      <McForm ref="formRef" :col-props="{ span: 24 }" layout-type="TabsForm" tab-position="right" :initial-values="initialValues" :form-items="formItems" layout="vertical" />
+    </div>
     <ElButton @click="onSubmit" type="primary">提交</ElButton>
     <div style="margin: 20px">查询</div>
     <McQueryFilter :initialValues="{ title: '111' }" :form-items="filterItems" @collapse="onCollapse" @finish="onFinish" @resizeheight="onResizeHeight" />

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-16 09:47:48
+ * @LastEditTime: 2022-06-16 17:25:09
  * @Description:
  */
 import type { Ref, ComputedRef } from 'vue'
@@ -30,7 +30,7 @@ export default function useFormItems(rawItems: Ref<FormItemType[]>): {
   const genItems = (items: FormItemType[]) =>
     items
       .filter((originItem) => {
-        return !originItem.hidden && originItem.name
+        return !originItem.hidden
       })
       .sort((a, b) => {
         if (b.order || a.order) {
