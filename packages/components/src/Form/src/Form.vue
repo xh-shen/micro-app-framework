@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 22:06:13
+ * @LastEditTime: 2022-06-18 08:41:01
  * @Description: 
 -->
 <script lang="ts">
@@ -134,7 +134,7 @@ export default defineComponent({
 
 <template>
   <ElForm ref="elFormRef" :class="formCls" :model="formValues" :label-position="labelPosition" :label-width="labelWidth" :disabled="disabled">
-    <FormTabs v-if="layoutType === 'TabsForm'" :list="formTabs" :position="tabPosition" :active-key="tabKey" @change="updateTabKey" />
+    <FormTabs v-if="layoutType === 'TabsForm'" :list="formTabs" :position="tabPosition" :active-key="tabKey" />
     <FormWrapper ref="wrapRef" :gutter="gutter" @scroll="onScroll">
       <FormItems :list="items" />
       <slot name="actions">

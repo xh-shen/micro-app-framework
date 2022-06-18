@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 22:32:25
+ * @LastEditTime: 2022-06-18 09:55:32
  * @Description: 
 -->
 <script lang="tsx">
@@ -95,6 +95,7 @@ export default defineComponent({
         rules: [{ required: true, message: 'Please input Activity name', trigger: 'change' }],
         fieldProps: {},
       },
+
       {
         type: 'select',
         name: 'select',
@@ -122,6 +123,23 @@ export default defineComponent({
         fieldProps: {
           // renderOption: ({ item }: any) => <div>{item.text}</div>,
         },
+      },
+      {
+        type: 'uploader',
+        name: 'uploader',
+        label: '上传',
+        // disabled: (formValues) => !formValues.name,
+        rules: [{ required: true, message: '请上传文件', trigger: 'change' }],
+        fieldProps: {},
+        colProps: {
+          span: 24,
+        },
+      },
+      {
+        key: 'divider',
+        type: 'divider',
+        label: '分割线',
+        fieldProps: {},
       },
       {
         type: 'radio-group',
@@ -707,7 +725,7 @@ export default defineComponent({
 <template>
   <div class="form-container">
     <div style="height: 400px; margin-bottom: 20px">
-      <McForm ref="formRef" :col-props="{ span: 24 }" layout-type="TabsForm" tab-position="right" :initial-values="initialValues" :form-items="formItems" layout="vertical" />
+      <McForm ref="formRef" :grid="false" :col-props="{ span: 12 }" layout-type="TabsForm" tab-position="right" :initial-values="initialValues" :form-items="formItems" layout="vertical" />
     </div>
     <ElButton @click="onSubmit" type="primary">提交</ElButton>
     <div style="margin: 20px">查询</div>

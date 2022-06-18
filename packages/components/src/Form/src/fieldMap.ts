@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:13:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 10:30:48
+ * @LastEditTime: 2022-06-18 10:00:55
  * @Description:
  */
 import type { Component } from 'vue'
@@ -19,6 +19,7 @@ import FieldSwitch from './fields/FieldSwitch.vue'
 import FieldSlider from './fields/FieldSlider.vue'
 import FieldTextarea from './fields/FieldTextarea.vue'
 import FieldCascader from './fields/FieldCascader.vue'
+import FieldUploader from './fields/FieldUploader.vue'
 
 export const fieldComponentMap: Partial<Record<FieldType, Component>> = {
   input: FieldInput,
@@ -33,6 +34,7 @@ export const fieldComponentMap: Partial<Record<FieldType, Component>> = {
   switch: FieldSwitch,
   slider: FieldSlider,
   textarea: FieldTextarea,
+  uploader: FieldUploader,
 }
 
 export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
@@ -184,7 +186,37 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
     'beforeChange',
   ],
   slider: ['min', 'max', 'step', 'show-stops', 'showStops', 'show-tooltip', 'showTooltip', 'format-tooltip', 'formatTooltip', 'range', 'marks'],
-  // textarea: [],
+  uploader: [
+    'action',
+    'headers',
+    'method',
+    'multiple',
+    'data',
+    'name',
+    'with-credentials',
+    'withCredentials',
+    'show-file-list',
+    'showFileList',
+    'drag',
+    'on-preview',
+    'onPreview',
+    'on-remove',
+    'on-success',
+    'onSuccess',
+    'on-error',
+    'onError',
+    'on-progress',
+    'onProgress',
+    'on-exceed',
+    'onExceed',
+    'before-upload',
+    'beforeUpload',
+    'before-remove',
+    'beforeRemove',
+    'list-type',
+    'listType',
+    'limit',
+  ],
 }
 
 export const fieldDateFormatterMap: Record<string, string> = {

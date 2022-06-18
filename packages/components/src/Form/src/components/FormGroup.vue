@@ -2,15 +2,15 @@
  * @Author: shen
  * @Date: 2022-06-10 13:08:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 22:15:51
+ * @LastEditTime: 2022-06-18 08:42:49
  * @Description: 
 -->
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import type { FormLabel as FormLabelType } from '../interface'
 import { onMounted, ref } from 'vue'
-import { ElCol } from 'element-plus'
 import { useInjectForm } from '../context/FormContext'
+import FormItemWrapper from './FormItemWrapper.vue'
 import FormLabel from './FormLabel.vue'
 
 const props = defineProps({
@@ -23,7 +23,7 @@ const props = defineProps({
   },
 })
 
-const groupRef = ref<any>()
+const groupRef = ref<HTMLDivElement>()
 
 const { layoutType, addTab } = useInjectForm()
 
@@ -32,22 +32,22 @@ onMounted(() => {
     addTab({
       key: props.groupKey!,
       label: props.label!,
-      el: groupRef.value?.$el,
+      el: groupRef.value,
     })
   }
 })
 </script>
 
 <template>
-  <ElCol :span="24" ref="groupRef">
-    <div class="mc-form__group">
+  <FormItemWrapper :col-props="{ span: 24 }" style="width: 100%">
+    <div class="mc-form__group" ref="groupRef">
       <div class="mc-form__group-header">
         <div class="mc-form__group-label">
           <FormLabel :label="label" :tooltip="tooltip" />
         </div>
       </div>
     </div>
-  </ElCol>
+  </FormItemWrapper>
 </template>
 
 <style scoped lang="scss"></style>

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-17 13:11:07
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 22:13:56
+ * @LastEditTime: 2022-06-18 08:40:46
  * @Description: 
 -->
 <script setup lang="ts">
@@ -26,8 +26,6 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['change'])
-
 const tabsCls = computed(() =>
   classNames({
     'mc-form__tabs': true,
@@ -48,7 +46,6 @@ const tabsWrapCls = computed(() =>
 
 const onClick = (item: FormTab) => {
   item.el?.scrollIntoView({ behavior: 'smooth' })
-  // emit('change', item.key)
 }
 </script>
 

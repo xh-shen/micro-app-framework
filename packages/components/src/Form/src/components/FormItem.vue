@@ -2,18 +2,19 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 09:03:54
+ * @LastEditTime: 2022-06-18 08:37:45
  * @Description: 
 -->
 <script setup lang="ts">
 import type { FormItemType } from '../interface'
 import type { PropType } from 'vue'
 import { computed } from 'vue'
-import { ElFormItem, ElSpace, ElCol } from 'element-plus'
+import { ElFormItem, ElSpace } from 'element-plus'
 import { RenderVNode, isFunction, omitUndefined } from '@micro/utils'
 import { fieldComponentMap } from '../fieldMap'
 import { useInjectForm } from '../context/FormContext'
 import cloneDeep from 'lodash-es/cloneDeep'
+import FormItemWrapper from './FormItemWrapper.vue'
 import FormLabel from './FormLabel.vue'
 
 const props = defineProps({
@@ -57,7 +58,7 @@ const isCustomRenderField = computed(() => props.item.renderField && isFunction(
 </script>
 
 <template>
-  <ElCol v-bind="item.colProps || colProps">
+  <FormItemWrapper :col-props="item.colProps || colProps">
     <ElFormItem :prop="item.name" :rules="mode === 'edit' ? item.rules : undefined" v-if="!isCustomRender" :style="{ width: item.width || 'auto' }">
       <template #label>
         <FormLabel :label="item.label" :tooltip="item.tooltip" />
@@ -70,5 +71,5 @@ const isCustomRenderField = computed(() => props.item.renderField && isFunction(
     <ElSpace v-else direction="vertical">
       <RenderVNode :vnode="item.render" :props="{ formValues: cloneFormValues }" />
     </ElSpace>
-  </ElCol>
+  </FormItemWrapper>
 </template>

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-14 22:59:50
  * @LastEditors: shen
- * @LastEditTime: 2022-06-16 10:59:23
+ * @LastEditTime: 2022-06-18 08:15:04
  * @Description: 
 -->
 <script lang="ts">
@@ -96,35 +96,37 @@ export default defineComponent({
       currentSpan.value = 0
       totalSize.value = 0
       totalSpan.value = 0
-      processedList.value = props.formItems.map((item, index) => {
-        const colSize = item.colSize ?? 1
-        const colSpan = Math.min(spanSize.value.span * (colSize || 1), 24)
-        totalSpan.value += colSpan
-        totalSize.value += colSize
+      processedList.value = props.formItems
+        .filter((item) => !(item.type === 'group' || item.type === 'divider'))
+        .map((item, index) => {
+          const colSize = item.colSize ?? 1
+          const colSpan = Math.min(spanSize.value.span * (colSize || 1), 24)
+          totalSpan.value += colSpan
+          totalSize.value += colSize
 
-        if (index === 0) {
-          firstRowFull = colSpan === 24 && !item.hidden
-        }
-
-        const hidden: boolean = item.hidden || (!!collapsed.value && (firstRowFull || totalSize.value > showLength.value - 1) && !!index && totalSpan.value >= 24)
-        if (!hidden) {
-          if (24 - (currentSpan.value % 24) < colSpan) {
-            totalSpan.value += 24 - (currentSpan.value % 24)
-            currentSpan.value += 24 - (currentSpan.value % 24)
+          if (index === 0) {
+            firstRowFull = colSpan === 24 && !item.hidden
           }
 
-          currentSpan.value += colSpan
-        }
+          const hidden: boolean = item.hidden || (!!collapsed.value && (firstRowFull || totalSize.value > showLength.value - 1) && !!index && totalSpan.value >= 24)
+          if (!hidden) {
+            if (24 - (currentSpan.value % 24) < colSpan) {
+              totalSpan.value += 24 - (currentSpan.value % 24)
+              currentSpan.value += 24 - (currentSpan.value % 24)
+            }
 
-        return {
-          ...item,
-          hidden,
-          rules: props.ignoreRules ? undefined : item.rules,
-          colProps: {
-            span: colSpan,
-          },
-        }
-      })
+            currentSpan.value += colSpan
+          }
+
+          return {
+            ...item,
+            hidden,
+            rules: props.ignoreRules ? undefined : item.rules,
+            colProps: {
+              span: colSpan,
+            },
+          }
+        })
     })
 
     const needCollapse = computed(() => {

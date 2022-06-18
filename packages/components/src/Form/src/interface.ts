@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 15:56:47
+ * @LastEditTime: 2022-06-18 09:33:50
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -15,7 +15,22 @@ export type FormSize = 'default' | 'small' | 'large'
 export type FormPosition = 'left' | 'right' | 'top'
 export type FormLayout = 'horizontal' | 'vertical'
 export type FormLayoutType = 'QueryFilter' | 'TabsForm' | 'Form'
-export type FieldType = 'group' | 'input' | 'input-number' | 'date-picker' | 'time-picker' | 'select' | 'cascader' | 'textarea' | 'checkbox' | 'checkbox-group' | 'radio-group' | 'switch' | 'slider'
+export type FieldType =
+  | 'group'
+  | 'divider'
+  | 'input'
+  | 'input-number'
+  | 'date-picker'
+  | 'time-picker'
+  | 'select'
+  | 'cascader'
+  | 'textarea'
+  | 'checkbox'
+  | 'checkbox-group'
+  | 'radio-group'
+  | 'switch'
+  | 'slider'
+  | 'uploader'
 export type Option = { value: string | number | boolean; label?: string; text?: string; disabled?: boolean; leaf?: boolean; children?: Option[] }
 export type Request = (params: Record<string, any>) => Promise<Option[]>
 export type FormLabel = string | number | ((opt: { formValues: Record<string, any> }) => VNode | string | number | null | undefined)
