@@ -2,19 +2,21 @@
  * @Author: shen
  * @Date: 2022-05-08 21:03:38
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 10:06:56
+ * @LastEditTime: 2022-06-19 16:13:52
  * @Description:
  */
 import { defineConfig } from 'vitepress'
+
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/docs/' : ''
 
 export default defineConfig({
   lang: 'zh-CN',
   title: 'Shene Micro',
   description: 'Vue3为主技术栈的微前端架构。',
   lastUpdated: true,
-  // base: '/docs/',
+  base: BASE_URL,
   themeConfig: {
-    logo: '/images/logo.png',
+    logo: BASE_URL + '/images/logo.png',
     nav: nav(),
 
     sidebar: {

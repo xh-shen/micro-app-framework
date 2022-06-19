@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-06 21:30:37
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 09:45:36
+ * @LastEditTime: 2022-06-19 15:57:29
  * @Description:
 -->
 
@@ -65,7 +65,7 @@ $ pnpm run dev
 ```
 
 运行效果（Mac）
-![dev](../images/dev.png)
+![dev](/images/dev.png)
 
 ## 下一步做什么？
 

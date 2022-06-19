@@ -2,13 +2,21 @@
  * @Author: shen
  * @Date: 2022-06-08 09:29:35
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 09:31:57
+ * @LastEditTime: 2022-06-18 14:14:30
  * @Description:
  */
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
-console.log(process.cwd())
+const projRoot = resolve(__dirname, '..')
 
-export default defineConfig({
-  base: '/docs/',
+export default defineConfig(async () => {
+  return {
+    server: {
+      host: true,
+      fs: {
+        allow: [projRoot],
+      },
+    },
+  }
 })

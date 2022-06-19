@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-05 14:53:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 14:21:50
+ * @LastEditTime: 2022-06-19 16:24:38
  * @Description: 
 -->
 <script setup lang="ts">
@@ -15,6 +15,7 @@ import Screenfull from './Screenfull.vue'
 import SelectTheme from './SelectTheme.vue'
 import UserDropdown from './UserDropdown.vue'
 import SelectLang from './SelectLang.vue'
+import Question from './Question.vue'
 </script>
 
 <template>
@@ -23,6 +24,7 @@ import SelectLang from './SelectLang.vue'
     <TagsView />
     <div class="mc-layout__header-right">
       <Search class="mc-layout__header-active mc-layout__header-search" />
+      <Question class="mc-layout__header-active" />
       <Notice class="mc-layout__header-active mc-layout__header-notice" />
       <Screenfull class="mc-layout__header-active mc-layout__header-fullscreen" />
       <SelectTheme class="mc-layout__header-active mc-layout__header-theme" />

@@ -24,6 +24,6 @@ features:
     details: 你可以使用git子模块的方式把主子应用拆分到不同的git仓库中，所有项目单独管理。
 ---
 
-<ClientOnly>
+<!-- <ClientOnly>
   <Home />
-</ClientOnly>
+</ClientOnly> -->
