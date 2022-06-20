@@ -2,18 +2,29 @@
  * @Author: shen
  * @Date: 2022-06-06 21:09:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-06 21:13:44
+ * @LastEditTime: 2022-06-20 13:52:02
  * @Description:
  */
 import DefaultTheme from 'vitepress/theme'
-import { Home } from '../components'
+import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import { Home, Demo } from '../components'
+import 'element-plus/dist/index.css'
+import 'uno.css'
+import '../styles/css-vars.scss'
+import '../styles/app.scss'
 
-console.log(Home)
+const components = [Home, Demo]
 
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
+    app.use(ElementPlus, {
+      locale: zhCn,
+    })
     // register global components
-    app.component('Home', Home)
+    components.forEach((Comp) => {
+      app.component(Comp.name, Comp)
+    })
   },
 }

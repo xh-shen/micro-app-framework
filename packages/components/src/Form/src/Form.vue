@@ -2,14 +2,15 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-18 08:41:01
+ * @LastEditTime: 2022-06-20 22:10:49
  * @Description: 
 -->
 <script lang="ts">
 import type { ColProps, FormItemType, FormPosition } from './interface'
 import { defineComponent, computed, watch, toRaw, ref } from 'vue'
-import { ElForm, FormInstance } from 'element-plus'
+import { ElForm, FormInstance, ElCol, ElFormItem } from 'element-plus'
 import { usePrevious } from '@micro/hooks'
+import { resize } from '@micro/directives'
 import { classNames } from '@micro/utils'
 import { formProps } from './interface'
 import { useProvideForm } from './context/FormContext'
@@ -25,7 +26,8 @@ import FormActions from './components/FormActions.vue'
 export default defineComponent({
   name: 'McForm',
   props: formProps,
-  components: { ElForm, FormWrapper, FormItems, FormActions, FormTabs },
+  components: { ElForm, FormWrapper, FormItems, FormActions, FormTabs, ElCol, ElFormItem },
+  directives: { resize },
   emits: ['finish', 'reset'],
   setup(props, { expose, emit }) {
     const wrapRef = ref<any>()
@@ -35,6 +37,8 @@ export default defineComponent({
     const mode = computed(() => props.mode || 'edit')
     const grid = computed(() => props.grid)
     const gutter = computed(() => props.gutter)
+    const layout = computed(() => props.layout)
+    const span = computed(() => props.span)
     const layoutType = computed(() => props.layoutType)
     const labelWidth = computed(() => props.labelWidth)
     const labelPosition = computed<FormPosition>(() => (props.layout === 'horizontal' ? 'right' : 'top'))
@@ -60,7 +64,7 @@ export default defineComponent({
       { immediate: true },
     )
 
-    const { items, genItems, fieldInitialValues } = useFormItems(rawItems)
+    const { width, setWidth, items, genItems, fieldInitialValues } = useFormItems(rawItems, span, layout)
 
     const { formValues, updateValue, setInitialValues, getFormValues, setFormValues, setFieldValue, getFieldValue, validate, resetFields, clearValidate } = useFormValues(elFormRef)
 
@@ -95,6 +99,12 @@ export default defineComponent({
       updateTabKeyOnScroll(top)
     }
 
+    const onResize = (e: CustomEvent) => {
+      if (width.value !== e.detail.width && e.detail.width > 17) {
+        setWidth(e.detail.width)
+      }
+    }
+
     useProvideForm({
       mode,
       grid,
@@ -125,6 +135,7 @@ export default defineComponent({
       onFinish,
       onReset,
       onScroll,
+      onResize,
       updateTabKey,
       ...instanceMethods,
     }
@@ -133,13 +144,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <ElForm ref="elFormRef" :class="formCls" :model="formValues" :label-position="labelPosition" :label-width="labelWidth" :disabled="disabled">
+  <ElForm v-resize="true" ref="elFormRef" :class="formCls" :model="formValues" :label-position="labelPosition" :label-width="labelWidth" :disabled="disabled" @resize="onResize">
     <FormTabs v-if="layoutType === 'TabsForm'" :list="formTabs" :position="tabPosition" :active-key="tabKey" />
     <FormWrapper ref="wrapRef" :gutter="gutter" @scroll="onScroll">
       <FormItems :list="items" />
-      <slot name="actions">
-        <FormActions v-if="showDefaultActions" @submit="onFinish" @reset="onReset" />
-      </slot>
+      <ElCol :span="24">
+        <ElFormItem label="">
+          <slot name="actions">
+            <FormActions v-if="showDefaultActions" @submit="onFinish" @reset="onReset" />
+          </slot>
+        </ElFormItem>
+      </ElCol>
     </FormWrapper>
   </ElForm>
 </template>

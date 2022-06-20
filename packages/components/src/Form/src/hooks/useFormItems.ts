@@ -2,26 +2,47 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-16 17:25:09
+ * @LastEditTime: 2022-06-20 21:20:06
  * @Description:
  */
 import type { Ref, ComputedRef } from 'vue'
-import type { FormItemType } from '../interface'
-import { ref, watchEffect, computed } from 'vue'
-import { omitUndefined } from '@micro/utils'
+import type { FormItemType, FormLayout, SpanConfig } from '../interface'
+import { ref, computed, watch } from 'vue'
+import { isFunction, omitUndefined } from '@micro/utils'
+import { useMergedState } from '@micro/hooks'
+import { getSpanConfig } from '../utils'
+import { fieldDefaultValueMap } from '../fieldMap'
 
-export default function useFormItems(rawItems: Ref<FormItemType[]>): {
+export default function useFormItems(
+  rawItems: Ref<FormItemType[]>,
+  span: ComputedRef<SpanConfig | undefined>,
+  layout: ComputedRef<FormLayout>,
+): {
+  width: Ref<number>
   items: Ref<FormItemType[]>
   genItems: (items: FormItemType[]) => FormItemType[]
+  setWidth: (width: number) => void
   fieldInitialValues: ComputedRef<Record<string, any>>
 } {
+  // const currentSpan = ref(0)
+  // const totalSpan = ref(0)
+  // const totalSize = ref(0)
   const items = ref<FormItemType[]>([])
+
+  const [width, setWidth] = useMergedState(() => document?.body?.clientWidth as number)
+
+  const spanSize = computed(() => getSpanConfig(layout.value, width.value + 16, span.value))
 
   const fieldInitialValues = computed(() => {
     const values: Record<string, any> = {}
     rawItems.value.forEach((item) => {
-      if (item.initialValue && item.name) {
-        values[item.name] = item.initialValue
+      if (item.name) {
+        if (typeof item.initialValue !== 'undefined') {
+          values[item.name] = item.initialValue
+        } else {
+          const defaultValueMap = fieldDefaultValueMap[item.type || 'input']
+          values[item.name] = typeof defaultValueMap !== 'undefined' ? (isFunction(defaultValueMap) ? defaultValueMap(item.fieldProps) : defaultValueMap) : undefined
+        }
       }
     })
     return values
@@ -39,14 +60,15 @@ export default function useFormItems(rawItems: Ref<FormItemType[]>): {
         return (b.index || 0) - (a.index || 0)
       })
       .map((originItem, index) => {
+        const colSize = originItem.colSize ?? 1
+        const colSpan = Math.min(spanSize.value.span * (colSize || 1), 24)
+
         const item = omitUndefined({
           label: originItem.label,
           key: originItem.key,
           type: originItem.type || 'input',
-          // children: originItem.children,
           name: originItem.name,
           initialValue: originItem.initialValue,
-          // index: originItem.index,
           width: originItem.width,
           fieldStyle: originItem.fieldStyle,
           readonly: originItem.readonly,
@@ -54,7 +76,7 @@ export default function useFormItems(rawItems: Ref<FormItemType[]>): {
           clearable: originItem.clearable,
           options: originItem.options,
           rules: originItem.rules,
-          colProps: originItem.colProps,
+          colProps: { span: colSpan },
           tooltip: originItem.tooltip,
           fieldProps: originItem.fieldProps,
           render: originItem.render,
@@ -75,13 +97,18 @@ export default function useFormItems(rawItems: Ref<FormItemType[]>): {
         return Boolean(field)
       })
 
-  watchEffect(() => {
+  watch([spanSize, () => rawItems.value], () => {
+    // currentSpan.value = 0
+    // totalSize.value = 0
+    // totalSpan.value = 0
     items.value = genItems(rawItems.value)
   })
 
   return {
+    width,
     items,
     genItems,
+    setWidth,
     fieldInitialValues,
   }
 }

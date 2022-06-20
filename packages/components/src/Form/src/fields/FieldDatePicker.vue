@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:11:53
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 21:43:57
+ * @LastEditTime: 2022-06-20 13:48:09
  * @Description: 
 -->
 <script setup lang="ts">
@@ -27,6 +27,10 @@ const elFieldProps = computed(() =>
     'valueFormat',
     'renderDefault',
     'renderRangeSeparator',
+    'start-placeholder',
+    'startPlaceholder',
+    'end-placeholder',
+    'endPlaceholder',
     'onBlur',
     'onFocus',
     'onCalendarChange',
@@ -69,6 +73,8 @@ const onVisibleChange = (visibility: boolean) => {
     v-model="fieldValue"
     v-bind="elFieldProps"
     :placeholder="placeholder || '请选择'"
+    :start-placeholder="fieldProps?.['start-placeholder'] || fieldProps?.['startPlaceholder'] || placeholder || '请选择'"
+    :end-placeholder="fieldProps?.['end-placeholder'] || fieldProps?.['endPlaceholder'] || placeholder || '请选择'"
     :clearable="clearable"
     :disabled="disabled"
     :readonly="readonly"

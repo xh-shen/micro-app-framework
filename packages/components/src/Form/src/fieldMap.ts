@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-09 10:13:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-18 10:00:55
+ * @LastEditTime: 2022-06-20 21:39:35
  * @Description:
  */
 import type { Component } from 'vue'
@@ -167,7 +167,7 @@ export const fieldPropsMap: Partial<Record<FieldType, string[]>> = {
     'onVisibleChange',
     'onExpandChange',
   ],
-  'radio-group': [],
+  'radio-group': ['radioType', 'radio-type'],
   'checkbox-group': ['min', 'max'],
   checkbox: ['true-label', 'trueLabel', 'false-label', 'falseLabel'],
   switch: [
@@ -229,4 +229,33 @@ export const fieldDateFormatterMap: Record<string, string> = {
   datetime: 'YYYY-MM-DD HH:mm:ss',
   datetimerange: 'YYYY-MM-DD HH:mm:ss',
   time: 'HH:mm:ss',
+}
+
+export const fieldDefaultValueMap: Partial<Record<FieldType, any>> = {
+  input: '',
+  'input-number': null,
+  'date-picker': (fieldProps?: Record<string, any>) => {
+    if (fieldProps?.type?.endsWith('range')) {
+      return []
+    }
+    return ''
+  },
+  'time-picker': (fieldProps?: Record<string, any>) => {
+    return fieldProps?.isRange ? [] : ''
+  },
+  select: (fieldProps?: Record<string, any>) => {
+    return fieldProps?.multiple ? [] : ''
+  },
+  cascader: (fieldProps?: Record<string, any>) => {
+    return fieldProps?.props?.multiple ? [] : ''
+  },
+  'radio-group': '',
+  'checkbox-group': [],
+  checkbox: '',
+  switch: false,
+  slider: (fieldProps?: Record<string, any>) => {
+    return fieldProps?.range ? [] : null
+  },
+  textarea: '',
+  uploader: '',
 }

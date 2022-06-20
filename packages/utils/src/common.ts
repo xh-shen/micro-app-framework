@@ -2,11 +2,11 @@
  * @Author: shen
  * @Date: 2022-05-20 20:34:42
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 14:28:01
+ * @LastEditTime: 2022-06-20 21:10:51
  * @Description:
  */
 
-export function isFunction(val: unknown): val is () => void {
+export function isFunction(val: unknown): val is (...arg: any) => void {
   return typeof val === 'function'
 }
 

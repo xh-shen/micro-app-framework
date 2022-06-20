@@ -19,6 +19,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.4",
     "@shene/pro-table": "^0.0.14",
     "@vueuse/core": "^8.5.0",
     "axios": "^0.27.2",

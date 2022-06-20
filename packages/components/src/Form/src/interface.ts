@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-18 09:33:50
+ * @LastEditTime: 2022-06-20 16:12:42
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -127,6 +127,7 @@ export const formProps = {
     type: Boolean,
     default: true,
   },
+  span: [Number, Object] as PropType<SpanConfig>,
   size: {
     type: String as PropType<FormSize>,
     default: '',
@@ -141,7 +142,7 @@ export const formProps = {
   },
   showDefaultActions: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 }
 
