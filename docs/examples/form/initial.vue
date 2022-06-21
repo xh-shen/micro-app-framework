@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import type { FormItemType } from '@micro/components'
 import { reactive } from 'vue'
-import { McQueryFilter } from '@micro/components'
+import { McForm } from '@micro/components'
+import { useForm } from '@micro/hooks'
 
-const filterItems: FormItemType[] = reactive([
+const initialValues = {
+  name: 'shene',
+  age: 30,
+  city: '1',
+  sex: '2',
+}
+const { formRef, validate, resetFields } = useForm()
+const formItems: FormItemType[] = reactive([
   {
-    key: 'input',
     name: 'name',
     label: '姓名',
     clearable: true,
@@ -29,6 +36,7 @@ const filterItems: FormItemType[] = reactive([
     type: 'radio-group',
     name: 'sex',
     label: '性别',
+    initialValue: '1',
     options: [
       { text: '男', value: '1' },
       { text: '女', value: '2' },
@@ -40,19 +48,29 @@ const filterItems: FormItemType[] = reactive([
     label: '日期区间',
     placeholder: '请选择',
     colSize: 2,
+    initialValue: ['2022-06-18 10:00:00', '2022-06-21 23:00:00'],
     fieldProps: {
       type: 'datetimerange',
     },
   },
 ])
 
-const onFinish = (values) => {
-  console.log(values)
+const onFinish = async () => {
+  try {
+    const values = await validate()
+    console.log('submit!', values)
+  } catch (error) {
+    console.log('error submit!', error)
+  }
+}
+
+const onReset = () => {
+  resetFields()
 }
 </script>
 
 <template>
-  <McQueryFilter :form-items="filterItems" @finish="onFinish" />
+  <McForm ref="formRef" :initial-values="initialValues" :form-items="formItems" @finish="onFinish" @reset="onReset" />
 </template>
 
 <style scoped lang="scss"></style>

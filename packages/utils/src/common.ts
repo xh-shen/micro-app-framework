@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-20 20:34:42
  * @LastEditors: shen
- * @LastEditTime: 2022-06-20 21:10:51
+ * @LastEditTime: 2022-06-21 09:49:07
  * @Description:
  */
 
@@ -99,4 +99,30 @@ export function omitKeysAndUndefined<T extends Record<string, any>>(obj: T, keys
     return undefined as any
   }
   return newObj as T
+}
+
+export function setPromise(fn: any): {
+  promise: Promise<void>
+  cancel: () => void
+} {
+  let rejectFn: (reason?: any) => void
+  let isCancel = false
+  return {
+    promise: new Promise((resolve, reject) => {
+      rejectFn = reject
+      Promise.resolve().then(() => {
+        resolve('')
+      })
+    })
+      .then(() => {
+        if (!isCancel) {
+          fn()
+        }
+      })
+      .catch(() => {}),
+    cancel: () => {
+      isCancel = true
+      rejectFn && rejectFn()
+    },
+  }
 }

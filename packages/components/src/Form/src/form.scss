@@ -14,6 +14,17 @@
     }
   }
 
+  &__item {
+    &-label {
+      &-help {
+        margin-left: 5px; 
+        display: inline-block;
+        color: #00000073;
+        cursor: help;
+      }
+    }
+  }
+
   &__group {
     &-header {
       margin:0 0 12px;
@@ -24,6 +35,8 @@
       cursor: pointer;
     }
     &-label {
+      display: flex;
+      align-items: center;
       font-size: 14px;
       color: #000000d9;
       line-height: 1.5715;
@@ -40,7 +53,7 @@
       border-bottom: none;
       .mc-form__tabs-item {
         display: block;
-        min-width: 80px
+        // min-width: 80px
       }
     }
     &.is-left {

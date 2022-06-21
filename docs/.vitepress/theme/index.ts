@@ -2,13 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-06 21:09:43
  * @LastEditors: shen
- * @LastEditTime: 2022-06-20 13:52:02
+ * @LastEditTime: 2022-06-21 08:53:38
  * @Description:
  */
 import DefaultTheme from 'vitepress/theme'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { Home, Demo } from '../components'
+import 'virtual:svg-icons-register'
 import 'element-plus/dist/index.css'
 import 'uno.css'
 import '../styles/css-vars.scss'

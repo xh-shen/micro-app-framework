@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-14 22:59:50
  * @LastEditors: shen
- * @LastEditTime: 2022-06-18 08:15:04
+ * @LastEditTime: 2022-06-21 14:49:48
  * @Description: 
 -->
 <script lang="ts">
@@ -187,17 +187,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <BaseForm
-    ref="formRef"
-    v-resize="true"
-    class="mc-query-filter"
-    :form-items="processedList"
-    :layout="spanSize.layout"
-    :col-props="{ span: spanSize.span }"
-    :initial-values="initialValues"
-    @resize="onResize"
-  >
-    <template #actions>
+  <BaseForm ref="formRef" v-resize="true" class="mc-query-filter" :form-items="processedList" :layout="spanSize.layout" :span="spanSize.span" :initial-values="initialValues" @resize="onResize">
+    <template #submitter>
       <ElCol :span="spanSize.span" :offset="offset">
         <ElFormItem label="actions" class="mc-query-filter-form-item" label-width="0">
           <ElSpace>

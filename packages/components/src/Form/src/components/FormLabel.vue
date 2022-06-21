@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-17 08:55:40
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 09:03:47
+ * @LastEditTime: 2022-06-21 08:57:46
  * @Description: 
 -->
 <script setup lang="ts">
@@ -28,8 +28,8 @@ const cloneFormValues = computed(() => cloneDeep(formValues.value))
 <template>
   <RenderVNode :vnode="label" :props="{ formValues: cloneFormValues }" />
   <ElTooltip v-if="tooltip" append-to="body" effect="dark" :content="tooltip" placement="top">
-    <span style="margin-left: 5px; display: inline-block">
-      <SvgIcon name="warning" />
+    <span class="mc-form__item-label-help">
+      <SvgIcon name="question" />
     </span>
   </ElTooltip>
 </template>

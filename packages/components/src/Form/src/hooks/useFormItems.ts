@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:35:27
  * @LastEditors: shen
- * @LastEditTime: 2022-06-20 21:20:06
+ * @LastEditTime: 2022-06-21 14:39:58
  * @Description:
  */
 import type { Ref, ComputedRef } from 'vue'
@@ -24,9 +24,6 @@ export default function useFormItems(
   setWidth: (width: number) => void
   fieldInitialValues: ComputedRef<Record<string, any>>
 } {
-  // const currentSpan = ref(0)
-  // const totalSpan = ref(0)
-  // const totalSize = ref(0)
   const items = ref<FormItemType[]>([])
 
   const [width, setWidth] = useMergedState(() => document?.body?.clientWidth as number)
@@ -36,7 +33,7 @@ export default function useFormItems(
   const fieldInitialValues = computed(() => {
     const values: Record<string, any> = {}
     rawItems.value.forEach((item) => {
-      if (item.name) {
+      if (item.name && item.type !== 'group') {
         if (typeof item.initialValue !== 'undefined') {
           values[item.name] = item.initialValue
         } else {
@@ -98,9 +95,6 @@ export default function useFormItems(
       })
 
   watch([spanSize, () => rawItems.value], () => {
-    // currentSpan.value = 0
-    // totalSize.value = 0
-    // totalSpan.value = 0
     items.value = genItems(rawItems.value)
   })
 

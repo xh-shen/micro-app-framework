@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { FormItemType } from '@micro/components'
 import { reactive } from 'vue'
-import { McQueryFilter } from '@micro/components'
+import { McForm } from '@micro/components'
+import { useForm } from '@micro/hooks'
 
-const filterItems: FormItemType[] = reactive([
+const { formRef, validate, resetFields } = useForm()
+const formItems: FormItemType[] = reactive([
   {
-    key: 'input',
     name: 'name',
     label: '姓名',
     clearable: true,
@@ -46,13 +47,22 @@ const filterItems: FormItemType[] = reactive([
   },
 ])
 
-const onFinish = (values) => {
-  console.log(values)
+const onFinish = async () => {
+  try {
+    const values = await validate()
+    console.log('submit!', values)
+  } catch (error) {
+    console.log('error submit!', error)
+  }
+}
+
+const onReset = () => {
+  resetFields()
 }
 </script>
 
 <template>
-  <McQueryFilter :form-items="filterItems" @finish="onFinish" />
+  <McForm ref="formRef" :form-items="formItems" :span="8" @finish="onFinish" @reset="onReset" />
 </template>
 
 <style scoped lang="scss"></style>

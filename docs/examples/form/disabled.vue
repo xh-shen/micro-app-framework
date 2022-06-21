@@ -4,24 +4,18 @@ import { reactive, ref } from 'vue'
 import { McForm } from '@micro/components'
 import { useForm } from '@micro/hooks'
 
-const LAYOUT_TYPE_HORIZONTAL = 'horizontal'
-const formLayout = ref(LAYOUT_TYPE_HORIZONTAL)
+const DISABLED = false
+const disabled = ref(DISABLED)
 const { formRef, validate, resetFields } = useForm()
 const formItems: FormItemType[] = reactive([
   {
-    type: 'radio-group',
+    type: 'checkbox',
     name: 'layout',
-    label: '标签布局',
-    initialValue: LAYOUT_TYPE_HORIZONTAL,
-    options: [
-      { text: 'horizontal', value: 'horizontal' },
-      { text: 'vertical', value: 'vertical' },
-    ],
-    fieldProps: {
-      radioType: 'button',
-    },
-    onChange: (value: string) => {
-      formLayout.value = value
+    label: '表单禁用',
+    initialValue: disabled,
+    onChange: (value: boolean) => {
+      disabled.value = value
+      console.log(disabled.value)
     },
   },
   {
@@ -51,7 +45,7 @@ const onReset = () => {
 </script>
 
 <template>
-  <McForm ref="formRef" :layout="formLayout" :span="24" :form-items="formItems" @finish="onFinish" @reset="onReset" />
+  <McForm ref="formRef" :disabled="disabled" :span="24" :form-items="formItems" @finish="onFinish" @reset="onReset" />
 </template>
 
 <style scoped lang="scss"></style>

@@ -2,14 +2,17 @@
  * @Author: shen
  * @Date: 2022-06-17 15:35:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-17 22:16:49
+ * @LastEditTime: 2022-06-21 09:58:02
  * @Description:
  */
-import { onMounted, Ref } from 'vue'
+import type { Ref, ComputedRef } from 'vue'
+import type { FormLayoutType } from '../interface'
+import { watch } from 'vue'
 import type { FormTab, Key } from '../interface'
 import { ref } from 'vue'
+import { setPromise } from '@micro/utils'
 
-export default function useFormTabs(): {
+export default function useFormTabs(layoutType: ComputedRef<FormLayoutType>): {
   tabKey: Ref<Key>
   formTabs: Ref<FormTab[]>
   addTab: (tab: FormTab) => void
@@ -38,7 +41,7 @@ export default function useFormTabs(): {
     tabKey.value = key
   }
 
-  const updateTabKeyOnScroll = (top: number) => {
+  const updateTabKeyOnScroll = (top = 0) => {
     formTabs.value.forEach((tab) => {
       if (top >= tab.el.offsetTop - 30) {
         updateTabKey(tab.key)
@@ -46,9 +49,17 @@ export default function useFormTabs(): {
     })
   }
 
-  onMounted(() => {
-    updateTabKeyOnScroll(0)
-  })
+  if (layoutType.value === 'TabsForm') {
+    let cancelCreate: () => void
+    watch(
+      () => formTabs.value,
+      () => {
+        cancelCreate && cancelCreate()
+        cancelCreate = setPromise(updateTabKeyOnScroll).cancel
+      },
+      { immediate: true, deep: true },
+    )
+  }
 
   return {
     tabKey,

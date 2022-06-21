@@ -2,13 +2,14 @@
  * @Author: shen
  * @Date: 2022-06-20 08:57:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-20 09:59:20
+ * @LastEditTime: 2022-06-21 08:53:12
  * @Description:
  */
 import { resolve } from 'path'
 import Inspect from 'vite-plugin-inspect'
 import mkcert from 'vite-plugin-mkcert'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import UnoCSS from 'unocss/vite'
 import { MarkdownTransform } from '../plugins/markdown-transform'
 
@@ -22,5 +23,15 @@ export const vite = {
       allow: [projRoot],
     },
   },
-  plugins: [vueJsx(), UnoCSS(), MarkdownTransform(), Inspect(), mkcert()],
+  plugins: [
+    vueJsx(),
+    UnoCSS(),
+    MarkdownTransform(),
+    Inspect(),
+    mkcert(),
+    createSvgIconsPlugin({
+      iconDirs: [resolve(projRoot, 'packages/icons/svg')],
+      symbolId: 'icon-[name]',
+    }),
+  ],
 }

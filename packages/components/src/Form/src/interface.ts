@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-20 16:12:42
+ * @LastEditTime: 2022-06-21 14:32:35
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -42,6 +42,7 @@ export type FormItemType = {
   key?: Key
   type?: FieldType
   hidden?: boolean
+  visible?: boolean
   disabled?: boolean | ((formValues: Record<string, any>) => boolean)
   readonly?: boolean
   placeholder?: string

@@ -1,28 +1,16 @@
 <script setup lang="ts">
 import type { FormItemType } from '@micro/components'
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import { McForm } from '@micro/components'
 import { useForm } from '@micro/hooks'
 
-const LAYOUT_TYPE_HORIZONTAL = 'horizontal'
-const formLayout = ref(LAYOUT_TYPE_HORIZONTAL)
 const { formRef, validate, resetFields } = useForm()
 const formItems: FormItemType[] = reactive([
   {
-    type: 'radio-group',
-    name: 'layout',
-    label: '标签布局',
-    initialValue: LAYOUT_TYPE_HORIZONTAL,
-    options: [
-      { text: 'horizontal', value: 'horizontal' },
-      { text: 'vertical', value: 'vertical' },
-    ],
-    fieldProps: {
-      radioType: 'button',
-    },
-    onChange: (value: string) => {
-      formLayout.value = value
-    },
+    key: 'group1',
+    type: 'group',
+    label: '分组1',
+    tooltip: '测试分组提示',
   },
   {
     name: 'field1',
@@ -32,6 +20,22 @@ const formItems: FormItemType[] = reactive([
   {
     name: 'field2',
     label: 'field2',
+    clearable: true,
+  },
+  {
+    key: 'group2',
+    type: 'group',
+    label: '分组2',
+  },
+  {
+    name: 'field3',
+    label: 'field3',
+    clearable: true,
+    tooltip: '测试',
+  },
+  {
+    name: 'field4',
+    label: 'field4',
     clearable: true,
   },
 ])
@@ -51,7 +55,7 @@ const onReset = () => {
 </script>
 
 <template>
-  <McForm ref="formRef" :layout="formLayout" :span="24" :form-items="formItems" @finish="onFinish" @reset="onReset" />
+  <McForm ref="formRef" :span="24" :form-items="formItems" @finish="onFinish" @reset="onReset" />
 </template>
 
 <style scoped lang="scss"></style>

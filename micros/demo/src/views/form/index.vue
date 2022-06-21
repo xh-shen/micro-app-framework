@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-15 22:36:31
  * @LastEditors: shen
- * @LastEditTime: 2022-06-18 09:55:32
+ * @LastEditTime: 2022-06-21 08:53:49
  * @Description: 
 -->
 <script lang="tsx">
@@ -16,7 +16,7 @@ export default defineComponent({
   name: 'DemoForm',
   components: { ElButton },
   setup() {
-    const { formRef, validate, setFormValues, setFieldValue } = useForm()
+    const { formRef, validate } = useForm()
     const initialValues = {
       name: '',
       region: '',

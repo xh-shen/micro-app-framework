@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-20 22:10:49
+ * @LastEditTime: 2022-06-21 15:16:23
  * @Description: 
 -->
 <script lang="ts">
@@ -45,7 +45,7 @@ export default defineComponent({
     const disabled = computed(() => props.disabled)
     const colProps = computed(() => props.colProps || ({ span: 8 } as ColProps))
     const preInitialValues = usePrevious(props.initialValues)
-    const { formTabs, addTab, clearTab, tabKey, updateTabKey, updateTabKeyOnScroll } = useFormTabs()
+    const { formTabs, addTab, clearTab, tabKey, updateTabKey, updateTabKeyOnScroll } = useFormTabs(layoutType)
 
     watch(
       () => props.initialValues,
@@ -148,13 +148,15 @@ export default defineComponent({
     <FormTabs v-if="layoutType === 'TabsForm'" :list="formTabs" :position="tabPosition" :active-key="tabKey" />
     <FormWrapper ref="wrapRef" :gutter="gutter" @scroll="onScroll">
       <FormItems :list="items" />
-      <ElCol :span="24">
-        <ElFormItem label="">
-          <slot name="actions">
-            <FormActions v-if="showDefaultActions" @submit="onFinish" @reset="onReset" />
-          </slot>
-        </ElFormItem>
-      </ElCol>
+      <slot name="submitter">
+        <ElCol :span="24">
+          <ElFormItem label="">
+            <slot name="actions">
+              <FormActions v-if="showDefaultActions" @submit="onFinish" @reset="onReset" />
+            </slot>
+          </ElFormItem>
+        </ElCol>
+      </slot>
     </FormWrapper>
   </ElForm>
 </template>
