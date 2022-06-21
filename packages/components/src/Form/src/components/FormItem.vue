@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 16:19:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-18 08:37:45
+ * @LastEditTime: 2022-06-21 22:46:37
  * @Description: 
 -->
 <script setup lang="ts">
@@ -24,7 +24,7 @@ const props = defineProps({
   },
 })
 
-const { formValues, updateValue, mode, colProps } = useInjectForm()
+const { formValues, updateValue, mode } = useInjectForm()
 
 const cloneFormValues = computed(() => cloneDeep(formValues.value))
 
@@ -58,7 +58,7 @@ const isCustomRenderField = computed(() => props.item.renderField && isFunction(
 </script>
 
 <template>
-  <FormItemWrapper :col-props="item.colProps || colProps">
+  <FormItemWrapper :col-props="item.colProps">
     <ElFormItem :prop="item.name" :rules="mode === 'edit' ? item.rules : undefined" v-if="!isCustomRender" :style="{ width: item.width || 'auto' }">
       <template #label>
         <FormLabel :label="item.label" :tooltip="item.tooltip" />

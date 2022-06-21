@@ -10,7 +10,7 @@
     "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
-    "types": ["vite-plugin-svg-icons/client"],
+    "types": ["vite-plugin-svg-icons/client", "vite/client"],
   },
   "vueCompilerOptions": {
     "experimentalDisableTemplateSupport": true,

@@ -2,11 +2,11 @@
  * @Author: shen
  * @Date: 2022-06-08 10:32:46
  * @LastEditors: shen
- * @LastEditTime: 2022-06-21 15:16:23
+ * @LastEditTime: 2022-06-21 22:46:14
  * @Description: 
 -->
 <script lang="ts">
-import type { ColProps, FormItemType, FormPosition } from './interface'
+import type { FormItemType, FormPosition } from './interface'
 import { defineComponent, computed, watch, toRaw, ref } from 'vue'
 import { ElForm, FormInstance, ElCol, ElFormItem } from 'element-plus'
 import { usePrevious } from '@micro/hooks'
@@ -43,7 +43,6 @@ export default defineComponent({
     const labelWidth = computed(() => props.labelWidth)
     const labelPosition = computed<FormPosition>(() => (props.layout === 'horizontal' ? 'right' : 'top'))
     const disabled = computed(() => props.disabled)
-    const colProps = computed(() => props.colProps || ({ span: 8 } as ColProps))
     const preInitialValues = usePrevious(props.initialValues)
     const { formTabs, addTab, clearTab, tabKey, updateTabKey, updateTabKeyOnScroll } = useFormTabs(layoutType)
 
@@ -111,7 +110,6 @@ export default defineComponent({
       gutter,
       labelWidth,
       disabled,
-      colProps,
       genItems,
       layoutType,
       formValues,
@@ -152,7 +150,7 @@ export default defineComponent({
         <ElCol :span="24">
           <ElFormItem label="">
             <slot name="actions">
-              <FormActions v-if="showDefaultActions" @submit="onFinish" @reset="onReset" />
+              <FormActions v-if="showActions" @submit="onFinish" @reset="onReset" />
             </slot>
           </ElFormItem>
         </ElCol>

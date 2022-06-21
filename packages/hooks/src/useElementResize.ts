@@ -3,13 +3,13 @@
  * @Author: shen
  * @Date: 2022-03-01 14:44:28
  * @LastEditors: shen
- * @LastEditTime: 2022-05-28 10:23:48
+ * @LastEditTime: 2022-06-21 16:49:06
  * @Description:
  */
 
 import { onMounted, nextTick, onUnmounted, Ref } from 'vue'
 import elementResize from 'element-resize-detector'
-import throttle from 'lodash-es/throttle'
+import { throttle } from 'lodash-es'
 
 export function useElementResize(dom: Ref<HTMLElement | null>, handler: any = null) {
   let erdUltraFast: any

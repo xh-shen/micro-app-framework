@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 19:59:54
  * @LastEditors: shen
- * @LastEditTime: 2022-06-18 09:06:22
+ * @LastEditTime: 2022-06-21 22:51:32
  * @Description: 
 -->
 <script setup lang="ts">
@@ -20,7 +20,7 @@ defineProps({
 
 const emit = defineEmits(['scroll'])
 
-const { layoutType, grid } = useInjectForm()
+const { layoutType } = useInjectForm()
 
 const wrapRef = ref()
 

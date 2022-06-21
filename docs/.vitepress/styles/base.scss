@@ -192,12 +192,13 @@ li > ol {
   margin: 0;
 }
 
-.doc-content > div .vp-table {
+.vp-doc > div {
   width: 100%;
   overflow-y: hidden;
   overflow-x: auto;
   margin-bottom: 45px;
   & > table {
+    display: table;
     border-collapse: collapse;
     width: 100%;
     background-color: var(--bg-color);
@@ -205,6 +206,10 @@ li > ol {
     line-height: 1.5em;
 
     tr {
+      border-top: none;
+      &:nth-child(2n) {
+        background-color: transparent;
+      }
       td:nth-child(2) {
         font-family: var(--font-family);
       }
@@ -212,12 +217,17 @@ li > ol {
 
     th,
     td {
+      border: none;
       border-top: 1px solid var(--border-color);
       border-bottom: 1px solid var(--border-color);
       padding: 0.6em 1em;
       text-align: left;
       max-width: 250px;
+      min-width: 120px;
       white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.5em;
+      background-color: transparent;
     }
 
     thead tr:first-child th {

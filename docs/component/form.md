@@ -88,18 +88,59 @@ form/tabs
 
 :::
 
-## API
+## 属性
 
-## Props
+| 参数 | 说明 | 类型 |可选值| 默认值 |
+| --- | --- | --- | --- | --- |
+| gutter | 栅格间隔	 | number | - | 20 |
+| initial-values | 表单默认值，只有初始化以及重置时生效 | Record<string, any> | - |- |
+| form-items | 表单配置项，具体查看[[FormItem](#formitem)] | array | - |`[]` |
+| layout | 表单布局 | string |`horizontal` \| `vertical`  |`horizontal` |
+| layout-type | 使用的表单布局模式 | string | `Form` \| `vertical` | `Form` |
+| label-width | label 宽度 | number \| string | - |- |
+| disabled| 是否禁用表单中的所有输入框 | boolean|   -  |`false` |
+| tab-position| 选项卡所在位置	 | string |  `left` \| `right`\| `top`   | `left` |
+| span | 栅格占据的列数	 | number | - | - |
+| show-actions | 表单自带操作按钮	 | boolean | - | `true` |
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| gutter | 栅格间隔	 | `number` | - |
-| initialValues | 表单默认值，只有初始化以及重置时生效 | `object` | - |
-| formItems | 表单项配置列表（必要参数） | `FormItemType[]` | `[]` |
-| layout | 表单布局 |`horizontal` \| `vertical` | `horizontal` |
-| layoutType | 使用的表单布局模式 | `TabsForm` | - |
-| labelWidth | label 宽度 | `number` \| `'auto'` | - |
+### <a id="formitem">FormItem</a>
+
+| 字段名称 | 说明 | 类型 |可选值| 默认值 |
+| --- | --- | --- | --- | --- |
+| key | 表单项Key值，不可重复，name属性重复或不存在时必须配置| string \| number   | - | - |
+| name | 字段名, 必须配置，`group除外`| string   | - | - |
+| label| 标签文本| string \| number \| (opt: { formValues: Record<string, any> }) => VNode \| string \| number   | -  | -   |
+| type | 表单类型[[type](#type)]  | string   | - | `input` |
+| rules            | 表单校验规则                                 | array    | -                                       | -   |
+| placeholder      | 表单元素的提示文字                                              | string\   | -                                       |-   |
+| initialValue     | 表单项初始值                                                    | any      | -                                       |-   |
+| readonly         | 是否只读                                                        | boolean  | false                                   |-   |
+| disabled         | 是否禁用                                                        | boolean  | false                                   |-   |
+| hidden           | 是否隐藏表单项                                                  | boolean  | false                                   |-   |
+| colSize           | 表单项所占栅格列数                                                 | number  | -                                   |`1`   |
+| options          | 可选项数据源, 只有部分表单类型有效，具体查看[[option](#option)] | array    | -                                       | -  |
+| fieldProps       | 额外配置，每个类型参数不同，[[fieldProps](#fieldProps)]         | object   | -                                       |-   |
+| onChange         | 值变化时触发                                                    | ( value, ...args ) => void  |  -            |-   |
+| render           | 自定义渲染表单项                  | (opt: { formValues: Record<string, any> }) => VNode \| string \| number| -|-   |
+| renderField      | 自定义渲染表单项field    |  (opt: { value: any; formValues: Record<string, any>; updateValue: (name: string, value: any) => void }) => VNode \| string \| number | -                            |-   |
+
+### <a id="type">type</a>
+
+| 表单项类型      | 说明         |
+| ------------- | ------------ |
+| group         | 分组显示     |
+| input          | 输入框       |
+| date-picker  | 日期选择     |
+| time-picker     | 时间选择 |
+| select      | 选择器       |
+| cascader      | 级联选择器       |
+| checkbox | 复选框    |
+| checkbox-group | 复选框组     |
+| radio-group    | 单选框组     |
+| switch        | 开关         |
+| slider        | 滑块         |
+| textarea      | 文本域       |
+| uploader      | 上传       |
 
 ### 默认布局时的规则：
 

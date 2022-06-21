@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-08 13:08:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-21 14:32:35
+ * @LastEditTime: 2022-06-21 22:45:18
  * @Description:
  */
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
@@ -138,10 +138,7 @@ export const formProps = {
     type: Boolean,
     default: false,
   },
-  colProps: {
-    type: Object as PropType<Partial<ColProps>>,
-  },
-  showDefaultActions: {
+  showActions: {
     type: Boolean,
     default: true,
   },

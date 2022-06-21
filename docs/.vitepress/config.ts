@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-08 21:03:38
  * @LastEditors: shen
- * @LastEditTime: 2022-06-20 09:49:24
+ * @LastEditTime: 2022-06-21 20:41:13
  * @Description:
  */
 import { defineConfig } from 'vitepress'
@@ -35,6 +35,7 @@ export default defineConfig({
   title: 'Shene Micro',
   description: 'Vue3为主技术栈的微前端架构。',
   lastUpdated: true,
+  appearance: false,
   base: BASE_URL,
   themeConfig: {
     logo: BASE_URL + '/images/logo.png',

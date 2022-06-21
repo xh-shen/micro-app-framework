@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-20 08:57:01
  * @LastEditors: shen
- * @LastEditTime: 2022-06-21 08:53:12
+ * @LastEditTime: 2022-06-21 20:36:34
  * @Description:
  */
 import { resolve } from 'path'
@@ -22,6 +22,9 @@ export const vite = {
     fs: {
       allow: [projRoot],
     },
+  },
+  ssr: {
+    noExternal: ['lodash', 'lodash-es'],
   },
   plugins: [
     vueJsx(),
