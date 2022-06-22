@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-16 10:25:00
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 11:00:32
+ * @LastEditTime: 2022-06-22 22:03:34
  * @Description: 
 -->
 <script lang="ts">
@@ -11,26 +11,30 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { computed } from 'vue'
 import { classNames } from '@micro/utils'
+import { useMergedState } from '@micro/hooks'
+import { ElTooltip } from 'element-plus'
 import cardProps from './props'
 import SvgIcon from '../../SvgIcon'
 import Loading from '../../Loading'
 
 const props = defineProps(cardProps)
 const emit = defineEmits(['collapse'])
-const controlCollapsed = ref(props.collapsed)
-const collapsed = ref<boolean>(controlCollapsed.value === undefined ? props.defaultCollapsed : controlCollapsed.value)
 
-if (controlCollapsed.value !== undefined) {
-  watch(controlCollapsed, () => {
-    collapsed.value = controlCollapsed.value as boolean
-  })
-}
+const [mergeCollapsed, setMergeCollapsed] = useMergedState<boolean | undefined>(() => props.defaultCollapsed, {
+  value: computed(() => props.collapsed),
+  onChange: (val) => {
+    emit('collapse', val)
+  },
+})
+
+const collapsibleButton = computed(() => props.collapsible && props.collapsed === undefined)
 
 const onCollapse = () => {
-  collapsed.value = !collapsed.value
-  emit('collapse', collapsed.value)
+  if (collapsibleButton.value) {
+    setMergeCollapsed(!mergeCollapsed.value)
+  }
 }
 
 const cardClass = computed(() =>
@@ -39,7 +43,7 @@ const cardClass = computed(() =>
     'is-always-shadow': props.shadow === 'always',
     'is-hover-shadow': props.shadow === 'hover',
     'is-border': props.border,
-    'is-collapse': !collapsed.value,
+    'is-collapse': mergeCollapsed.value,
   }),
 )
 
@@ -47,6 +51,7 @@ const cardHeaderClass = computed(() =>
   classNames({
     'mc-card__header': true,
     'is-border': props.headerBorder,
+    'is-collapsible': collapsibleButton.value,
   }),
 )
 
@@ -61,20 +66,27 @@ const cardFooterClass = computed(() =>
 <template>
   <div :class="cardClass">
     <Loading :spinning="loading">
-      <div v-if="$slots.header || title">
-        <div :class="cardHeaderClass" :style="headerStyle">
-          <div v-if="collapsible && controlCollapsed === undefined">
-            <div class="mc-card__header-collapse" @click="onCollapse">
-              <SvgIcon name="right" :rotate="collapsed ? 90 : undefined" />
+      <div v-if="$slots.header || title || collapsibleButton">
+        <div :class="cardHeaderClass" :style="headerStyle" @click="onCollapse">
+          <div v-if="collapsibleButton">
+            <div class="mc-card__header-collapse">
+              <SvgIcon name="right" :rotate="!mergeCollapsed ? 90 : undefined" />
             </div>
           </div>
           <slot name="header">
-            <div class="mc-card__header-title">{{ title }}</div>
+            <div class="mc-card__header-title">
+              <div class="mc-card__header-title-text">
+                {{ title }}
+              </div>
+              <ElTooltip v-if="tooltip" append-to="body" effect="dark" :content="tooltip" placement="top">
+                <SvgIcon name="warning" />
+              </ElTooltip>
+            </div>
             <slot name="extra"></slot>
           </slot>
         </div>
       </div>
-      <div class="mc-card__content" v-show="collapsed">
+      <div class="mc-card__content" v-show="!mergeCollapsed">
         <div class="mc-card__body" :style="bodyStyle">
           <slot></slot>
         </div>
@@ -99,6 +111,17 @@ $card-padding-horizontal: 20px !default;
   &.is-border {
     border: $border-lighter;
   }
+  &:hover {
+    &.is-hover-shadow {
+      border-color: transparent;
+      box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+    }
+  }
+  &.is-always-shadow {
+    border-color: transparent;
+    box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+  }
+
   &.is-collapse {
     .mc-card__header {
       border-bottom: 0;
@@ -116,16 +139,34 @@ $card-padding-horizontal: 20px !default;
       border-bottom: $border-lighter;
       padding-bottom: $card-padding-vertical;
     }
+    &.is-collapsible {
+      cursor: pointer;
+    }
     &-title {
+      display: flex;
+      align-items: center;
       flex: 1;
       color: $color-text-primary;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 500;
+      .mc-svg-icon {
+        cursor: pointer;
+        margin-left: 5px;
+        transition: color 0.1s;
+        &:hover {
+          color: var(--el-color-primary);
+        }
+      }
     }
     &-collapse {
-      padding: 0 5px;
+      font-size: 14px;
+      padding: 0 5px 0 0;
       color: $color-text-primary;
-      cursor: pointer;
+
+      transition: color 0.1s;
+      &:hover {
+        color: var(--el-color-primary);
+      }
     }
   }
   &__content {

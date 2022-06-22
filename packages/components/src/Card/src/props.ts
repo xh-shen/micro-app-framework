@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-03 20:03:37
  * @LastEditors: shen
- * @LastEditTime: 2022-06-05 10:17:14
+ * @LastEditTime: 2022-06-22 21:10:43
  * @Description:
  */
 import type { CSSProperties, PropType } from 'vue'
@@ -12,6 +12,10 @@ export type ShadowType = 'always' | 'hover' | 'never'
 export default {
   /** 卡片标题 */
   title: {
+    type: String as PropType<string>,
+    default: '',
+  },
+  tooltip: {
     type: String as PropType<string>,
     default: '',
   },
@@ -62,7 +66,7 @@ export default {
   /** 配置默认是否折叠 */
   defaultCollapsed: {
     type: Boolean as PropType<boolean>,
-    default: true,
+    default: false,
   },
   /** 受控 collapsed 属性 */
   collapsed: {
