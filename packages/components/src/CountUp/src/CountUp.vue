@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-03 21:55:05
  * @LastEditors: shen
- * @LastEditTime: 2022-06-03 21:59:03
+ * @LastEditTime: 2022-06-23 10:13:37
  * @Description: 
 -->
 <script lang="ts">
@@ -19,6 +19,10 @@ const props = defineProps({
   delay: {
     type: Number as PropType<number>,
     default: 0,
+  },
+  duration: {
+    type: Number as PropType<number>,
+    default: 2,
   },
   endVal: {
     type: Number as PropType<number>,
@@ -37,7 +41,10 @@ const create = () => {
   if (instance) {
     return
   }
-  const countUp = new CountUp(elRef.value as HTMLElement, props.endVal, props.options)
+  const countUp = new CountUp(elRef.value as HTMLElement, props.endVal, {
+    ...props.options,
+    duration: props.duration,
+  })
   if (countUp.error) {
     return
   }

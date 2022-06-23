@@ -38,7 +38,7 @@ loading/text
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
-| delay | 延迟显示加载效果的时间（防止闪烁） | number (毫秒) | - | - |
+| delay | 延迟显示加载效果的时间（防止闪烁） | `number (毫秒)` | - | - |
 | size | 组件大小  | `string` | small/default/large | default |
 | spinning | 是否为加载中状态 | `boolean` | - | false |
 | tip | 当作为包裹元素时，可以自定义描述文案 | `string` | - | - |
