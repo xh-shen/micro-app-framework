@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-05-02 19:30:26
  * @LastEditors: shen
- * @LastEditTime: 2022-06-14 15:35:04
+ * @LastEditTime: 2022-06-23 09:48:18
  * @Description: 
 -->
 <script lang="ts">
@@ -160,10 +160,10 @@ const containerClass = computed(() => ({
   }
 
   &__show-text {
-    .loading__dot {
+    .mc-loading__dot {
       margin-top: -20px;
     }
-    .loading__text {
+    .mc-loading__text {
       display: block;
     }
   }
@@ -209,11 +209,11 @@ const containerClass = computed(() => ({
 
   &--small {
     .mc-loading__dot {
-      width: 0.8em;
-      height: 0.8em;
+      width: 0.7em;
+      height: 0.7em;
       &-item {
-        width: 7px;
-        height: 7px;
+        width: 6px;
+        height: 6px;
       }
     }
   }
