@@ -3,10 +3,12 @@
 :root {
   // layouts
   --vp-screen-max-width: 1376px;
-  --vp-c-green: var(--el-color-primary);
-  --vp-c-green-dark: var(--el-color-primary-light-3);
+
 
   // colors
+  --vp-c-green: var(--el-color-primary);
+  --vp-c-green-dark: var(--el-color-primary-light-3);
+  --vp-c-green-light: var(--el-color-primary-light-3);
   --text-color: var(--el-text-color-primary);
   --text-color-light: var(--el-text-color-regular);
   --text-color-lighter: var(--el-text-color-secondary);

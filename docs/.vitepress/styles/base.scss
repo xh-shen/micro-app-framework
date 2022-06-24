@@ -274,32 +274,8 @@ details {
   background: var(--brand-color) !important;
 }
 
-.custom-block {
-  .custom-block-title {
-    font-weight: 700;
-  }
-
-  p:not(.custom-block-title) {
-    font-size: 0.9rem;
-  }
-  &.tip {
-    padding: 8px 16px;
-    background-color: var(--block-tip-bg-color);
-    border-radius: 4px;
-    border-left: 5px solid var(--el-color-primary);
-    margin: 20px 0;
-  }
-
-  &.warning {
-    padding: 8px 16px;
-    background-color: var(--block-warning-bg-color);
-    border-radius: 4px;
-    border-left: 5px solid var(--el-color-danger);
-    margin: 20px 0;
-  }
-}
-
 .text-sm, [text~="sm"] {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+
