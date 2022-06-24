@@ -28,7 +28,7 @@ count-up/delay
 
 动画效果持续执行时间，单位秒。
 
-:::demo 配置`duration`属性为4，动画会执行4秒后结束。
+:::demo 配置`duration`属性为**4**，动画会执行**4**秒后结束。
 
 count-up/duration
 

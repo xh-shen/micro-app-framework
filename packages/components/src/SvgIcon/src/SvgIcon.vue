@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2022-06-04 10:16:08
  * @LastEditors: shen
- * @LastEditTime: 2022-06-08 11:01:11
+ * @LastEditTime: 2022-06-24 15:42:10
  * @Description: 
 -->
 <script lang="ts">
@@ -67,7 +67,7 @@ const svgStyle = computed(() =>
   overflow: hidden;
   transition: $transition-base;
   &__spin {
-    animation: loadingCircle 1s linear infinite;
+    animation: loadingCircle 2s linear infinite;
   }
 }
 
