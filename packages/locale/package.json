@@ -3,8 +3,5 @@
   "version": "1.0.0",
   "description": "micro locale",
   "main": "index.ts",
-  "module": "index.ts",
-  "dependencies": {
-    "@micro/utils": "workspace:^1.0.0"
-  }
+  "module": "index.ts"
 }
