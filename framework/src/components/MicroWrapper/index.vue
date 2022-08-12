@@ -2,13 +2,13 @@
  * @Author: shen
  * @Date: 2022-05-16 16:06:17
  * @LastEditors: shen
- * @LastEditTime: 2022-05-29 20:26:22
+ * @LastEditTime: 2022-08-12 09:37:22
  * @Description: 
 -->
 <script setup lang="ts">
 import { useAttrs, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Loading } from '@micro/components'
+import { McLoading } from '@micro/components'
 import { useStore } from '@/hooks'
 
 const props = defineProps({
@@ -66,7 +66,7 @@ const onDataChange = (e: CustomEvent) => {
 
 <template>
   <div class="micro-container">
-    <Loading :spinning="spinning" class="loading" />
+    <McLoading :spinning="spinning" class="loading" />
     <micro-app
       v-bind="attrs"
       :url="formatUrl"
